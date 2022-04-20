@@ -20,9 +20,9 @@
   "homepage": "https://github.com/",
   "dependencies": {
     "@sindresorhus/is": "^4.2.0",
+    "aws-sdk": "^2.1097.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.6",
-    "aws-sdk": "^2.1097.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jest": "^27.3.1",
@@ -41,7 +41,9 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.4",
     "dotenv": "^16.0.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.3.0"
   },
   "jest": {
     "testEnvironment": "node",
@@ -51,6 +53,5 @@
     "modulePathIgnorePatterns": [
       "__config__"
     ]
-  },
-  "type": "module"
+  }
 }
