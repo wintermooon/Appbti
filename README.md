@@ -107,7 +107,7 @@ TRY 한 경험들을 CATCH 하는 걸 목표로 다 같이 힘내봅시다!
 
 <br>     
 
-## **`🔌**GIT MERGE`
+## `🔌**GIT MERGE`
 
 ---
 
