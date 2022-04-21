@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 *.env
 .env
 
 *.lock
 yarn.lock
 package-lock.json
-=======
-node_modules
-
-.env
->>>>>>> a87961dfd15cee185a6aef82a9fcd16fe306178d
