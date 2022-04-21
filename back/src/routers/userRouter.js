@@ -4,9 +4,111 @@ import { loginRequired } from '../middlewares/loginRequired';
 import { userAuthService } from '../services/userService';
 
 const userAuthRouter = Router();
-////
+
+/**
+ * @swagger
+ * definitions:
+ *  User:
+ *   type: object
+ *   required:
+ *     - id
+ *     - email
+ *     - name
+ *     - password
+ *   properties:
+ *     _id:
+ *       type: String
+ *       description: object id
+ *     id:
+ *       type: String
+ *       description: 사용자 id
+ *     email:
+ *       type: string
+ *       description: 사용자 이메일
+ *     name:
+ *       type: string
+ *       description: 사용자 이름
+ *     password:
+ *       type: String
+ *       description: 비밀번호
+ */
+
+// /**
+//  * @swagger
+//  *  /user/register:
+//  *    post:
+//  *      tags:
+//  *      - user
+//  *      description: 회원 가입
+//  *      produces:
+//  *      - applicaion/json
+//  *      parameters:
+//  *      - name: name
+//  *        in: body
+//  *        description: "사용자 이름"
+//  *        required: true
+//  *        type: string
+//  *      - name: email
+//  *        in: body
+//  *        description: "사용자 이메일"
+//  *        required: true
+//  *        type: string
+//  *      - name: password
+//  *        in: body
+//  *        description: "비밀번호"
+//  *        required: true
+//  *        type: string
+//  *      responses:
+//  *       200:
+//  *        description: 회원 가입 완료
+//  *        content:
+//  *          application/json:
+//  *            schema:
+//  *              type: object
+//  *              properties:
+//  *                id:
+//  *                  type: string
+//  *                name:
+//  *                  type: string
+//  *                email:
+//  *                  type: string
+//  *                password:
+//  *                  type: string
+//  */
+
+/**
+ * @swagger
+ * /user/register:
+ *   post:
+ *     description: 회원 가입
+ *     tags: [User]
+ *     requestBody:
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: "#/components/schemas/User"
+ *     responses:
+ *       "201":
+ *         description: "회원 가입 성공"
+ * components:
+ *  schemas:
+ *    User:
+ *      type: object
+ *      properties:
+ *        name:
+ *          type: string
+ *          description: 사용자 이름
+ *        email:
+ *          type: string
+ *          description: 사용자 이메일
+ *        password:
+ *          type: string
+ *          description: 비밀번호
+ */
+
 userAuthRouter.post('/user/register', async (req, res, next) => {
   try {
+    console.log(req.body);
     if (is.emptyObject(req.body)) {
       throw new Error(
         'headers의 Content-Type을 application/json으로 설정해주세요'
@@ -54,22 +156,18 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
   }
 });
 
-userAuthRouter.get(
-  '/userlist/:sortBy',
-  loginRequired,
-  async (req, res, next) => {
-    try {
-      const sortBy = req.params.sortBy;
+userAuthRouter.get('/userlist', loginRequired, async (req, res, next) => {
+  try {
+    // const sortBy = req.params.sortBy;
 
-      // 전체 사용자 목록을 얻음
-      const users = await userAuthService.getUsers(sortBy);
+    // 전체 사용자 목록을 얻음
+    const users = await userAuthService.getUsers();
 
-      res.status(200).send(users);
-    } catch (error) {
-      next(error);
-    }
+    res.status(200).send(users);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 userAuthRouter.get('/user/current', loginRequired, async (req, res, next) => {
   try {

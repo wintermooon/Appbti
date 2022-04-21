@@ -5,6 +5,7 @@ import { errorMiddleware } from './middlewares/errorMiddleware';
 import { application } from 'express';
 
 const { swaggerUi, specs } = require('./swagger');
+console.log(specs);
 
 const app = express();
 
@@ -17,10 +18,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// 기본 페이지
-app.get('/', (req, res) => {
-  res.send('안녕하세요, 레이서 프로젝트 API 입니다.');
-});
+// // 기본 페이지
+// app.get('/', (req, res) => {
+//   res.send('안녕하세요, 레이서 프로젝트 API 입니다.');
+// });
 
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 app.use(userAuthRouter);
