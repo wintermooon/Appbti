@@ -21,13 +21,16 @@ const Header = function () {
           AppBTI Test
         </Link>
         <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
-          Community
-        </Link>
-        <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
           Editor’s suggest
         </Link>
         <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+          Community
+        </Link>
+        <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
           My page
+        </Link>
+        <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+          Contack us
         </Link>
       </nav>
       <Button onClick={() => navigate("/login")} variant="outlined" sx={{ my: 1, mx: 1.5 }}>
