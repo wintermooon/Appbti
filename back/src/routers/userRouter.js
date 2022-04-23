@@ -5,48 +5,6 @@ import { userAuthService } from '../services/userService';
 
 const userAuthRouter = Router();
 
-// /**
-//  * @swagger
-//  * definitions:
-//  *  User:
-//  *   type: object
-//  *   required:
-//  *     - id
-//  *     - email
-//  *     - name
-//  *     - password
-//  * components:
-//  *  schemas:
-//  *    User:
-//  *      type: object
-//  *      properties:
-//  *        name:
-//  *          type: string
-//  *          description: 사용자 이름
-//  *        email:
-//  *          type: string
-//  *          description: 사용자 이메일
-//  *        password:
-//  *          type: string
-//  *          description: 비밀번호
-//  */
-
-// /**
-//  * @swagger
-//  * /user/register:
-//  *   post:
-//  *     description: 회원 가입
-//  *     tags: [User]
-//  *     requestBody:
-//  *       content:
-//  *         application/json:
-//  *           schema:
-//  *             $ref: "#/components/schemas/User"
-//  *     responses:
-//  *       "201":
-//  *         description: "회원 가입 성공"
-//  */
-
 userAuthRouter.post('/user/register', async (req, res, next) => {
   try {
     console.log(req.body);
