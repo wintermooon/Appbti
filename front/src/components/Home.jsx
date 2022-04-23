@@ -1,13 +1,18 @@
 import React from "react";
+import styled from "styled-components";
 
 import Main from "./img/Main.png";
 
 const Home = function () {
   return (
-    <div>
+    <Homeimg>
       <img src={Main} alt="" style={{ width: "100%" }} />
-    </div>
+    </Homeimg>
   );
 };
 
 export default Home;
+
+const Homeimg = styled.div`
+  z-index: -1;
+`;

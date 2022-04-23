@@ -204,9 +204,10 @@ const HeaderBox = styled.div`
       display: ${(props) => (props.isToggled ? "flex" : "none")};
       flex-direction: column;
       width: 100%;
-      background-color: #f3f3f3;
+      background-color: #E8EAF6;
       color: black;
       padding: 0 20px;
+      z-index: 90;
     }
 
     .NavUser {
