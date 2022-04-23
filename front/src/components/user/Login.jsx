@@ -44,33 +44,19 @@ const Login = () => {
         email,
         password,
       });
-
-      const emailData = res.data.email; // navigate 할 때, state: emailData를 사용하여 emailData를 함께 보내주고자 함
-      const currentPassword = res.data.password; // passwordRouter 에서 필요하여 일단 보내보려고 함.
-
-      if (res.data.passwordReset === true) {
-        navigate("/change-password", {
-          state: {
-            email: emailData,
-            currentPassword: currentPassword,
-          },
-          replace: true,
-        });
-      } else if (res.data.passwordReset === false || res.data.passwordReset === null) {
-        // 유저 정보는 response의 data임.
-        const user = res.data;
-        // JWT 토큰은 유저 정보의 token임.
-        const jwtToken = user.token;
-        // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
-        sessionStorage.setItem("userToken", jwtToken);
-        // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
-        dispatch({
-          type: "LOGIN_SUCCESS",
-          payload: user,
-        });
-        // 기본 페이지로 이동함.
-        navigate("/", { replace: true });
-      }
+      // 유저 정보는 response의 data임.
+      const user = res.data;
+      // JWT 토큰은 유저 정보의 token임.
+      const jwtToken = user.token;
+      // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
+      sessionStorage.setItem("userToken", jwtToken);
+      // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
+      dispatch({
+        type: "LOGIN_SUCCESS",
+        payload: user,
+      });
+      // 기본 페이지로 이동함.
+      navigate("/", { replace: true });
     } catch (err) {
       console.log("로그인에 실패하였습니다.\n", err);
     }
