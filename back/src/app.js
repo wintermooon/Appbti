@@ -1,11 +1,11 @@
 import cors from 'cors';
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
 import { userAuthRouter } from './routers/userRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
-import { application } from 'express';
+import swaggerFile from './swagger/swagger-output.json';
 
-const { swaggerUi, specs } = require('./swagger');
-console.log(specs);
+import { application } from 'express';
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use(userAuthRouter);
 app.use(
   '/api-docs',
   swaggerUi.serve,
-  swaggerUi.setup(specs, { explorer: true })
+  swaggerUi.setup(swaggerFile, { explorer: true })
 );
 
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)

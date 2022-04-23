@@ -5,106 +5,47 @@ import { userAuthService } from '../services/userService';
 
 const userAuthRouter = Router();
 
-/**
- * @swagger
- * definitions:
- *  User:
- *   type: object
- *   required:
- *     - id
- *     - email
- *     - name
- *     - password
- *   properties:
- *     _id:
- *       type: String
- *       description: object id
- *     id:
- *       type: String
- *       description: 사용자 id
- *     email:
- *       type: string
- *       description: 사용자 이메일
- *     name:
- *       type: string
- *       description: 사용자 이름
- *     password:
- *       type: String
- *       description: 비밀번호
- */
+// /**
+//  * @swagger
+//  * definitions:
+//  *  User:
+//  *   type: object
+//  *   required:
+//  *     - id
+//  *     - email
+//  *     - name
+//  *     - password
+//  * components:
+//  *  schemas:
+//  *    User:
+//  *      type: object
+//  *      properties:
+//  *        name:
+//  *          type: string
+//  *          description: 사용자 이름
+//  *        email:
+//  *          type: string
+//  *          description: 사용자 이메일
+//  *        password:
+//  *          type: string
+//  *          description: 비밀번호
+//  */
 
 // /**
 //  * @swagger
-//  *  /user/register:
-//  *    post:
-//  *      tags:
-//  *      - user
-//  *      description: 회원 가입
-//  *      produces:
-//  *      - applicaion/json
-//  *      parameters:
-//  *      - name: name
-//  *        in: body
-//  *        description: "사용자 이름"
-//  *        required: true
-//  *        type: string
-//  *      - name: email
-//  *        in: body
-//  *        description: "사용자 이메일"
-//  *        required: true
-//  *        type: string
-//  *      - name: password
-//  *        in: body
-//  *        description: "비밀번호"
-//  *        required: true
-//  *        type: string
-//  *      responses:
-//  *       200:
-//  *        description: 회원 가입 완료
-//  *        content:
-//  *          application/json:
-//  *            schema:
-//  *              type: object
-//  *              properties:
-//  *                id:
-//  *                  type: string
-//  *                name:
-//  *                  type: string
-//  *                email:
-//  *                  type: string
-//  *                password:
-//  *                  type: string
+//  * /user/register:
+//  *   post:
+//  *     description: 회원 가입
+//  *     tags: [User]
+//  *     requestBody:
+//  *       content:
+//  *         application/json:
+//  *           schema:
+//  *             $ref: "#/components/schemas/User"
+//  *     responses:
+//  *       "201":
+//  *         description: "회원 가입 성공"
 //  */
-
-/**
- * @swagger
- * /user/register:
- *   post:
- *     description: 회원 가입
- *     tags: [User]
- *     requestBody:
- *       content:
- *         application/json:
- *           schema:
- *             $ref: "#/components/schemas/User"
- *     responses:
- *       "201":
- *         description: "회원 가입 성공"
- * components:
- *  schemas:
- *    User:
- *      type: object
- *      properties:
- *        name:
- *          type: string
- *          description: 사용자 이름
- *        email:
- *          type: string
- *          description: 사용자 이메일
- *        password:
- *          type: string
- *          description: 비밀번호
- */
 
 userAuthRouter.post('/user/register', async (req, res, next) => {
   try {
@@ -161,6 +102,9 @@ userAuthRouter.get('/userlist', loginRequired, async (req, res, next) => {
     // const sortBy = req.params.sortBy;
 
     // 전체 사용자 목록을 얻음
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const users = await userAuthService.getUsers();
 
     res.status(200).send(users);
@@ -172,6 +116,10 @@ userAuthRouter.get('/userlist', loginRequired, async (req, res, next) => {
 userAuthRouter.get('/user/current', loginRequired, async (req, res, next) => {
   try {
     // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
+
     const userId = req.currentUserId;
     const currentUserInfo = await userAuthService.getUserInfo({
       userId,
@@ -189,6 +137,10 @@ userAuthRouter.get('/user/current', loginRequired, async (req, res, next) => {
 
 userAuthRouter.put('/users/:id', loginRequired, async (req, res, next) => {
   try {
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
+
     // URI로부터 사용자 id를 추출함.
     const userId = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
@@ -219,6 +171,10 @@ userAuthRouter.put('/users/:id', loginRequired, async (req, res, next) => {
 
 userAuthRouter.get('/users/:id', loginRequired, async (req, res, next) => {
   try {
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
+
     const userId = req.params.id;
     const currentUserInfo = await userAuthService.getUserInfo({ userId });
 
@@ -234,6 +190,10 @@ userAuthRouter.get('/users/:id', loginRequired, async (req, res, next) => {
 
 // jwt 토큰 기능 확인용, 삭제해도 되는 라우터임.
 userAuthRouter.get('/afterlogin', loginRequired, (req, res, next) => {
+  /* #swagger.security = [{
+       "bearerAuth": []
+  }] */
+
   res
     .status(200)
     .send(

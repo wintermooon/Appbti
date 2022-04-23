@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js --exec babel-node",
+    "prestart": "node ./src/swagger/swagger.js",
     "test": "jest --setupFiles dotenv/config"
   },
   "repository": {
@@ -32,6 +33,7 @@
     "multer": "^1.4.4",
     "multer-s3": "^2.10.0",
     "supertest": "^6.1.6",
+    "swagger-autogen": "^2.21.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
