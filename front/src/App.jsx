@@ -3,10 +3,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import * as Api from "./api";
 import { loginReducer } from "./reducer";
+import "./App.css";
 
 import Header from "./components/Header";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
+import Home from "./components/Home";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -18,6 +20,8 @@ function App() {
   });
 
   // const isLogin = !!userState.user;
+  // 유저 경로 얻기
+  // const location = window.location.pathname;
 
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
@@ -58,6 +62,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
+            <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
           </Routes>
