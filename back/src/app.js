@@ -3,6 +3,7 @@ import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { userAuthRouter } from './routers/userRouter';
 import { freeboardRouter } from './routers/freeboardRouter';
+import { commentRouter } from './routers/commentRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
 
@@ -27,12 +28,15 @@ app.get('/', (req, res) => {
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 app.use(userAuthRouter);
 app.use(freeboardRouter);
+app.use(commentRouter);
 
+console.log(swaggerFile)
 //swagger
 app.use(
   '/api-docs',
   swaggerUi.serve,
   swaggerUi.setup(swaggerFile, { explorer: true })
+
 );
 
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)

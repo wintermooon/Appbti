@@ -4,10 +4,13 @@ import { loginRequired } from '../middlewares/loginRequired';
 import { freeboardService } from '../services/freeboardService';
 
 const freeboardRouter = Router();
-freeboardRouter.use(loginRequired);
+// freeboardRouter.use(loginRequired);
 
-freeboardRouter.post('/freeboard/create', async (req, res, next) => {
+freeboardRouter.post('/freeboard/create', loginRequired, async (req, res, next) => {
   try {
+        /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const { user_id, name, title, content } = req.body;
 
     const newPost = await freeboardService.addPost({
@@ -27,8 +30,11 @@ freeboardRouter.post('/freeboard/create', async (req, res, next) => {
   }
 });
 
-freeboardRouter.get('/freeboard/:id', async (req, res, next) => {
+freeboardRouter.get('/freeboard/:id', loginRequired, async (req, res, next) => {
   try {
+        /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const post_id = req.params.id;
     const currentPostInfo = await freeboardService.getPostInfo({ post_id });
 
@@ -42,8 +48,11 @@ freeboardRouter.get('/freeboard/:id', async (req, res, next) => {
   }
 });
 
-freeboardRouter.put('/freeboard/:id', async (req, res, next) => {
+freeboardRouter.put('/freeboard/:id', loginRequired, async (req, res, next) => {
   try {
+        /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const post_id = req.params.id;
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
@@ -62,8 +71,11 @@ freeboardRouter.put('/freeboard/:id', async (req, res, next) => {
   }
 });
 
-freeboardRouter.get('/freeboardlist/:user_id', async (req, res, next) => {
+freeboardRouter.get('/freeboardlist/:user_id', loginRequired, async (req, res, next) => {
   try {
+        /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const user_id = req.params.user_id;
     const posts = await freeboardService.getUserPosts({ user_id });
     res.status(200).send(posts);
@@ -72,8 +84,11 @@ freeboardRouter.get('/freeboardlist/:user_id', async (req, res, next) => {
   }
 });
 
-freeboardRouter.get('/freeboardlist', async (req, res, next) => {
+freeboardRouter.get('/freeboardlist', loginRequired, async (req, res, next) => {
   try {
+        /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const posts = await freeboardService.getPosts();
     res.status(200).send(posts);
   } catch (error) {
@@ -81,8 +96,11 @@ freeboardRouter.get('/freeboardlist', async (req, res, next) => {
   }
 });
 
-freeboardRouter.delete('/freeboard/:id', async (req, res, next) => {
+freeboardRouter.delete('/freeboard/:id', loginRequired, async (req, res, next) => {
   try {
+        /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const post_id = req.params.id;
     const deletedPost = await freeboardService.deletePost({ post_id });
 
