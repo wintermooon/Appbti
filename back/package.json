@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js --exec babel-node",
+    "prestart": "node ./src/swagger/swagger.js",
     "test": "jest --setupFiles dotenv/config"
   },
   "repository": {
@@ -21,15 +22,19 @@
   "dependencies": {
     "@sindresorhus/is": "^4.2.0",
     "aws-sdk": "^2.1097.0",
+    "babel-node": "^0.0.1-security",
     "bcrypt": "^5.0.1",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "jest": "^27.3.1",
     "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
     "mongoose": "^6.3.0",
     "multer": "^1.4.4",
     "multer-s3": "^2.10.0",
     "supertest": "^6.1.6",
+    "swagger-autogen": "^2.21.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -39,7 +44,9 @@
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.4",
     "dotenv": "^16.0.0",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.3.0"
   },
   "jest": {
     "testEnvironment": "node",
@@ -49,6 +56,5 @@
     "modulePathIgnorePatterns": [
       "__config__"
     ]
-  },
-  "type": "module"
+  }
 }
