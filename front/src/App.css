@@ -1,0 +1,24 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Noto Sans KR" !important;
+  font-weight: 400 !important;
+  font-size: 1rem !important;
+  color: #263238;
+  letter-spacing: 0 !important;
+}
+
+@font-face {
+  font-family: "Noto Sans KR";
+  font-weight: 400;
+  src: url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+}
