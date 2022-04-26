@@ -22,7 +22,7 @@
         }
       }
     },
-    "/user": {
+    "/users": {
       "post": {
         "tags": [
           "Users"
@@ -55,6 +55,35 @@
             }
           }
         }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "사용자 탈퇴",
+        "description": "user 정보를 삭제한다.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/users/login": {
@@ -89,36 +118,13 @@
         }
       }
     },
-    "/user/current": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
     "/users/{id}": {
       "put": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "사용자 정보 변경",
+        "description": "user 정보를 변경한다.",
         "parameters": [
           {
             "name": "id",
@@ -158,19 +164,7 @@
                   "name": {
                     "example": "any"
                   },
-                  "email": {
-                    "example": "any"
-                  },
-                  "password": {
-                    "example": "any"
-                  },
                   "description": {
-                    "example": "any"
-                  },
-                  "profilelink": {
-                    "example": "any"
-                  },
-                  "image": {
                     "example": "any"
                   }
                 }
@@ -180,7 +174,11 @@
         }
       },
       "get": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "사용자 정보 가져오기",
+        "description": "user 정보를 가져온다.",
         "parameters": [
           {
             "name": "id",
@@ -215,33 +213,6 @@
     },
     "/afterlogin": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/withdrawal": {
-      "delete": {
         "description": "",
         "parameters": [
           {

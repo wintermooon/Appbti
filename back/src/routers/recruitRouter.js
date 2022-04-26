@@ -5,7 +5,7 @@ import { recruitService } from '../services/recruitService';
 
 const recruitRouter = Router();
 
-recruitRouter.post('/recruit/create', loginRequired, async (req, res, next) => {
+recruitRouter.post('/recruits', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruit'] 
@@ -36,7 +36,7 @@ recruitRouter.post('/recruit/create', loginRequired, async (req, res, next) => {
   }
 });
 
-recruitRouter.get('/recruit/:id', loginRequired, async (req, res, next) => {
+recruitRouter.get('/recruits/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruit'] 
@@ -57,7 +57,7 @@ recruitRouter.get('/recruit/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-recruitRouter.put('/recruit/:id', loginRequired, async (req, res, next) => {
+recruitRouter.put('/recruits/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruit'] 
@@ -85,25 +85,21 @@ recruitRouter.put('/recruit/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-recruitRouter.get(
-  '/recruitlist/:user_id',
-  loginRequired,
-  async (req, res, next) => {
-    try {
-      /*
+recruitRouter.get('/recruitlist/:user_id', loginRequired, async (req, res, next) => {
+  try {
+    /*
      #swagger.tags = ['recruit'] 
-     #swagger.summary = '내가 쓴 게시글 확인하기' 
-     #swagger.description = '내가 쓴 게시글 확인하기' 
+     #swagger.summary = '특정 user의 게시글 확인하기' 
+     #swagger.description = '특정 user의 게시글 확인하기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
-      const user_id = req.params.user_id;
-      const posts = await recruitService.getUserPosts({ user_id });
-      res.status(200).send(posts);
-    } catch (error) {
-      next(error);
-    }
+    const user_id = req.params.user_id;
+    const posts = await recruitService.getUserPosts({ user_id });
+    res.status(200).send(posts);
+  } catch (error) {
+    next(error);
   }
-);
+});
 
 recruitRouter.get('/recruitlist', loginRequired, async (req, res, next) => {
   try {
@@ -120,7 +116,7 @@ recruitRouter.get('/recruitlist', loginRequired, async (req, res, next) => {
   }
 });
 
-recruitRouter.delete('/recruit/:id', loginRequired, async (req, res, next) => {
+recruitRouter.delete('/recruits/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruit'] 
