@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import Home from "./components/Home";
+import Community from "./components/community/Community";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -65,6 +66,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/community" element={<Community />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

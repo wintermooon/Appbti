@@ -30,7 +30,7 @@ const Header = function () {
         <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
           Editor’s suggest
         </Link>
-        <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+        <Link variant="button" color="text.primary" onClick={() => navigate("/community")} sx={{ my: 1, mx: 1.5 }}>
           Community
         </Link>
         <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
