@@ -1,15 +1,17 @@
-import { Recruit } from '../db';
+import { Recruit, User } from '../db';
 
 class recruitService {
-  static async addPost({ user_id, name, title, content, hashtag }) {
-    const newPost = { user_id, name, title, content, hashtag };
+  static async addPost({ userId, title, content, hashtag }) {
+    const author = await User.findById({ userId });
+    const newPost = { author, title, content, hashtag };
     const createdNewPost = await Recruit.create({ newPost });
     createdNewPost.errorMessage = null;
     return createdNewPost;
   }
 
-  static async getUserPosts({ user_id }) {
-    const posts = await Recruit.findAllByUserId({ user_id });
+  static async getUserPosts({ userId }) {
+    const author = await User.findById({ userId });
+    const posts = await Recruit.findAllByUserId({ author: author._id });
     return posts;
   }
 
@@ -18,13 +20,19 @@ class recruitService {
     return posts;
   }
 
-  static async setPost({ post_id, toUpdate }) {
+  static async setPost({ userId, post_id, toUpdate }) {
     let post = await Recruit.findById({ post_id });
 
     if (!post) {
       const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
+
+    if (post.author.id !== userId) {
+      const errorMessage = '권한이 없습니다. 자신이 작성한 게시글만 변경할 수 있습니다. ';
+      return { errorMessage };
+    }
+
     if (!toUpdate.title) {
       toUpdate.title = post.title;
     }
@@ -60,13 +68,19 @@ class recruitService {
     return post;
   }
 
-  static async deletePost({ post_id }) {
+  static async deletePost({ userId, post_id }) {
     const post = await Recruit.findById({ post_id });
 
     if (!post) {
       const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
+
+    if (post.author.id !== userId) {
+      const errorMessage = '권한이 없습니다. 자신이 작성한 게시글만 삭제할 수 있습니다. ';
+      return { errorMessage };
+    }
+
     const res = await Recruit.delete({ post_id });
 
     return res;

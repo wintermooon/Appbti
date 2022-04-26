@@ -1,10 +1,12 @@
-import { Recruitcomment } from '../db';
+import { Recruitcomment, User } from '../db';
 
 class recruitcommentService {
-  static async addComment({ board_id, user_id, name, content }) {
-    const newComment = { board_id, user_id, name, content };
+  static async addComment({ userId, post_id, content }) {
+    const author = await User.findByUserId({ userId });
     const createdNewComment = await Recruitcomment.createComment({
-      newComment,
+      post_id,
+      content,
+      author,
     });
     createdNewComment.errorMessage = null;
     return createdNewComment;
@@ -14,8 +16,7 @@ class recruitcommentService {
     const comment = await Recruitcomment.findById({ comment_id });
 
     if (!comment) {
-      const errorMessage =
-        '해당 댓글 내역이 없습니다. 다시 한 번 확인해 주세요.';
+      const errorMessage = '해당 댓글 내역이 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
     return comment;

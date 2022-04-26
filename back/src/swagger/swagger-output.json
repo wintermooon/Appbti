@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:4040"
+      "url": "http://localhost:4041"
     }
   ],
   "paths": {
@@ -715,7 +715,7 @@
         ]
       }
     },
-    "/recruit/create": {
+    "/recruits": {
       "post": {
         "tags": [
           "recruit"
@@ -750,9 +750,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "name": {
-                    "example": "any"
-                  },
                   "title": {
                     "example": "any"
                   },
@@ -769,7 +766,7 @@
         }
       }
     },
-    "/recruit/{id}": {
+    "/recruits/{id}": {
       "get": {
         "tags": [
           "recruit"
@@ -905,16 +902,16 @@
         ]
       }
     },
-    "/recruitlist/{user_id}": {
+    "/recruitlist/{userId}": {
       "get": {
         "tags": [
           "recruit"
         ],
-        "summary": "내가 쓴 게시글 확인하기",
-        "description": "내가 쓴 게시글 확인하기",
+        "summary": "특정 user의 게시글 확인하기",
+        "description": "특정 user의 게시글 확인하기",
         "parameters": [
           {
-            "name": "user_id",
+            "name": "userId",
             "in": "path",
             "required": true,
             "schema": {
@@ -975,10 +972,18 @@
         ]
       }
     },
-    "/recruit/comment/create": {
+    "/recruits/{id}/comments": {
       "post": {
         "description": "",
         "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",
@@ -1006,12 +1011,6 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "board_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
                   "content": {
                     "example": "any"
                   }
@@ -1022,7 +1021,7 @@
         }
       }
     },
-    "/recruit/comments/{id}": {
+    "/recruits/comments/{id}": {
       "get": {
         "description": "",
         "parameters": [
@@ -1146,7 +1145,7 @@
         ]
       }
     },
-    "/recruit/usercommentlist/{user_id}": {
+    "/recruits/usercommentlist/{user_id}": {
       "get": {
         "description": "",
         "parameters": [

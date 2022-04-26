@@ -5,18 +5,18 @@ import { recruitcommentService } from '../services/recruitcommentService';
 
 const recruitcommentRouter = Router();
 
-recruitcommentRouter.post('/recruits/comment', loginRequired, async (req, res, next) => {
+recruitcommentRouter.post('/recruits/:id/comments', loginRequired, async (req, res, next) => {
   try {
     /* #swagger.security = [{
          "bearerAuth": []
       }] */
-    const user_id = req.currentUserId;
-    const { board_id, name, content } = req.body;
+    const userId = req.currentUserId;
+    const post_id = req.params.id;
+    const { content } = req.body;
 
     const newComment = await recruitcommentService.addComment({
-      user_id,
-      board_id,
-      name,
+      userId,
+      post_id,
       content,
     });
 
@@ -30,6 +30,7 @@ recruitcommentRouter.post('/recruits/comment', loginRequired, async (req, res, n
   }
 });
 
+// 이거 왜쓰지?
 recruitcommentRouter.get('/recruits/comments/:id', loginRequired, async (req, res, next) => {
   try {
     /* #swagger.security = [{
@@ -98,7 +99,7 @@ recruitcommentRouter.delete('/recruits/comments/:id', loginRequired, async (req,
   }
 });
 
-recruitcommentRouter.get('/recruit/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
+recruitcommentRouter.get('/recruits/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
   try {
     /* #swagger.security = [{
          "bearerAuth": []

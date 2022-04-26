@@ -1,14 +1,13 @@
 import { Schema, model } from 'mongoose';
+import { RecruitcommentSchema } from './recruitcomment';
 
 const RecruitSchema = new Schema(
   {
-    user_id: {
-      type: String,
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
-    },
-    name: {
-      type: String,
-      required: true,
+      index: true,
     },
     title: {
       type: String,
@@ -28,12 +27,7 @@ const RecruitSchema = new Schema(
       required: false,
       default: [],
     },
-    comment: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Recruitcomment',
-      },
-    ],
+    comments: [RecruitcommentSchema],
   },
   {
     timestamps: true,

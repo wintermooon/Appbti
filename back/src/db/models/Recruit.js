@@ -1,4 +1,5 @@
 import { RecruitModel } from '../schemas/recruit';
+import { UserModel } from '../schemas/user';
 
 class Recruit {
   static async create({ newPost }) {
@@ -7,20 +8,17 @@ class Recruit {
   }
 
   static async findById({ post_id }) {
-    const post = await RecruitModel.findOne({ _id: post_id }).populate(
-      'comment',
-      'content'
-    );
+    const post = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name');
     return post;
   }
 
   static async findAll() {
-    const posts = await RecruitModel.find({}).sort({ updatedAt: -1 });
+    const posts = await RecruitModel.find({}).populate('author', 'id email name').sort({ updatedAt: -1 });
     return posts;
   }
 
-  static async findAllByUserId({ user_id }) {
-    const posts = await RecruitModel.find({ user_id: user_id }).sort({
+  static async findAllByUserId({ author }) {
+    const posts = await RecruitModel.find({ author }).sort({
       updatedAt: -1,
     });
     return posts;
@@ -31,11 +29,7 @@ class Recruit {
     const update = { $set: newValues };
     const option = { returnOriginal: false };
 
-    const updatedPost = await RecruitModel.findOneAndUpdate(
-      filter,
-      update,
-      option
-    );
+    const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);
     return updatedPost;
   }
 
