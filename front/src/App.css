@@ -10,10 +10,10 @@
 }
 
 body {
+  min-width: 510px !important;
   font-family: "Noto Sans KR" !important;
   font-weight: 400 !important;
   font-size: 1rem !important;
-  color: #263238;
   letter-spacing: 0 !important;
 }
 
