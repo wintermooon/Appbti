@@ -8,8 +8,8 @@ import "./App.css";
 import Header from "./components/Header";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import Home from "./components/Home";
 import Community from "./components/community/Community";
+import Main from "./components/Main";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -63,7 +63,7 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/community" element={<Community />} />
