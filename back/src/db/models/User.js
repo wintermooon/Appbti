@@ -16,11 +16,6 @@ class User {
     return user;
   }
 
-  static async findAll() {
-    const users = await UserModel.find({});
-    return users;
-  }
-
   static async update({ userId, fieldToUpdate, newValue }) {
     const filter = { id: userId };
     const update = { [fieldToUpdate]: newValue };
@@ -32,6 +27,12 @@ class User {
       option
     );
     return updatedUser;
+  }
+
+  static async deleteById({ userId }) {
+    const deleteResult = await UserModel.deleteOne({ id: userId });
+    const isDataDeleted = deleteResult.deletedCount === 1;
+    return isDataDeleted;
   }
 }
 

@@ -54,7 +54,13 @@ class userAuthService {
     }
 
     // 로그인 성공 -> JWT 웹 토큰 생성
-    const secretKey = process.env.JWT_SECRET_KEY || 'jwt-secret-key';
+    const secretKey = process.env.JWT_SECRET_KEY;
+
+    if (!secretKey) {
+      const errorMessage = 'JWT_SECRET_KEY가 설정되지 않았습니다.';
+      return { errorMessage };
+    }
+
     //jwt default는 24시간 -> 1시간으로 변경
     const token = jwt.sign({ userId: user.id }, secretKey, { expiresIn: '1h' });
 
@@ -75,11 +81,6 @@ class userAuthService {
     };
 
     return loginUser;
-  }
-
-  static async getUsers(sortBy) {
-    const users = await User.findAll(sortBy);
-    return users;
   }
 
   static async setUser({ userId, toUpdate }) {
@@ -140,35 +141,15 @@ class userAuthService {
     return user;
   }
 
-  static async deleteUser({ userId, email, password }) {
-    const user = await User.findByEmail({ email });
+  static async deleteUser({ userId }) {
+    const user = await User.findById({ userId });
     if (!user) {
       const errorMessage =
         '해당 이메일은 가입 내역이 없습니다. 다시 한 번 확인해 주세요.';
       return { errorMessage };
     }
 
-    // 비밀번호 일치 여부 확인
-    const correctPasswordHash = user.password;
-    const isPasswordCorrect = await bcrypt.compare(
-      password,
-      correctPasswordHash
-    );
-
-    if (!isPasswordCorrect) {
-      const errorMessage =
-        '비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.';
-      return { errorMessage };
-    }
-
     const isDataDeleted = await User.deleteById({ userId });
-
-    // db에서 찾지 못한 경우, 에러 메시지 반환
-    if (!isDataDeleted) {
-      const errorMessage =
-        '해당 id를 가진 프로젝트 데이터는 없습니다. 다시 한 번 확인해 주세요.';
-      return { errorMessage };
-    }
 
     return { status: 'ok' };
   }

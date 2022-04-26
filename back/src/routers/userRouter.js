@@ -5,8 +5,13 @@ import { userAuthService } from '../services/userService';
 
 const userAuthRouter = Router();
 
-userAuthRouter.post('/user/register', async (req, res, next) => {
+userAuthRouter.post('/user', async (req, res, next) => {
   try {
+    /*
+     #swagger.tags = ['Users'] 
+     #swagger.summary = '회원가입' 
+     #swagger.description = 'user를 등록한다.' 
+    */
     console.log(req.body);
     if (is.emptyObject(req.body)) {
       throw new Error(
@@ -36,8 +41,14 @@ userAuthRouter.post('/user/register', async (req, res, next) => {
   }
 });
 
-userAuthRouter.post('/user/login', async function (req, res, next) {
+userAuthRouter.post('/users/login', async function (req, res, next) {
   try {
+    /*
+     #swagger.tags = ['Users'] 
+     #swagger.summary = '로그인' 
+     #swagger.description = '로그인 한다.' 
+    */
+
     // req (request) 에서 데이터 가져오기
     const email = req.body.email;
     const password = req.body.password;
@@ -55,23 +66,7 @@ userAuthRouter.post('/user/login', async function (req, res, next) {
   }
 });
 
-userAuthRouter.get('/userlist', loginRequired, async (req, res, next) => {
-  try {
-    // const sortBy = req.params.sortBy;
-
-    // 전체 사용자 목록을 얻음
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
-    const users = await userAuthService.getUsers();
-
-    res.status(200).send(users);
-  } catch (error) {
-    next(error);
-  }
-});
-
-userAuthRouter.get('/user/current', loginRequired, async (req, res, next) => {
+userAuthRouter.get('/users/current', loginRequired, async (req, res, next) => {
   try {
     // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
     /* #swagger.security = [{
@@ -103,10 +98,7 @@ userAuthRouter.put('/users/:id', loginRequired, async (req, res, next) => {
     const userId = req.params.id;
     // body data 로부터 업데이트할 사용자 정보를 추출함.
     const name = req.body.name ?? null;
-    const email = req.body.email ?? null;
-    const password = req.body.password ?? null;
     const description = req.body.description ?? null;
-    const profilelink = req.body.profilelink ?? null;
 
     // const toUpdate = { name, email, password, description, profilelink };
     const image = req.body.image ?? null;
@@ -159,17 +151,17 @@ userAuthRouter.get('/afterlogin', loginRequired, (req, res, next) => {
     );
 });
 
-userAuthRouter.post('/withdrawal/:id', async (req, res, next) => {
+userAuthRouter.delete('/withdrawal', loginRequired, async (req, res, next) => {
   try {
+    /* #swagger.security = [{
+       "bearerAuth": []
+  }] */
+
     // req (request) 에서 id 가져오기
-    const userId = req.params.id;
-    const email = req.body.email;
-    const password = req.body.password;
+    const userId = req.currentUserId;
     // 위 id를 이용하여 db에서 데이터 삭제하기
     const result = await userAuthService.deleteUser({
       userId,
-      email,
-      password,
     });
 
     if (result.errorMessage) {

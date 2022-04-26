@@ -22,9 +22,13 @@
         }
       }
     },
-    "/user/register": {
+    "/user": {
       "post": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "회원가입",
+        "description": "user를 등록한다.",
         "parameters": [],
         "responses": {
           "201": {
@@ -53,9 +57,13 @@
         }
       }
     },
-    "/user/login": {
+    "/users/login": {
       "post": {
-        "description": "",
+        "tags": [
+          "Users"
+        ],
+        "summary": "로그인",
+        "description": "로그인 한다.",
         "parameters": [],
         "responses": {
           "200": {
@@ -79,33 +87,6 @@
             }
           }
         }
-      }
-    },
-    "/userlist": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
       }
     },
     "/user/current": {
@@ -259,14 +240,13 @@
         ]
       }
     },
-    "/withdrawal/{id}": {
-      "post": {
+    "/withdrawal": {
+      "delete": {
         "description": "",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "authorization",
+            "in": "header",
             "schema": {
               "type": "string"
             }
@@ -275,25 +255,16 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
           }
         },
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "email": {
-                    "example": "any"
-                  },
-                  "password": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
+        "security": [
+          {
+            "bearerAuth": []
           }
-        }
+        ]
       }
     },
     "/freeboard/create": {
@@ -739,6 +710,507 @@
       }
     },
     "/freeboard/boardcommentlist/{board_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "board_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/recruit/create": {
+      "post": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "팀원 모집 게시글 생성",
+        "description": "팀원 모집 게시글 생성한다.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "title": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  },
+                  "hashtag": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recruit/{id}": {
+      "get": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "게시글 id에 해당하는 게시글 정보 가져오기",
+        "description": "특정 게시글 정보 가져오기",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "게시글 수정하기",
+        "description": "팀원 모집 게시글을 수정한다.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  },
+                  "status": {
+                    "example": "any"
+                  },
+                  "hashtag": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "팀원 모집 게시글 삭제",
+        "description": "팀원 모집 게시글 삭제한다.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/recruitlist/{user_id}": {
+      "get": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "내가 쓴 게시글 확인하기",
+        "description": "내가 쓴 게시글 확인하기",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/recruitlist": {
+      "get": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "게시글 목록",
+        "description": "전체 게시글 목록",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/recruit/comment/create": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "board_id": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/recruit/comments/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "board_id": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  },
+                  "created_at": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/recruit/usercommentlist/{user_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/recruit/boardcommentlist/{board_id}": {
       "get": {
         "description": "",
         "parameters": [
