@@ -3,7 +3,7 @@ import axios from "axios";
 const backendPortNumber = 4040;
 
 // 코드 리팩토링: Template literals로 변경
-const serverUrl = `http://${window.location.hostname}:${backendPortNumber}`;
+const serverUrl = `http://${window.location.hostname}:${backendPortNumber}/`;
 
 async function get(endpoint, params = "") {
   console.log(`%cGET 요청 ${serverUrl + endpoint + "/" + params}`, "color: #a25cd1;");
