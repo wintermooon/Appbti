@@ -94,7 +94,7 @@ const Register = function () {
                   }}
                 />
                 {!isNameValid && (
-                  <p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
+                  <p className="text-primary" id="change-text-sucess">
                     Name is too short (minimum is 2 characters)
                   </p>
                 )}
@@ -112,11 +112,7 @@ const Register = function () {
                     setEmail(e.target.value);
                   }}
                 />
-                {!isEmailValid && (
-                  <p className="text-primary" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
-                    Email is invalid.
-                  </p>
-                )}
+                {!isEmailValid && <p className="text-primary">Email is invalid.</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -132,11 +128,7 @@ const Register = function () {
                     setPassword(e.target.value);
                   }}
                 />
-                {!isPasswordValid && (
-                  <p className="text-primary" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
-                    Password is too short (minimum is 8 characters)
-                  </p>
-                )}
+                {!isPasswordValid && <p className="text-primary">Password is too short (minimum is 8 characters)</p>}
               </Grid>
               <Grid item xs={12}>
                 <TextField
@@ -153,7 +145,7 @@ const Register = function () {
                   }}
                 />
                 {!isPasswordSame && (
-                  <p className="text-primary" id="change-text-sucess" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
+                  <p className="text-primary" id="change-text-sucess">
                     Passwords dose not match.
                   </p>
                 )}
