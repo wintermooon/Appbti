@@ -8,6 +8,7 @@ import { findteamRouter } from './routers/findteamRouter';
 import { ftcommentRouter } from './routers/ftcommentRouter';
 import { recruitRouter } from './routers/recruitRouter';
 import { recruitcommentRouter } from './routers/recruitcommentRouter';
+import { questionRouter } from './routers/questionRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
 
@@ -37,6 +38,7 @@ app.use(findteamRouter);
 app.use(ftcommentRouter);
 app.use(recruitRouter);
 app.use(recruitcommentRouter);
+app.use(questionRouter);
 
 //swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
