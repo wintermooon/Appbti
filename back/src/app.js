@@ -6,9 +6,11 @@ import { freeboardRouter } from './routers/freeboardRouter';
 import { commentRouter } from './routers/commentRouter';
 import { findteamRouter } from './routers/findteamRouter';
 import { ftcommentRouter } from './routers/ftcommentRouter';
+import { questionRouter } from './routers/questionRouter';
+import { recruitRouter } from './routers/recruitRouter';
+import { recruitcommentRouter } from './routers/recruitcommentRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
-import { questionRouter } from './routers/questionRouter';
 
 import { application } from 'express';
 
@@ -35,6 +37,8 @@ app.use(commentRouter);
 app.use(findteamRouter);
 app.use(ftcommentRouter);
 app.use(questionRouter);
+app.use(recruitRouter);
+app.use(recruitcommentRouter);
 
 console.log(swaggerFile);
 //swagger
