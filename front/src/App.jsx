@@ -6,10 +6,10 @@ import { loginReducer } from "./reducer";
 import "./App.css";
 
 import Header from "./components/Header";
+import Main from "./components/Main";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import Community from "./components/community/Community";
-import Main from "./components/Main";
+import RecruitTeammate from "./components/recruitteammate/RecruitTeammate";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -66,7 +66,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/community" element={<Community />} />
+            <Route path="/community/recruitteammate" element={<RecruitTeammate />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

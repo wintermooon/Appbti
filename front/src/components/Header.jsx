@@ -13,7 +13,7 @@ const Header = function () {
 
   return (
     <Toolbar className="Toolbar" sx={{ flexWrap: "wrap" }}>
-      <Typography variant="h6" href="#" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+      <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
         <img
           className="Logo"
           src={logoUrl}
@@ -30,7 +30,7 @@ const Header = function () {
         <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
           Editor’s suggest
         </Link>
-        <Link variant="button" color="text.primary" onClick={() => navigate("/community")} sx={{ my: 1, mx: 1.5 }}>
+        <Link variant="button" color="text.primary" onClick={() => navigate("/community/recruitteammate")} sx={{ my: 1, mx: 1.5 }}>
           Community
         </Link>
         <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>

@@ -3,13 +3,13 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
-import "../styles/Community.css";
-import SideBar from "./Sidebar";
+import "../styles/RecruitTeammate.css";
+import SideBar from "../community/Sidebar";
 import RecruitmentFilter from "./RecruitmentFilter";
 
-const Community = function () {
+const RecruitTeammate = function () {
   return (
-    <div id="Community">
+    <div id="RecruitTeammate">
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={5}>
           <SideBar />
@@ -22,4 +22,4 @@ const Community = function () {
   );
 };
 
-export default Community;
+export default RecruitTeammate;

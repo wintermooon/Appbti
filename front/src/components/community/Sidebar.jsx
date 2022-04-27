@@ -25,7 +25,7 @@ const SideBar = function () {
             <ListItem disablePadding>
               <ListItemButton
                 onClick={() => {
-                  navigate("/community");
+                  navigate("/community/recruitteammate");
                 }}
               >
                 <ListItemText primary="팀원 구해요" />
