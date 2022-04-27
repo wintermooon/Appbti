@@ -54,7 +54,7 @@ function App() {
   }, [fetchCurrentUser]);
 
   if (!isFetchCompleted) {
-    return "loading...";
+    return <span>loading...</span>;
   }
 
   return (
