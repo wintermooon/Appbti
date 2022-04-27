@@ -16,22 +16,19 @@ class User {
     return user;
   }
 
-  static async findAll() {
-    const users = await UserModel.find({});
-    return users;
-  }
-
-  static async update({ userId, fieldToUpdate, newValue }) {
+  static async update({ userId, newValues }) {
     const filter = { id: userId };
-    const update = { [fieldToUpdate]: newValue };
+    const update = { $set: newValues };
     const option = { returnOriginal: false };
 
-    const updatedUser = await UserModel.findOneAndUpdate(
-      filter,
-      update,
-      option
-    );
+    const updatedUser = await UserModel.findOneAndUpdate(filter, update, option);
     return updatedUser;
+  }
+
+  static async deleteById({ userId }) {
+    const deleteResult = await UserModel.deleteOne({ id: userId });
+    const isDataDeleted = deleteResult.deletedCount === 1;
+    return isDataDeleted;
   }
 }
 
