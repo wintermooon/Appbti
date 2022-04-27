@@ -4,6 +4,8 @@ import swaggerUi from 'swagger-ui-express';
 import { userAuthRouter } from './routers/userRouter';
 import { freeboardRouter } from './routers/freeboardRouter';
 import { commentRouter } from './routers/commentRouter';
+import { findteamRouter } from './routers/findteamRouter';
+import { ftcommentRouter } from './routers/ftcommentRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
 
@@ -29,6 +31,8 @@ app.get('/', (req, res) => {
 app.use(userAuthRouter);
 app.use(freeboardRouter);
 app.use(commentRouter);
+app.use(findteamRouter);
+app.use(ftcommentRouter);
 
 console.log(swaggerFile)
 //swagger
