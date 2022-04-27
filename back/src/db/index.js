@@ -6,6 +6,7 @@ import { FindTeam } from './models/FindTeam';
 import { FTComment } from './models/FTComment';
 import { Recruit } from './models/Recruit';
 import { Recruitcomment } from './models/Recruitcomment';
+import { Question } from './models/Question';
 const DB_URL = process.env.MONGODB_URL || '';
 
 if (DB_URL === '') {
@@ -18,4 +19,4 @@ const db = mongoose.connection;
 db.on('connected', () => console.log('정상적으로 MongoDB 서버에 연결되었습니다.  ' + DB_URL));
 db.on('error', error => console.error('MongoDB 연결에 실패하였습니다...\n' + DB_URL + '\n' + error));
 
-export { User, FreeBoard, Comment, FindTeam, FTComment, Recruit, Recruitcomment };
+export { User, FreeBoard, Comment, FindTeam, FTComment, Recruit, Recruitcomment, Question };
