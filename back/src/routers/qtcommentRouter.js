@@ -6,7 +6,7 @@ import { commentService } from '../services/commentService';
 const qtcommentRouter = Router();
 // qtcommentRouter.use(loginRequired);
 
-ftcommentRouter.post('/question/comment', loginRequired, async (req, res, next) => {
+qtcommentRouter.post('/question/comment', loginRequired, async (req, res, next) => {
   try {
     /* #swagger.security = [{
          "bearerAuth": []
@@ -31,7 +31,7 @@ ftcommentRouter.post('/question/comment', loginRequired, async (req, res, next) 
 });
 
 // 특정 댓글 조회 API
-ftcommentRouter.get('/question/comments/:id', loginRequired, async (req, res, next) => {
+qtcommentRouter.get('/question/comments/:id', loginRequired, async (req, res, next) => {
   try {
     /* #swagger.security = [{
          "bearerAuth": []
@@ -50,7 +50,7 @@ ftcommentRouter.get('/question/comments/:id', loginRequired, async (req, res, ne
 });
 
 // 특정 댓글 수정 API
-ftcommentRouter.put('/question/comments/:id', loginRequired, async (req, res, next) => {
+qtcommentRouter.put('/question/comments/:id', loginRequired, async (req, res, next) => {
   try {
     /* #swagger.security = [{
          "bearerAuth": []
