@@ -9,6 +9,7 @@ import { ftcommentRouter } from './routers/ftcommentRouter';
 import { recruitRouter } from './routers/recruitRouter';
 import { recruitcommentRouter } from './routers/recruitcommentRouter';
 import { questionRouter } from './routers/questionRouter';
+import { qtcommentRouter } from './routers/qtcommentRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
 
@@ -39,6 +40,7 @@ app.use(ftcommentRouter);
 app.use(recruitRouter);
 app.use(recruitcommentRouter);
 app.use(questionRouter);
+app.use(qtcommentRouter);
 
 //swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
