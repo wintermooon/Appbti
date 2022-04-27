@@ -8,7 +8,7 @@ import Grid from "@mui/material/Grid";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
-import ButtonUnstyled from "@mui/base/ButtonUnstyled";
+import Button from "@mui/material/Button";
 
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
@@ -73,7 +73,9 @@ const CommunityPage = function () {
           </Item>
           <Grid item xs={9} id="RightPostList">
             <h2>게시판 리스트 영역</h2>
-            <ButtonUnstyled>Button</ButtonUnstyled>
+            <Button id="createPost" type="submit" fullWidth variant="contained">
+              게시글 작성
+            </Button>
             {isClicked
               ? posts.map((e) => {
                   return (
