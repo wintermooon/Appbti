@@ -5,7 +5,7 @@ const options = {
     title: 'Express Service with Swagger!',
     description: 'A REST API using swagger and express.',
   },
-  servers: [{ url: 'http://localhost:4040' }],
+  servers: [{ url: 'http://localhost:4041' }],
   schemes: ['http'],
   securityDefinitions: {
     bearerAuth: {
