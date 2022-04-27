@@ -3,13 +3,13 @@ import { FTComment } from '../db';
 class ftcommentService {
   static async addComment({ board_id, user_id, name, content }) {
     const newComment = { board_id, user_id, name, content };
-    const createdNewComment = await Comment.createComment({ newComment });
+    const createdNewComment = await FTComment.createComment({ newComment });
     createdNewComment.errorMessage = null;
     return createdNewComment;
   }
 
   static async getComment({ comment_id }) {
-    const comment = await Comment.findById({ comment_id });
+    const comment = await FTComment.findById({ comment_id });
 
     if (!comment) {
       const errorMessage = '해당 댓글 내역이 없습니다. 다시 한 번 확인해 주세요.';
@@ -20,19 +20,19 @@ class ftcommentService {
 
   // 유저가 생성한 모든 댓글
   static async getCommentsById({ user_id }) {
-    const comments = await Comment.findByUserId({ user_id });
+    const comments = await FTComment.findByUserId({ user_id });
     return comments;
   }
 
   // 게시글의 모든 댓글
   static async getCommentsByBoardId({ board_id }) {
-    const comments = await Comment.findByBoardId({ board_id });
+    const comments = await FTComment.findByBoardId({ board_id });
     return comments;
   }
 
   // 수정
   static async setComment({ comment_id, toUpdate }) {
-    let comment = await Comment.findById({ comment_id });
+    let comment = await FTComment.findById({ comment_id });
 
     if (!comment) {
       const errorMessage = '댓글 내역이 없습니다. 다시 한 번 확인해 주세요.';
@@ -67,7 +67,7 @@ class ftcommentService {
       created_at: toUpdate.created_at,
     };
 
-    comment = await Comment.update({ comment_id, newValues });
+    comment = await FTComment.update({ comment_id, newValues });
 
     return comment;
   }
@@ -78,7 +78,7 @@ class ftcommentService {
       const errorMessage = '해당 댓글이 없습니다.';
       return { errorMessage };
     }
-    const deletedComment = await Comment.delete({ comment_id });
+    const deletedComment = await FTComment.delete({ comment_id });
     return deletedComment;
   }
 }
