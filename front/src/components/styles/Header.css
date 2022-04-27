@@ -1,0 +1,10 @@
+.Toolbar {
+  box-shadow: 0 7px 4px -4px #f1f3f5;
+}
+
+.Logo {
+  height: 50px;
+  padding: 0 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
