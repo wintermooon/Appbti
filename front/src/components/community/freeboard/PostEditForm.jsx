@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Container, Button } from "@mui/material";
-import { UserStateContext } from "../../App";
-import * as Api from "../../api";
+import { UserStateContext } from "../../../App";
+import * as Api from "../../../api";
 
 function PostEditForm() {
   const navigate = useNavigate();

@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { FormControl, Button, TextField } from "@mui/material";
-import * as Api from "../../api";
+import * as Api from "../../../api";
 
-function PostAddForm({ user_id, setPostInfo, setIsAdding }) {
+function PostAddForm({ user_id, setFreeboards, setIsAdding }) {
   const navigate = useNavigate();
   const [tempPost, setTempPost] = useState({
     title: "",
@@ -23,7 +23,7 @@ function PostAddForm({ user_id, setPostInfo, setIsAdding }) {
           name: user_id.name,
           ...tempPost,
         });
-        setPostInfo((prev) => [...prev, res.data]);
+        setFreeboards((prev) => [...prev, res.data]);
         setIsAdding(false);
         navigate(`/freeboardlist`);
       }
@@ -33,14 +33,14 @@ function PostAddForm({ user_id, setPostInfo, setIsAdding }) {
   };
 
   return (
-    <FormControl>
+    <FormControl onSubmit={handleSubmit}>
       <TextField id="outlined-multiline-flexible" label="Title" multiline maxRows={4} onInput={(e) => handlePostValue("title", e.target.value)} value={tempPost.title} />
       <TextField id="outlined-multiline-static" label="Content" multiline rows={10} value={tempPost.content} onInput={(e) => handlePostValue("content", e.target.value)} />
 
       <Button variant="contained" type="submit">
         등록
       </Button>
-      <Button variant="contained" type="submit" onClick={() => navigate(`/freeboard`)}>
+      <Button variant="contained" type="submit" onClick={() => setIsAdding(false)}>
         취소
       </Button>
     </FormControl>

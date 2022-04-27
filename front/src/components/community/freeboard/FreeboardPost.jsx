@@ -2,8 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Grid, Container, Button, Card, CardActions, CardContent, Typography } from "@mui/material";
 
-import { UserStateContext } from "../../App";
-import * as Api from "../../api";
+import { UserStateContext } from "../../../App";
+import * as Api from "../../../api";
 
 function FreeboardPost() {
   const navigate = useNavigate();
