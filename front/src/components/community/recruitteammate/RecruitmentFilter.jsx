@@ -24,7 +24,7 @@ const postList = [
     postId: 2,
     title: "팀원 모집합니다 게시판의 두 번째 게시글입니다.",
     content: "제발 잘 들어가면 좋겠습니다.",
-    isOpened: false,
+    isOpened: true,
   },
   {
     boardId: 2,

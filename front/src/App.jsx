@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import RecruitTeammate from "./components/recruitteammate/RecruitTeammate";
+import RecruitTeammate from "./components/community/recruitteammate/RecruitTeammate";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
