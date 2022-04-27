@@ -974,7 +974,11 @@
     },
     "/recruits/{id}/comments": {
       "post": {
-        "description": "",
+        "tags": [
+          "recruitcomments"
+        ],
+        "summary": "팀원 모집 게시글에 댓글 생성",
+        "description": "팀원 모집 게시글에 댓글을 생성한다.",
         "parameters": [
           {
             "name": "id",
@@ -1019,11 +1023,13 @@
             }
           }
         }
-      }
-    },
-    "/recruits/comments/{id}": {
+      },
       "get": {
-        "description": "",
+        "tags": [
+          "recruitcomments"
+        ],
+        "summary": "특정 게시글내에 있는 댓글 리스트",
+        "description": "팀원 모집 게시글내에 있는 댓글 리스트를 반환한다.",
         "parameters": [
           {
             "name": "id",
@@ -1056,7 +1062,11 @@
         ]
       },
       "put": {
-        "description": "",
+        "tags": [
+          "recruitcomments"
+        ],
+        "summary": "특정 게시글내에 있는 댓글 수정",
+        "description": "팀원 모집 게시글내에 있는 댓글을 수정한다.",
         "parameters": [
           {
             "name": "id",
@@ -1093,16 +1103,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "board_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
                   "content": {
-                    "example": "any"
-                  },
-                  "created_at": {
                     "example": "any"
                   }
                 }
@@ -1112,7 +1113,11 @@
         }
       },
       "delete": {
-        "description": "",
+        "tags": [
+          "recruitcomments"
+        ],
+        "summary": "특정 게시글내에 있는 댓글 삭제",
+        "description": "팀원 모집 게시글내에 있는 댓글을 삭제한다.",
         "parameters": [
           {
             "name": "id",
@@ -1145,47 +1150,16 @@
         ]
       }
     },
-    "/recruits/usercommentlist/{user_id}": {
+    "/recruits/{userId}/commentlist": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "tags": [
+          "recruitcomments"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/recruit/boardcommentlist/{board_id}": {
-      "get": {
-        "description": "",
+        "summary": "특정 유저의 댓글 리스트",
+        "description": "특정 유저의 댓글 리스트를 반환한다.",
         "parameters": [
           {
-            "name": "board_id",
+            "name": "userId",
             "in": "path",
             "required": true,
             "schema": {

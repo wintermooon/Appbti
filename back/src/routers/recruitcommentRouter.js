@@ -7,9 +7,12 @@ const recruitcommentRouter = Router();
 
 recruitcommentRouter.post('/recruits/:id/comments', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-      }] */
+    /*
+     #swagger.tags = ['recruitcomments'] 
+     #swagger.summary = '팀원 모집 게시글에 댓글 생성' 
+     #swagger.description = '팀원 모집 게시글에 댓글을 생성한다.' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const userId = req.currentUserId;
     const post_id = req.params.id;
     const { content } = req.body;
@@ -30,43 +33,45 @@ recruitcommentRouter.post('/recruits/:id/comments', loginRequired, async (req, r
   }
 });
 
-// 이거 왜쓰지?
-recruitcommentRouter.get('/recruits/comments/:id', loginRequired, async (req, res, next) => {
+recruitcommentRouter.get('/recruits/:id/comments', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
-    const comment_id = req.params.id;
-    const currentComment = await recruitcommentService.getComment({
-      comment_id,
+    /*
+     #swagger.tags = ['recruitcomments'] 
+     #swagger.summary = '특정 게시글내에 있는 댓글 리스트' 
+     #swagger.description = '팀원 모집 게시글내에 있는 댓글 리스트를 반환한다.' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+    const post_id = req.params.id;
+    const comments = await recruitcommentService.getComment({
+      post_id,
     });
 
-    if (currentComment.errorMessage) {
-      throw new Error(currentComment.errorMessage);
+    if (comments.errorMessage) {
+      throw new Error(comments.errorMessage);
     }
 
-    res.status(200).send(currentComment);
+    res.status(200).send(comments);
   } catch (error) {
     next(error);
   }
 });
 
 // 특정 댓글 수정 API
-recruitcommentRouter.put('/recruits/comments/:id', loginRequired, async (req, res, next) => {
+recruitcommentRouter.put('/recruits/:id/comments', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
-    const user_id = req.currentUserId;
+    /*
+     #swagger.tags = ['recruitcomments'] 
+     #swagger.summary = '특정 게시글내에 있는 댓글 수정' 
+     #swagger.description = '팀원 모집 게시글내에 있는 댓글을 수정한다.' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+    const userId = req.currentUserId;
     const comment_id = req.params.id;
-    const board_id = req.body.board_id ?? null;
-    const name = req.body.name ?? null;
     const content = req.body.content ?? null;
-    const created_at = req.body.created_at ?? null;
 
-    const toUpdate = { board_id, user_id, name, content, created_at };
-
+    const toUpdate = { content };
     const updatedComment = await recruitcommentService.setComment({
+      userId,
       comment_id,
       toUpdate,
     });
@@ -81,11 +86,14 @@ recruitcommentRouter.put('/recruits/comments/:id', loginRequired, async (req, re
   }
 });
 
-recruitcommentRouter.delete('/recruits/comments/:id', loginRequired, async (req, res, next) => {
+recruitcommentRouter.delete('/recruits/:id/comments', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['recruitcomments'] 
+     #swagger.summary = '특정 게시글내에 있는 댓글 삭제' 
+     #swagger.description = '팀원 모집 게시글내에 있는 댓글을 삭제한다.' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const comment_id = req.params.id;
     const deletedComment = await recruitcommentService.deleteComment({
       comment_id,
@@ -99,13 +107,16 @@ recruitcommentRouter.delete('/recruits/comments/:id', loginRequired, async (req,
   }
 });
 
-recruitcommentRouter.get('/recruits/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
+recruitcommentRouter.get('/recruits/:userId/commentlist', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
-    const user_id = req.params.user_id;
-    const comments = await recruitcommentService.getCommentsById({ user_id });
+    /*
+     #swagger.tags = ['recruitcomments'] 
+     #swagger.summary = '특정 유저의 댓글 리스트' 
+     #swagger.description = '특정 유저의 댓글 리스트를 반환한다.' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+    const userId = req.params.userId;
+    const comments = await recruitcommentService.getCommentsById({ userId });
 
     res.status(200).send(comments);
   } catch (error) {
@@ -113,19 +124,4 @@ recruitcommentRouter.get('/recruits/usercommentlist/:user_id', loginRequired, as
   }
 });
 
-recruitcommentRouter.get('/recruit/boardcommentlist/:board_id', loginRequired, async (req, res, next) => {
-  try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
-    const board_id = req.params.board_id;
-    const comments = await recruitcommentService.getCommentsByBoardId({
-      board_id,
-    });
-
-    res.status(200).send(comments);
-  } catch (error) {
-    next(error);
-  }
-});
 export { recruitcommentRouter };

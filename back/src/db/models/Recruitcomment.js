@@ -1,37 +1,35 @@
+import { RecruitcommentModel } from '../schemas/recruitcomment';
 import { RecruitModel } from '../schemas/recruit';
+import { UserModel } from '../schemas/user';
 
 class Recruitcomment {
-  static async createComment({ post_id, content, author }) {
-    const createdNewComment = await RecruitModel.updateOne(
-      { post_id },
-      {
-        $push: {
-          comments: {
-            content,
-            author,
-          },
-        },
-      }
-    );
+  static async createComment({ newComment }) {
+    const createdNewComment = await RecruitcommentModel.create(newComment);
     return createdNewComment;
   }
 
-  static async findById({ comment_id }) {
-    const comment = await RecruitModel.findOne({ _id: comment_id });
+  static async findByPostId({ post_id }) {
+    const comments = await RecruitcommentModel.find({ post_id });
 
-    await RecruitModel.populate(post.comments, {
+    await UserModel.populate(comments, {
       path: 'author',
+      select: 'id email name',
+    });
+    return comments;
+  }
+
+  static async findById({ comment_id }) {
+    const comment = await RecruitcommentModel.findOne({ _id: comment_id });
+
+    await UserModel.populate(comment, {
+      path: 'author',
+      select: 'id email name',
     });
     return comment;
   }
 
-  static async findByUserId({ user_id }) {
-    const comments = await RecruitModel.find({ user_id });
-    return comments;
-  }
-
-  static async findByBoardId({ board_id }) {
-    const comments = await RecruitModel.find({ board_id });
+  static async findByUserId({ author }) {
+    const comments = await RecruitcommentModel.find({ author });
     return comments;
   }
 
