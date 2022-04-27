@@ -9,7 +9,12 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
+<<<<<<< Updated upstream
 import RecruitTeammate from "./components/community/recruitteammate/RecruitTeammate";
+=======
+import RecruitTeammate from "./components/recruitteammate/RecruitTeammate";
+import Freeboards from "./components/community/freeboard/freeboards";
+>>>>>>> Stashed changes
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -67,6 +72,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/community/recruitteammate" element={<RecruitTeammate />} />
+            <Route path="/community/freeboard" element={<Freeboards />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

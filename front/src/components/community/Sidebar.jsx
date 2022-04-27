@@ -37,7 +37,12 @@ const SideBar = function () {
               </ListItemButton>
             </ListItem>
             <ListItem disablePadding>
-              <ListItemButton component="a" href="#simple-list">
+              <ListItemButton
+                component="a"
+                onClick={() => {
+                  navigate("/community/freeboard");
+                }}
+              >
                 <ListItemText primary="자유 게시판" />
               </ListItemButton>
             </ListItem>
