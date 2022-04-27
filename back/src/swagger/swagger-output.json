@@ -7,7 +7,11 @@
   },
   "servers": [
     {
+<<<<<<< Updated upstream
       "url": "http://localhost:4040"
+=======
+      "url": "http://localhost:4041"
+>>>>>>> Stashed changes
     }
   ],
   "paths": {
