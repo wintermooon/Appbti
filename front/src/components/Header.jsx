@@ -17,7 +17,7 @@ const Header = function () {
         <img
           className="Logo"
           src={logoUrl}
-          alt=""
+          alt="로고 이미지"
           onClick={() => {
             navigate("/");
           }}
