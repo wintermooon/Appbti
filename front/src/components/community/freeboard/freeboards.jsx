@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { Grid, Container, Button, Card, CardContent, Typography } from "@mui/material";
+import { Grid, Box, Container, Button, Card, CardContent, Typography } from "@mui/material";
 import { UserStateContext } from "../../../App";
 import * as Api from "../../../api";
 import SideBar from "../Sidebar";
@@ -37,36 +37,38 @@ const Freeboards = () => {
   }
 
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={4}>
-        <SideBar />
-      </Grid>
-      <Grid item xs={8} container direction="column" justifyContent="space-evenly" alignItems="stretch">
-        <Container>{"전체, 모집중, 모집완료"}</Container>
-        <Container>{"검색기능"}</Container>
-        <Container>
-          {"최신순/댓글순/좋아요순"}
-          <Button variant="contained" onClick={() => navigate(`/freeboard/create`)}>
-            WRITE
-          </Button>
-        </Container>
-        <Container>
-          {freeboards.map((freeboard) => (
-            <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => navigate(`/freeboards/${freeboard._id}`)}>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  {freeboard.name}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {freeboard.title}
-                </Typography>
-                <Typography variant="body2">{freeboard.content}</Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </Container>
-      </Grid>
-    </Grid>
+    <div id="RecruitTeammate">
+      <Box sx={{ flexGrow: 1 }}>
+        <Grid container spacing={5}>
+          <SideBar />
+          <Grid item xs={8} container direction="column" justifyContent="space-evenly" alignItems="stretch">
+            <Container>{"전체, 모집중, 모집완료"}</Container>
+            <Container>{"검색기능"}</Container>
+            <Container>
+              {"최신순/댓글순/좋아요순"}
+              <Button variant="contained" onClick={() => navigate(`/freeboard/create`)}>
+                WRITE
+              </Button>
+            </Container>
+            <Container>
+              {freeboards.map((freeboard) => (
+                <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => navigate(`/freeboards/${freeboard._id}`)}>
+                  <CardContent>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                      {freeboard.name}
+                    </Typography>
+                    <Typography gutterBottom variant="h5" component="div">
+                      {freeboard.title}
+                    </Typography>
+                    <Typography variant="body2">{freeboard.content}</Typography>
+                  </CardContent>
+                </Card>
+              ))}
+            </Container>
+          </Grid>
+        </Grid>
+      </Box>
+    </div>
   );
 };
 
