@@ -9,12 +9,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-<<<<<<< Updated upstream
-import RecruitTeammate from "./components/community/recruitteammate/RecruitTeammate";
-=======
-import RecruitTeammate from "./components/recruitteammate/RecruitTeammate";
-import Freeboards from "./components/community/freeboard/freeboards";
->>>>>>> Stashed changes
+import CommunityPage from "./components/community/CommunityPage";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -24,6 +19,8 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
+
+  const isLogin = !!userState.user;
 
   // const isLogin = !!userState.user;
   // 유저 경로 얻기
@@ -71,8 +68,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/community/recruitteammate" element={<RecruitTeammate />} />
-            <Route path="/community/freeboard" element={<Freeboards />} />
+            {isLogin && <Route path="/community" element={<CommunityPage />} />}
           </Routes>
         </Router>
       </UserStateContext.Provider>
