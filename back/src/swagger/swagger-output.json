@@ -24,7 +24,9 @@
     },
     "/users": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "회원가입",
         "description": "user를 등록한다.",
         "parameters": [],
@@ -55,7 +57,9 @@
         }
       },
       "delete": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "사용자 탈퇴",
         "description": "user 정보를 삭제한다.",
         "parameters": [
@@ -84,7 +88,9 @@
     },
     "/users/login": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "로그인",
         "description": "로그인 한다.",
         "parameters": [],
@@ -114,7 +120,9 @@
     },
     "/users/{id}": {
       "put": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "사용자 정보 변경",
         "description": "user 정보를 변경한다.",
         "parameters": [
@@ -166,7 +174,9 @@
         }
       },
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "사용자 정보 가져오기",
         "description": "user 정보를 가져온다.",
         "parameters": [
@@ -228,9 +238,12 @@
         ]
       }
     },
-
     "/freeboard/create": {
       "post": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "자유게시판 글 생성",
         "description": "",
         "parameters": [
           {
@@ -281,6 +294,10 @@
     },
     "/freeboard/{id}": {
       "get": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 id에 해당하는 글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -314,6 +331,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -364,6 +385,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -399,6 +424,10 @@
     },
     "/freeboardlist/{user_id}": {
       "get": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "유저 id로 모든 작성글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -434,6 +463,10 @@
     },
     "/freeboardlist": {
       "get": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "자유게시판의 모든 글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -461,6 +494,10 @@
     },
     "/freeboard/comment/create": {
       "post": {
+        "tags": [
+          "freeboardcomments"
+        ],
+        "summary": "자유게시판 게시글에 댓글 생성",
         "description": "",
         "parameters": [
           {
@@ -511,6 +548,10 @@
     },
     "/freeboard/comments/{id}": {
       "get": {
+        "tags": [
+          "freeboardcomments"
+        ],
+        "summary": "댓글 id로 댓글 정보 가져오기",
         "description": "",
         "parameters": [
           {
@@ -544,6 +585,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "freeboardcomments"
+        ],
+        "summary": "댓글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -603,6 +648,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "freeboardcomments"
+        ],
+        "summary": "댓글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -638,6 +687,10 @@
     },
     "/freeboard/usercommentlist/{user_id}": {
       "get": {
+        "tags": [
+          "freeboardcomments"
+        ],
+        "summary": "유저 id로 해당 유저의 모든 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -673,6 +726,10 @@
     },
     "/freeboard/boardcommentlist/{board_id}": {
       "get": {
+        "tags": [
+          "freeboardcomments"
+        ],
+        "summary": "게시글 id로 해당 게시글의 모든 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -708,6 +765,10 @@
     },
     "/findteam": {
       "post": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "팀 구하기 게시글 생성",
         "description": "",
         "parameters": [
           {
@@ -761,6 +822,10 @@
     },
     "/findteam/{id}": {
       "get": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 id로 해당하는 글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -794,6 +859,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -847,6 +916,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -882,6 +955,10 @@
     },
     "/findteamlist/{user_id}": {
       "get": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "유저 id로 모든 작성글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -917,6 +994,10 @@
     },
     "/findteamlist": {
       "get": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "팀 구하기 모든 게시글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -944,6 +1025,10 @@
     },
     "/findteam/comment": {
       "post": {
+        "tags": [
+          "findteamcomments"
+        ],
+        "summary": "팀 구하기 게시글에 댓글 생성",
         "description": "",
         "parameters": [
           {
@@ -994,6 +1079,10 @@
     },
     "/findteam/comments/{id}": {
       "get": {
+        "tags": [
+          "findteamcomments"
+        ],
+        "summary": "댓글 id로 해당하는 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1027,6 +1116,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "findteamcomments"
+        ],
+        "summary": "댓글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -1086,6 +1179,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "findteamcomments"
+        ],
+        "summary": "댓글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -1121,6 +1218,10 @@
     },
     "/findteam/usercommentlist/{user_id}": {
       "get": {
+        "tags": [
+          "findteamcomments"
+        ],
+        "summary": "유저 id로 해당 유저의 모든 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1156,6 +1257,10 @@
     },
     "/findteam/boardcommentlist/{board_id}": {
       "get": {
+        "tags": [
+          "findteamcomments"
+        ],
+        "summary": "게시글 id로 해당 게시글의 모든 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1191,7 +1296,9 @@
     },
     "/recruits": {
       "post": {
-        "tags": ["recruit"],
+        "tags": [
+          "recruit"
+        ],
         "summary": "팀원 모집 게시글 생성",
         "description": "팀원 모집 게시글 생성한다.",
         "parameters": [
@@ -1240,7 +1347,9 @@
     },
     "/recruits/{id}": {
       "get": {
-        "tags": ["recruit"],
+        "tags": [
+          "recruit"
+        ],
         "summary": "게시글 id에 해당하는 게시글 정보 가져오기",
         "description": "특정 게시글 정보 가져오기",
         "parameters": [
@@ -1275,7 +1384,9 @@
         ]
       },
       "put": {
-        "tags": ["recruit"],
+        "tags": [
+          "recruit"
+        ],
         "summary": "게시글 수정하기",
         "description": "팀원 모집 게시글을 수정한다.",
         "parameters": [
@@ -1333,7 +1444,9 @@
         }
       },
       "delete": {
-        "tags": ["recruit"],
+        "tags": [
+          "recruit"
+        ],
         "summary": "팀원 모집 게시글 삭제",
         "description": "팀원 모집 게시글 삭제한다.",
         "parameters": [
@@ -1370,7 +1483,9 @@
     },
     "/recruitlist/{userId}": {
       "get": {
-        "tags": ["recruit"],
+        "tags": [
+          "recruit"
+        ],
         "summary": "특정 user의 게시글 확인하기",
         "description": "특정 user의 게시글 확인하기",
         "parameters": [
@@ -1407,7 +1522,9 @@
     },
     "/recruitlist": {
       "get": {
-        "tags": ["recruit"],
+        "tags": [
+          "recruit"
+        ],
         "summary": "게시글 목록",
         "description": "전체 게시글 목록",
         "parameters": [
@@ -1436,7 +1553,9 @@
     },
     "/recruits/{id}/comments": {
       "post": {
-        "tags": ["recruitcomments"],
+        "tags": [
+          "recruitcomments"
+        ],
         "summary": "팀원 모집 게시글에 댓글 생성",
         "description": "팀원 모집 게시글에 댓글을 생성한다.",
         "parameters": [
@@ -1485,7 +1604,9 @@
         }
       },
       "get": {
-        "tags": ["recruitcomments"],
+        "tags": [
+          "recruitcomments"
+        ],
         "summary": "특정 게시글내에 있는 댓글 리스트",
         "description": "팀원 모집 게시글내에 있는 댓글 리스트를 반환한다.",
         "parameters": [
@@ -1520,7 +1641,9 @@
         ]
       },
       "put": {
-        "tags": ["recruitcomments"],
+        "tags": [
+          "recruitcomments"
+        ],
         "summary": "특정 게시글내에 있는 댓글 수정",
         "description": "팀원 모집 게시글내에 있는 댓글을 수정한다.",
         "parameters": [
@@ -1569,7 +1692,9 @@
         }
       },
       "delete": {
-        "tags": ["recruitcomments"],
+        "tags": [
+          "recruitcomments"
+        ],
         "summary": "특정 게시글내에 있는 댓글 삭제",
         "description": "팀원 모집 게시글내에 있는 댓글을 삭제한다.",
         "parameters": [
@@ -1606,7 +1731,9 @@
     },
     "/recruits/{userId}/commentlist": {
       "get": {
-        "tags": ["recruitcomments"],
+        "tags": [
+          "recruitcomments"
+        ],
         "summary": "특정 유저의 댓글 리스트",
         "description": "특정 유저의 댓글 리스트를 반환한다.",
         "parameters": [
