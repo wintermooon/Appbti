@@ -1,9 +1,8 @@
 import { useState } from "react";
 import * as Api from "../../api";
 import { Button } from "@mui/material";
-import axios from "axios";
 
-function Postform({ userId, setFreeboards, setIsEditing, setIsAdding, setViewType }) {
+function Postform({ userId, setIsEditing, setIsAdding, setViewType }) {
   const [tempPost, setTempPost] = useState({
     title: "",
     content: "",
@@ -15,17 +14,14 @@ function Postform({ userId, setFreeboards, setIsEditing, setIsAdding, setViewTyp
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(tempPost);
-    console.log(userId);
     try {
       if (window.confirm("게시글을 등록 하겠습니까?")) {
         const res = await Api.post(`freeboard/create`, {
-          user_id: "",
-          name: "",
+          user_id: userId,
+          name: userId.name,
           ...tempPost,
         });
-        console.log(res);
-        setFreeboards((prev) => [...prev, res.data]);
+        setTempPost((prev) => [...prev, res.data]);
         setIsAdding(false);
         setViewType("list");
       }

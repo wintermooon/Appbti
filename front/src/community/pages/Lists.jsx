@@ -2,19 +2,18 @@ import React, { useEffect, useContext, useState } from "react";
 import { Grid, Box, Container, Button, Card, CardContent, Typography } from "@mui/material";
 import * as Api from "../../api";
 
-const Lists = (setFreeboards, freeboards) => {
+const Lists = (setViewType) => {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
-  const [Lists, setLists] = useState([]);
+  const [lists, setLists] = useState([]);
 
-  const fetchPostsInfo = async () => {
-    try {
-      const { data: tempAllPosts } = await Api.get("freeboardlist");
-      setFreeboards(tempAllPosts);
+  useEffect(() => {
+    async function loadFreeboardList() {
+      const res = await Api.get(`freeboardlist`);
+      setLists(res.data);
       setIsFetchCompleted(true);
-    } catch (error) {
-      console.log(error);
     }
-  };
+    loadFreeboardList();
+  }, [setViewType]);
 
   // * * Skeleton Code 작성할 것
   if (!isFetchCompleted) {
@@ -23,7 +22,7 @@ const Lists = (setFreeboards, freeboards) => {
 
   return (
     <div id="FreeboardLists">
-      {freeboards.map((freeboard) => (
+      {lists.map((freeboard) => (
         <Card sx={{ minWidth: 275 }} key={freeboard._id}>
           <CardContent>
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
