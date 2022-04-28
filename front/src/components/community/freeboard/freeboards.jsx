@@ -5,7 +5,7 @@ import { UserStateContext } from "../../../App";
 import * as Api from "../../../api";
 import SideBar from "../Sidebar";
 
-const Freeboards = () => {
+const Freeboards = (freeboards) => {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);

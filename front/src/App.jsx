@@ -34,10 +34,10 @@ function App() {
 
   const fetchCurrentUser = React.useCallback(async () => {
     try {
-      if (isLogin === true) {
-        setCurrentUserId(Object.values(currentUser)[1]);
-        console.log(currentUserId);
-      }
+      // if (isLogin === true) {
+      //   setCurrentUserId(Object.values(currentUser)[1]);
+      // console.log(currentUserId);}
+
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
       const res = await Api.get(`users/${currentUserId}`);
       const getCurrentUser = res.data;
