@@ -1,21 +1,24 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { Grid, Box, Container, Button, Card, CardContent, Typography } from "@mui/material";
+import { Grid, Box, Button, Card, CardContent, Typography } from "@mui/material";
 import { UserStateContext } from "../../../App";
 import * as Api from "../../../api";
-import SideBar from "../Sidebar";
+// import SideBar from "../Sidebar";
+import Post from "./PostView";
+import Lists from "./Lists";
+import Form from "./Postform";
 
-const Freeboards = (freeboards) => {
+const Freeboards = () => {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
-  const [freeboards, setFreeboards] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
+  const [viewType, setViewType] = useState("list");
 
   const fetchPostsInfo = async () => {
     try {
-      const { data: tempAllPosts } = await Api.get("freeboardlist");
-      setFreeboards(tempAllPosts);
+      await Api.get("freeboardlist");
+      setViewType("list");
       setIsFetchCompleted(true);
     } catch (error) {
       console.log(error);
@@ -38,36 +41,16 @@ const Freeboards = (freeboards) => {
 
   return (
     <div id="RecruitTeammate">
-      <Box sx={{ flexGrow: 1 }}>
-        <Grid container spacing={5}>
-          <SideBar />
-          <Grid item xs={8} container direction="column" justifyContent="space-evenly" alignItems="stretch">
-            <Container>{"전체, 모집중, 모집완료"}</Container>
-            <Container>{"검색기능"}</Container>
-            <Container>
-              {"최신순/댓글순/좋아요순"}
-              <Button variant="contained" onClick={() => navigate(`/freeboard/create`)}>
-                WRITE
-              </Button>
-            </Container>
-            <Container>
-              {freeboards.map((freeboard) => (
-                <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => navigate(`/freeboards/${freeboard._id}`)}>
-                  <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                      {freeboard.name}
-                    </Typography>
-                    <Typography gutterBottom variant="h5" component="div">
-                      {freeboard.title}
-                    </Typography>
-                    <Typography variant="body2">{freeboard.content}</Typography>
-                  </CardContent>
-                </Card>
-              ))}
-            </Container>
-          </Grid>
-        </Grid>
-      </Box>
+      {/* <SideBar /> */}
+      <span>{"전체, 모집중, 모집완료"}</span>
+      <span>{"검색기능"}</span>
+      <span>
+        {"최신순/댓글순/좋아요순"}
+        <Button variant="contained" onClick={() => setViewType("form")}>
+          WRITE
+        </Button>
+      </span>
+      {viewType === "list" ? <Lists /> : viewType === "form" ? <Form /> : <Post />};
     </div>
   );
 };

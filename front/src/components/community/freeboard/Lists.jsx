@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Grid, Box, Container, Button, Card, CardContent, Typography } from "@mui/material";
-import * as Api from "../../api";
+import * as Api from "../../../api";
 
 const Lists = (setViewType) => {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
@@ -23,7 +23,7 @@ const Lists = (setViewType) => {
   return (
     <div id="FreeboardLists">
       {lists.map((freeboard) => (
-        <Card sx={{ minWidth: 275 }} key={freeboard._id}>
+        <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => setViewType("post")}>
           <CardContent>
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {freeboard.name}

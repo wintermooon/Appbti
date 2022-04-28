@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { UserStateContext } from "../../App";
-import * as Api from "../../api";
+import { UserStateContext } from "../../../App";
+import * as Api from "../../../api";
 import { Button } from "@mui/material";
 
 // import Comments from "../comment/Comments";

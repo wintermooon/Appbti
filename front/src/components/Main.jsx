@@ -1,14 +1,14 @@
 import React from "react";
-import Freeboards from "../community/pages/Lists";
-import Form from "../community/pages/Postform";
-import Lists from "../community/pages/Lists";
-import PostView from "../community/pages/PostView";
+import Freeboards from "./community/freeboard/Freeboards";
+import Form from "./community/freeboard/Postform";
+import Lists from "./community/freeboard/Lists";
+import PostView from "./community/freeboard/PostView";
 
 const Main = function () {
   return (
     <div>
-      <Lists />
-      <Form />
+      {/* <Lists />
+      <Form /> */}
       <PostView />
       <Freeboards />
       <h2>비로그인 유저도 볼 수 있는 메인 페이지 입니다.</h2>
