@@ -3,8 +3,7 @@ import { Recruitcomment, User } from '../db';
 class recruitcommentService {
   static async addComment({ userId, post_id, content }) {
     const author = await User.findById({ userId });
-    const newComment = { author, post_id, content };
-    const createdNewComment = await Recruitcomment.createComment({ newComment });
+    const createdNewComment = await Recruitcomment.createComment({ author, post_id, content });
     createdNewComment.errorMessage = null;
     return createdNewComment;
   }

@@ -53,7 +53,6 @@ recruitRouter.get('/recruits/:id', loginRequired, async (req, res, next) => {
     if (currentPostInfo.errorMessage) {
       throw new Error(currentPostInfo.errorMessage);
     }
-    console.log(currentPostInfo);
     res.status(200).send(currentPostInfo);
   } catch (error) {
     next(error);

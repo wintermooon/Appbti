@@ -3,13 +3,22 @@ import { RecruitModel } from '../schemas/recruit';
 import { UserModel } from '../schemas/user';
 
 class Recruitcomment {
-  static async createComment({ newComment }) {
+  static async createComment({ author, post_id, content }) {
+    const newComment = { author, content };
     const createdNewComment = await RecruitcommentModel.create(newComment);
+    await RecruitModel.updateOne(
+      { _id: post_id },
+      {
+        $push: {
+          comments: createdNewComment._id,
+        },
+      }
+    );
     return createdNewComment;
   }
 
-  static async findByPostId({ post_id }) {
-    const comments = await RecruitcommentModel.find({ post_id });
+  static async findByPostId({ post }) {
+    const comments = await RecruitcommentModel.find({ post });
 
     await UserModel.populate(comments, {
       path: 'author',
