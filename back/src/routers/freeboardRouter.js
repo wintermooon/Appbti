@@ -1,16 +1,18 @@
-import is from '@sindresorhus/is';
-import { Router } from 'express';
-import { loginRequired } from '../middlewares/loginRequired';
-import { freeboardService } from '../services/freeboardService';
+import is from "@sindresorhus/is";
+import {Router} from "express";
+import {loginRequired} from "../middlewares/loginRequired";
+import {freeboardService} from "../services/freeboardService";
 
 const freeboardRouter = Router();
 // freeboardRouter.use(loginRequired);
 
-freeboardRouter.post('/freeboard/create', loginRequired, async (req, res, next) => {
+freeboardRouter.post('/freeboard', loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['freeboard'] 
+     #swagger.summary = '자유게시판 게시글 생성' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const { user_id, name, title, content } = req.body;
 
     const newPost = await freeboardService.addPost({
@@ -30,13 +32,15 @@ freeboardRouter.post('/freeboard/create', loginRequired, async (req, res, next) 
   }
 });
 
-freeboardRouter.get('/freeboard/:id', loginRequired, async (req, res, next) => {
+freeboardRouter.get("/freeboard/:id", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['freeboard'] 
+     #swagger.summary = '게시글 id로 게시글 정보 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const post_id = req.params.id;
-    const currentPostInfo = await freeboardService.getPostInfo({ post_id });
+    const currentPostInfo = await freeboardService.getPostInfo({post_id});
 
     if (currentPostInfo.errorMessage) {
       throw new Error(currentPostInfo.errorMessage);
@@ -48,18 +52,20 @@ freeboardRouter.get('/freeboard/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-freeboardRouter.put('/freeboard/:id', loginRequired, async (req, res, next) => {
+freeboardRouter.put("/freeboard/:id", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['freeboard'] 
+     #swagger.summary = '게시글 수정하기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const post_id = req.params.id;
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
 
-    const toUpdate = { title, content };
+    const toUpdate = {title, content};
 
-    const updatedPost = await freeboardService.setPost({ post_id, toUpdate });
+    const updatedPost = await freeboardService.setPost({post_id, toUpdate});
 
     if (updatedPost.errorMessage) {
       throw new Error(updatedPost.errorMessage);
@@ -71,24 +77,28 @@ freeboardRouter.put('/freeboard/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-freeboardRouter.get('/freeboardlist/:user_id', loginRequired, async (req, res, next) => {
+freeboardRouter.get("/freeboardlist/:user_id", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['freeboard'] 
+     #swagger.summary = '유저 id에 해당하는 모든 게시글 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const user_id = req.params.user_id;
-    const posts = await freeboardService.getUserPosts({ user_id });
+    const posts = await freeboardService.getUserPosts({user_id});
     res.status(200).send(posts);
   } catch (error) {
     next(error);
   }
 });
 
-freeboardRouter.get('/freeboardlist', loginRequired, async (req, res, next) => {
+freeboardRouter.get("/freeboardlist", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['freeboard'] 
+     #swagger.summary = '모든 게시글 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const posts = await freeboardService.getPosts();
     res.status(200).send(posts);
   } catch (error) {
@@ -96,13 +106,15 @@ freeboardRouter.get('/freeboardlist', loginRequired, async (req, res, next) => {
   }
 });
 
-freeboardRouter.delete('/freeboard/:id', loginRequired, async (req, res, next) => {
+freeboardRouter.delete("/freeboard/:id", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['freeboard'] 
+     #swagger.summary = '게시글 삭제하기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const post_id = req.params.id;
-    const deletedPost = await freeboardService.deletePost({ post_id });
+    const deletedPost = await freeboardService.deletePost({post_id});
 
     if (deletedPost.errorMessage) {
       throw new Error(deletedPost.errorMessage);
@@ -114,4 +126,4 @@ freeboardRouter.delete('/freeboard/:id', loginRequired, async (req, res, next) =
   }
 });
 
-export { freeboardRouter };
+export {freeboardRouter};
