@@ -8,7 +8,11 @@ class Recruit {
   }
 
   static async findById({ post_id }) {
-    const post = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name');
+    const post = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name').populate('comments');
+    await UserModel.populate(post.comments, {
+      path: 'author',
+      select: 'id email name',
+    });
     return post;
   }
 
@@ -18,7 +22,7 @@ class Recruit {
   }
 
   static async findAllByUserId({ author }) {
-    const posts = await RecruitModel.find({ author }).sort({
+    const posts = await RecruitModel.find({ author }).populate('author', 'id email name').sort({
       updatedAt: -1,
     });
     return posts;

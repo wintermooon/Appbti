@@ -25,13 +25,13 @@ function App() {
 
   // 유저 경로 얻기
   // const location = window.location.pathname;
-
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
 
   const fetchCurrentUser = React.useCallback(async () => {
     try {
+      // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
       const userToken = sessionStorage.getItem("userToken");
       const jwtDecoded = jwtDecode(userToken);
       const userId = jwtDecoded.userId;

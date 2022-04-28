@@ -17,15 +17,16 @@ const RecruitSchema = new Schema(
       required: true,
     },
     status: {
-      type: Boolean,
+      type: String,
       required: false,
-      default: false,
+      default: 'unrecruited',
     },
     hashtag: {
       type: Array,
       required: false,
       default: [],
     },
+    comments: [{ type: Schema.Types.ObjectId, ref: 'Recruitcomment' }],
   },
   {
     timestamps: true,
