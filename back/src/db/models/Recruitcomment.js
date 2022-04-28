@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import { RecruitcommentModel } from '../schemas/recruitcomment';
 import { RecruitModel } from '../schemas/recruit';
 import { UserModel } from '../schemas/user';
@@ -6,8 +7,9 @@ class Recruitcomment {
   static async createComment({ author, post_id, content }) {
     const newComment = { author, content };
     const createdNewComment = await RecruitcommentModel.create(newComment);
+    const id = mongoose.Types.ObjectId(post_id);
     await RecruitModel.updateOne(
-      { _id: post_id },
+      { _id: id },
       {
         $push: {
           comments: createdNewComment._id,
@@ -15,16 +17,6 @@ class Recruitcomment {
       }
     );
     return createdNewComment;
-  }
-
-  static async findByPostId({ post }) {
-    const comments = await RecruitcommentModel.find({ post });
-
-    await UserModel.populate(comments, {
-      path: 'author',
-      select: 'id email name',
-    });
-    return comments;
   }
 
   static async findById({ comment_id }) {

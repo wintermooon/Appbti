@@ -8,11 +8,6 @@ class recruitcommentService {
     return createdNewComment;
   }
 
-  static async getComment({ post_id }) {
-    const comments = await Recruitcomment.findById({ post_id });
-    return comments;
-  }
-
   // 유저가 생성한 모든 댓글
   static async getCommentsById({ userId }) {
     const author = await User.findById({ userId });

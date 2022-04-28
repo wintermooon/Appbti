@@ -9,6 +9,10 @@ class Recruit {
 
   static async findById({ post_id }) {
     const post = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name').populate('comments');
+    await UserModel.populate(post.comments, {
+      path: 'author',
+      select: 'id email name',
+    });
     return post;
   }
 

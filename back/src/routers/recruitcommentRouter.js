@@ -33,35 +33,12 @@ recruitcommentRouter.post('/recruits/:id/comments', loginRequired, async (req, r
   }
 });
 
-recruitcommentRouter.get('/recruits/:id/comments', loginRequired, async (req, res, next) => {
-  try {
-    /*
-     #swagger.tags = ['recruitcomments'] 
-     #swagger.summary = '특정 게시글내에 있는 댓글 리스트' 
-     #swagger.description = '팀원 모집 게시글내에 있는 댓글 리스트를 반환한다.' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
-    const post_id = req.params.id;
-    const comments = await recruitcommentService.getComment({
-      post_id,
-    });
-
-    if (comments.errorMessage) {
-      throw new Error(comments.errorMessage);
-    }
-
-    res.status(200).send(comments);
-  } catch (error) {
-    next(error);
-  }
-});
-
 // 특정 댓글 수정 API
 recruitcommentRouter.put('/recruits/:id/comments', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruitcomments'] 
-     #swagger.summary = '특정 게시글내에 있는 댓글 수정' 
+     #swagger.summary = '특정 게시글내에 있는 댓글 수정(:id 는 댓글의 id 입니다!) ' 
      #swagger.description = '팀원 모집 게시글내에 있는 댓글을 수정한다.' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
