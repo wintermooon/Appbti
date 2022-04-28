@@ -19,10 +19,12 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
-
+  const [currentUserId, setCurrentUserId] = useState("");
   const isLogin = !!userState.user;
+  const currentUser = userState.user;
 
-  // const isLogin = !!userState.user;
+  // console.log(currentUser);
+
   // 유저 경로 얻기
   // const location = window.location.pathname;
 
@@ -32,14 +34,18 @@ function App() {
 
   const fetchCurrentUser = React.useCallback(async () => {
     try {
+      if (isLogin === true) {
+        setCurrentUserId(Object.values(currentUser)[1]);
+        console.log(currentUserId);
+      }
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
-      const res = await Api.get("user/current");
-      const currentUser = res.data;
+      const res = await Api.get(`users/${currentUserId}`);
+      const getCurrentUser = res.data;
 
       // dispatch 함수를 통해 로그인 성공 상태로 만듦.
       dispatch({
         type: "LOGIN_SUCCESS",
-        payload: currentUser,
+        payload: getCurrentUser,
       });
 
       console.log("%c sessionStorage에 토큰 있음.", "color: #d93d1a;");
@@ -48,7 +54,7 @@ function App() {
     }
     // fetchCurrentUser 과정이 끝났으므로, isFetchCompleted 상태를 true로 바꿔줌
     setIsFetchCompleted(true);
-  }, []);
+  }, [currentUser, currentUserId, isLogin]);
 
   // useEffect함수를 통해 fetchCurrentUser 함수를 실행함.
   useEffect(() => {
