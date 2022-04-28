@@ -24,9 +24,7 @@
     },
     "/users": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "회원가입",
         "description": "user를 등록한다.",
         "parameters": [],
@@ -57,9 +55,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "사용자 탈퇴",
         "description": "user 정보를 삭제한다.",
         "parameters": [
@@ -88,9 +84,7 @@
     },
     "/users/login": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "로그인",
         "description": "로그인 한다.",
         "parameters": [],
@@ -120,9 +114,7 @@
     },
     "/users/{id}": {
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "사용자 정보 변경",
         "description": "user 정보를 변경한다.",
         "parameters": [
@@ -174,9 +166,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "사용자 정보 가져오기",
         "description": "user 정보를 가져온다.",
         "parameters": [
@@ -238,28 +228,7 @@
         ]
       }
     },
-    "/user/current": {
-      "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        }
-      }
-    },
+
     "/freeboard/create": {
       "post": {
         "description": "",
@@ -1222,9 +1191,7 @@
     },
     "/recruits": {
       "post": {
-        "tags": [
-          "recruit"
-        ],
+        "tags": ["recruit"],
         "summary": "팀원 모집 게시글 생성",
         "description": "팀원 모집 게시글 생성한다.",
         "parameters": [
@@ -1273,9 +1240,7 @@
     },
     "/recruits/{id}": {
       "get": {
-        "tags": [
-          "recruit"
-        ],
+        "tags": ["recruit"],
         "summary": "게시글 id에 해당하는 게시글 정보 가져오기",
         "description": "특정 게시글 정보 가져오기",
         "parameters": [
@@ -1310,9 +1275,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "recruit"
-        ],
+        "tags": ["recruit"],
         "summary": "게시글 수정하기",
         "description": "팀원 모집 게시글을 수정한다.",
         "parameters": [
@@ -1370,9 +1333,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "recruit"
-        ],
+        "tags": ["recruit"],
         "summary": "팀원 모집 게시글 삭제",
         "description": "팀원 모집 게시글 삭제한다.",
         "parameters": [
@@ -1409,9 +1370,7 @@
     },
     "/recruitlist/{userId}": {
       "get": {
-        "tags": [
-          "recruit"
-        ],
+        "tags": ["recruit"],
         "summary": "특정 user의 게시글 확인하기",
         "description": "특정 user의 게시글 확인하기",
         "parameters": [
@@ -1448,9 +1407,7 @@
     },
     "/recruitlist": {
       "get": {
-        "tags": [
-          "recruit"
-        ],
+        "tags": ["recruit"],
         "summary": "게시글 목록",
         "description": "전체 게시글 목록",
         "parameters": [
@@ -1479,9 +1436,7 @@
     },
     "/recruits/{id}/comments": {
       "post": {
-        "tags": [
-          "recruitcomments"
-        ],
+        "tags": ["recruitcomments"],
         "summary": "팀원 모집 게시글에 댓글 생성",
         "description": "팀원 모집 게시글에 댓글을 생성한다.",
         "parameters": [
@@ -1530,9 +1485,7 @@
         }
       },
       "get": {
-        "tags": [
-          "recruitcomments"
-        ],
+        "tags": ["recruitcomments"],
         "summary": "특정 게시글내에 있는 댓글 리스트",
         "description": "팀원 모집 게시글내에 있는 댓글 리스트를 반환한다.",
         "parameters": [
@@ -1567,9 +1520,7 @@
         ]
       },
       "put": {
-        "tags": [
-          "recruitcomments"
-        ],
+        "tags": ["recruitcomments"],
         "summary": "특정 게시글내에 있는 댓글 수정",
         "description": "팀원 모집 게시글내에 있는 댓글을 수정한다.",
         "parameters": [
@@ -1618,9 +1569,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "recruitcomments"
-        ],
+        "tags": ["recruitcomments"],
         "summary": "특정 게시글내에 있는 댓글 삭제",
         "description": "팀원 모집 게시글내에 있는 댓글을 삭제한다.",
         "parameters": [
@@ -1657,9 +1606,7 @@
     },
     "/recruits/{userId}/commentlist": {
       "get": {
-        "tags": [
-          "recruitcomments"
-        ],
+        "tags": ["recruitcomments"],
         "summary": "특정 유저의 댓글 리스트",
         "description": "특정 유저의 댓글 리스트를 반환한다.",
         "parameters": [

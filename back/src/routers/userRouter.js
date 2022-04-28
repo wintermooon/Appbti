@@ -151,22 +151,4 @@ userAuthRouter.delete("/users", loginRequired, async (req, res, next) => {
   }
 });
 
-userAuthRouter.get("/user/current", loginRequired, async (req, res, next) => {
-  try {
-    // jwt토큰에서 추출된 사용자 id를 가지고 db에서 사용자 정보를 찾음.
-    const userId = req.currentUserId;
-    const currentUserInfo = await userAuthService.getUserInfo({
-      userId,
-    });
-
-    if (currentUserInfo.errorMessage) {
-      throw new Error(currentUserInfo.errorMessage);
-    }
-
-    res.status(200).send(currentUserInfo);
-  } catch (error) {
-    next(error);
-  }
-});
-
 export {userAuthRouter};
