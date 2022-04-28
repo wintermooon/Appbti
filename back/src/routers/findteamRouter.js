@@ -1,25 +1,25 @@
-import is from '@sindresorhus/is';
-import { Router } from 'express';
-import { loginRequired } from '../middlewares/loginRequired';
-import { findteamService } from '../services/findteamService';
+import is from "@sindresorhus/is";
+import {Router} from "express";
+import {loginRequired} from "../middlewares/loginRequired";
+import {findteamService} from "../services/findteamService";
 
 const findteamRouter = Router();
 // findteamRouter.use(loginRequired);
 
 // 특정 글 조회 API
-findteamRouter.post('/findteam', loginRequired, async (req, res, next) => {
+findteamRouter.post("/findteam", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
+    /* #swagger.security = [{
          "bearerAuth": []
     }] */
-    const { user_id, name, title, content, stack } = req.body;
+    const {user_id, name, title, content, stack} = req.body;
 
     const newPost = await findteamService.addPost({
       user_id,
       name,
       title,
       content,
-      stack
+      stack,
     });
 
     if (newPost.errorMessage) {
@@ -33,13 +33,13 @@ findteamRouter.post('/findteam', loginRequired, async (req, res, next) => {
 });
 
 // 특정 글 조회 API
-findteamRouter.get('/findteam/:id', loginRequired, async (req, res, next) => {
+findteamRouter.get("/findteam/:id", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
+    /* #swagger.security = [{
          "bearerAuth": []
     }] */
     const post_id = req.params.id;
-    const currentPostInfo = await findteamService.getPostInfo({ post_id });
+    const currentPostInfo = await findteamService.getPostInfo({post_id});
 
     if (currentPostInfo.errorMessage) {
       throw new Error(currentPostInfo.errorMessage);
@@ -52,9 +52,9 @@ findteamRouter.get('/findteam/:id', loginRequired, async (req, res, next) => {
 });
 
 // 특정 글 수정 API
-findteamRouter.put('/findteam/:id', loginRequired, async (req, res, next) => {
+findteamRouter.put("/findteam/:id", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
+    /* #swagger.security = [{
          "bearerAuth": []
     }] */
     const post_id = req.params.id;
@@ -62,9 +62,9 @@ findteamRouter.put('/findteam/:id', loginRequired, async (req, res, next) => {
     const content = req.body.content ?? null;
     const stack = req.body.stack ?? null;
 
-    const toUpdate = { title, content, stack };
+    const toUpdate = {title, content, stack};
 
-    const updatedPost = await findteamService.setPost({ post_id, toUpdate });
+    const updatedPost = await findteamService.setPost({post_id, toUpdate});
 
     if (updatedPost.errorMessage) {
       throw new Error(updatedPost.errorMessage);
@@ -77,13 +77,13 @@ findteamRouter.put('/findteam/:id', loginRequired, async (req, res, next) => {
 });
 
 // 특정 유저의 모든 글 접근
-findteamRouter.get('/findteamlist/:user_id', loginRequired, async (req, res, next) => {
+findteamRouter.get("/findteamlist/:user_id", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
+    /* #swagger.security = [{
          "bearerAuth": []
     }] */
     const user_id = req.params.user_id;
-    const posts = await findteamService.getUserPosts({ user_id });
+    const posts = await findteamService.getUserPosts({user_id});
     res.status(200).send(posts);
   } catch (error) {
     next(error);
@@ -91,9 +91,9 @@ findteamRouter.get('/findteamlist/:user_id', loginRequired, async (req, res, nex
 });
 
 // findteam 게시판의 모든 글
-findteamRouter.get('/findteamlist', loginRequired, async (req, res, next) => {
+findteamRouter.get("/findteamlist", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
+    /* #swagger.security = [{
          "bearerAuth": []
     }] */
     const posts = await findteamService.getPosts();
@@ -104,13 +104,13 @@ findteamRouter.get('/findteamlist', loginRequired, async (req, res, next) => {
 });
 
 // 특정 글 삭제 API
-findteamRouter.delete('/findteam/:id', loginRequired, async (req, res, next) => {
+findteamRouter.delete("/findteam/:id", loginRequired, async (req, res, next) => {
   try {
-        /* #swagger.security = [{
+    /* #swagger.security = [{
          "bearerAuth": []
     }] */
     const post_id = req.params.id;
-    const deletedPost = await findteamService.deletePost({ post_id });
+    const deletedPost = await findteamService.deletePost({post_id});
 
     if (deletedPost.errorMessage) {
       throw new Error(deletedPost.errorMessage);
@@ -122,4 +122,4 @@ findteamRouter.delete('/findteam/:id', loginRequired, async (req, res, next) => 
   }
 });
 
-export { findteamRouter };
+export {findteamRouter};
