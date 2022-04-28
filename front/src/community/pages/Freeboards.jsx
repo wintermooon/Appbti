@@ -8,7 +8,7 @@ import Post from "./PostView";
 import Lists from "./Lists";
 import Form from "./Postform";
 
-const Freeboards = () => {
+const Freeboards = (userId) => {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);

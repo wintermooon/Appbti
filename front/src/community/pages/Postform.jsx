@@ -1,8 +1,9 @@
 import { useState } from "react";
 import * as Api from "../../api";
 import { Button } from "@mui/material";
+import axios from "axios";
 
-function Postform({ user_id, setFreeboards, setIsEditing, setIsAdding, setViewType }) {
+function Postform({ userId, setFreeboards, setIsEditing, setIsAdding, setViewType }) {
   const [tempPost, setTempPost] = useState({
     title: "",
     content: "",
@@ -15,18 +16,19 @@ function Postform({ user_id, setFreeboards, setIsEditing, setIsAdding, setViewTy
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(tempPost);
+    console.log(userId);
     try {
-      //   if (window.confirm("게시글을 등록 하겠습니까?")) {
-      const res = await Api.post(`/freeboard/create`, {
-        user_id: user_id,
-        name: user_id.name,
-        ...tempPost,
-      });
-      console.log(res);
-      setFreeboards((prev) => [...prev, res.data]);
-      setIsAdding(false);
-      setViewType("list");
-      //   }
+      if (window.confirm("게시글을 등록 하겠습니까?")) {
+        const res = await Api.post(`freeboard/create`, {
+          user_id: "",
+          name: "",
+          ...tempPost,
+        });
+        console.log(res);
+        setFreeboards((prev) => [...prev, res.data]);
+        setIsAdding(false);
+        setViewType("list");
+      }
     } catch (error) {
       alert("게시글 등록에 실패하였습니다.", error);
     }
