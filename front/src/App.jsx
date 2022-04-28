@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import jwtDecode from "jwt-decode";
 import * as Api from "./api";
 import { loginReducer } from "./reducer";
 import "./App.css";
@@ -23,7 +23,6 @@ function App() {
   // const isLogin = !!userState.user;
   // 유저 경로 얻기
   // const location = window.location.pathname;
-
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
@@ -31,9 +30,11 @@ function App() {
   const fetchCurrentUser = React.useCallback(async () => {
     try {
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
-      const res = await Api.get("user/current");
+      const userToken = sessionStorage.getItem("userToken");
+      const jwtDecoded = jwtDecode(userToken);
+      const userId = jwtDecoded.userId;
+      const res = await Api.get("users", userId);
       const currentUser = res.data;
-
       // dispatch 함수를 통해 로그인 성공 상태로 만듦.
       dispatch({
         type: "LOGIN_SUCCESS",
