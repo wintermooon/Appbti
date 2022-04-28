@@ -8,9 +8,11 @@ const ftcommentRouter = Router();
 
 ftcommentRouter.post('/findteam/comment', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteamcomment'] 
+     #swagger.summary = '팀 찾기 게시글에 댓글 생성' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const { board_id, user_id, name, content } = req.body;
 
     const newComment = await commentService.addComment({
@@ -33,9 +35,11 @@ ftcommentRouter.post('/findteam/comment', loginRequired, async (req, res, next) 
 // 특정 댓글 조회 API
 ftcommentRouter.get('/findteam/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteamcomment'] 
+     #swagger.summary = '댓글 id에 해당하는 댓글 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const comment_id = req.params.id;
     const currentComment = await commentService.getComment({ comment_id });
 
@@ -52,9 +56,11 @@ ftcommentRouter.get('/findteam/comments/:id', loginRequired, async (req, res, ne
 // 특정 댓글 수정 API
 ftcommentRouter.put('/findteam/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteamcomment'] 
+     #swagger.summary = '댓글 수정하기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const comment_id = req.params.id;
     const board_id = req.body.board_id ?? null;
     const user_id = req.body.user_id ?? null;
@@ -78,9 +84,11 @@ ftcommentRouter.put('/findteam/comments/:id', loginRequired, async (req, res, ne
 
 ftcommentRouter.delete('/findteam/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteamcomment'] 
+     #swagger.summary = '댓글 삭제하기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const comment_id = req.params.id;
     const deletedComment = await commentService.deleteComment({
       comment_id,
@@ -96,9 +104,11 @@ ftcommentRouter.delete('/findteam/comments/:id', loginRequired, async (req, res,
 
 ftcommentRouter.get('/findteam/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteamcomment'] 
+     #swagger.summary = '유저 id가 작성한 댓글 목록 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const user_id = req.params.user_id;
     const comments = await commentService.getCommentsById({ user_id });
 
@@ -110,9 +120,11 @@ ftcommentRouter.get('/findteam/usercommentlist/:user_id', loginRequired, async (
 
 ftcommentRouter.get('/findteam/boardcommentlist/:board_id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteamcomment'] 
+     #swagger.summary = '게시글의 모든 댓글 목록 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const board_id = req.params.board_id;
     const comments = await commentService.getCommentsByBoardId({ board_id });
 

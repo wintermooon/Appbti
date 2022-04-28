@@ -238,9 +238,13 @@
         ]
       }
     },
-    "/freeboard/create": {
+    "/freeboard": {
       "post": {
-        "description": "자유게시판 글 작성",
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "자유게시판 게시글 생성",
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -290,7 +294,11 @@
     },
     "/freeboard/{id}": {
       "get": {
-        "description": "게시글 id로 해당 글 정보 가져오기 ",
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 id로 게시글 정보 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -323,7 +331,11 @@
         ]
       },
       "put": {
-        "description": "게시글 id로 해당 글 수정하기",
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 수정하기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -373,7 +385,11 @@
         }
       },
       "delete": {
-        "description": "게시글 id로 해당 글 삭제하기",
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 삭제하기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -408,7 +424,11 @@
     },
     "/freeboardlist/{user_id}": {
       "get": {
-        "description": "유저 id로 해당 유저가 쓴 모든 글 정보 가져오기",
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "유저 id에 해당하는 모든 게시글 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "user_id",
@@ -443,7 +463,11 @@
     },
     "/freeboardlist": {
       "get": {
-        "description": "모든 자유게시판 글 정보 가져오기",
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "모든 게시글 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -468,9 +492,13 @@
         ]
       }
     },
-    "/freeboard/comment/create": {
+    "/freeboard/comment": {
       "post": {
-        "description": "자유게시판 댓글 작성",
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "자유게시판 게시글에 댓글 생성",
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -520,7 +548,11 @@
     },
     "/freeboard/comments/{id}": {
       "get": {
-        "description": "댓글 id로 해당 댓글 정보 가져오기",
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "댓글 id에 해당하는 댓글 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -553,7 +585,11 @@
         ]
       },
       "put": {
-        "description": "댓글 id로 해당 댓글 수정하기",
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "댓글 수정하기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -612,7 +648,11 @@
         }
       },
       "delete": {
-        "description": "댓글 id로 해당 댓글 삭제하기",
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "댓글 삭제하기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -647,7 +687,11 @@
     },
     "/freeboard/usercommentlist/{user_id}": {
       "get": {
-        "description": "유저 id로 해당 유저가 쓴 모든 댓글 정보 가져오기",
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "유저 id의 모든 작성 댓글 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "user_id",
@@ -682,7 +726,11 @@
     },
     "/freeboard/boardcommentlist/{board_id}": {
       "get": {
-        "description": "게시글 id로 해당 글의 댓글 정보 모두 가져오기",
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "게시글의 모든 댓글 목록 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "board_id",
@@ -717,7 +765,11 @@
     },
     "/findteam": {
       "post": {
-        "description": "팀 구하는 게시글 작성하기",
+        "tags": [
+          "findteam"
+        ],
+        "summary": "팀 찾기 게시글에 글 생성",
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -770,7 +822,11 @@
     },
     "/findteam/{id}": {
       "get": {
-        "description": "팀 구하기 게시글 id로 해당 글 정보 가져오기",
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 id에 해당하는 글 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -803,7 +859,11 @@
         ]
       },
       "put": {
-        "description": "팀 구하기 게시글 id로 해당 글 수정하기",
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 수정하기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -856,7 +916,11 @@
         }
       },
       "delete": {
-        "description": "팀 구하기 게시글 id로 해당 글 삭제하기",
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 삭제하기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -891,7 +955,11 @@
     },
     "/findteamlist/{user_id}": {
       "get": {
-        "description": "유저 id로 해당 유저가 쓴 모든 팀 구하기글 가져오기",
+        "tags": [
+          "findteam"
+        ],
+        "summary": "유저 id에 해당하는 모든 글 목록 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "user_id",
@@ -926,7 +994,11 @@
     },
     "/findteamlist": {
       "get": {
-        "description": "팀구하기 게시판의 모든 글 가져오기",
+        "tags": [
+          "findteam"
+        ],
+        "summary": "모든 게시글 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -953,7 +1025,11 @@
     },
     "/findteam/comment": {
       "post": {
-        "description": "팀 구하기 게시글의 댓글 작성하기",
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "팀 찾기 게시글에 댓글 생성",
+        "description": "",
         "parameters": [
           {
             "name": "authorization",
@@ -1003,7 +1079,11 @@
     },
     "/findteam/comments/{id}": {
       "get": {
-        "description": "댓글 id로 팀 구하기 게시글의 댓글 정보 가져오기",
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "댓글 id에 해당하는 댓글 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -1036,7 +1116,11 @@
         ]
       },
       "put": {
-        "description": "댓글 id로 팀 구하기 게시글의 댓글 수정하기",
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "댓글 수정하기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -1095,7 +1179,11 @@
         }
       },
       "delete": {
-        "description": "댓글 id로 팀 구하기 게시글의 댓글 삭제하기",
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "댓글 삭제하기",
+        "description": "",
         "parameters": [
           {
             "name": "id",
@@ -1130,7 +1218,11 @@
     },
     "/findteam/usercommentlist/{user_id}": {
       "get": {
-        "description": "유저 id로 해당 유저가 작성한 모든 팀구하기 게시판의 댓글 가져오기",
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "유저 id가 작성한 댓글 목록 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "user_id",
@@ -1165,7 +1257,11 @@
     },
     "/findteam/boardcommentlist/{board_id}": {
       "get": {
-        "description": "게시글 id로 해당 게시글의 모든 댓글정보 가져오기",
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "게시글의 모든 댓글 목록 가져오기",
+        "description": "",
         "parameters": [
           {
             "name": "board_id",
@@ -1879,6 +1975,253 @@
       "get": {
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/question/comment": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "board_id": {
+                    "example": "any"
+                  },
+                  "user_id": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/question/comments/{id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "board_id": {
+                    "example": "any"
+                  },
+                  "user_id": {
+                    "example": "any"
+                  },
+                  "name": {
+                    "example": "any"
+                  },
+                  "content": {
+                    "example": "any"
+                  },
+                  "created_at": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/quedstion/usercommentlist/{user_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/question/boardcommentlist/{board_id}": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "board_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",
