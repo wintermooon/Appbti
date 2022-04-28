@@ -9,7 +9,7 @@ import Header from "./components/Header";
 import Main from "./components/Main";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import RecruitTeammate from "./components/recruitteammate/RecruitTeammate";
+import CommunityPage from "./components/community/CommunityPage";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -19,6 +19,8 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
+
+  const isLogin = !!userState.user;
 
   // const isLogin = !!userState.user;
   // 유저 경로 얻기
@@ -66,7 +68,7 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/community/recruitteammate" element={<RecruitTeammate />} />
+            {isLogin && <Route path="/community" element={<CommunityPage />} />}
           </Routes>
         </Router>
       </UserStateContext.Provider>

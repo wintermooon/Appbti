@@ -3,8 +3,8 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 
-import "../styles/RecruitTeammate.css";
-import SideBar from "../community/Sidebar";
+import "../../styles/RecruitTeammate.css";
+import SideBar from "../Sidebar";
 import RecruitmentFilter from "./RecruitmentFilter";
 
 const RecruitTeammate = function () {

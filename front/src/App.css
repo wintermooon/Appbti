@@ -35,3 +35,7 @@ body {
 .LinkCursor {
   cursor: pointer;
 }
+
+#LeftGrid {
+  margin-top: 50px;
+}
