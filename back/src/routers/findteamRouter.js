@@ -9,10 +9,12 @@ const findteamRouter = Router();
 // 특정 글 조회 API
 findteamRouter.post("/findteam", loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
-    const {user_id, name, title, content, stack} = req.body;
+    /*
+     #swagger.tags = ['findteam'] 
+     #swagger.summary = '팀 찾기 게시글에 글 생성' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+    const { user_id, name, title, content, stack } = req.body;
 
     const newPost = await findteamService.addPost({
       user_id,
@@ -35,9 +37,11 @@ findteamRouter.post("/findteam", loginRequired, async (req, res, next) => {
 // 특정 글 조회 API
 findteamRouter.get("/findteam/:id", loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteam'] 
+     #swagger.summary = '게시글 id에 해당하는 글 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const post_id = req.params.id;
     const currentPostInfo = await findteamService.getPostInfo({post_id});
 
@@ -54,9 +58,11 @@ findteamRouter.get("/findteam/:id", loginRequired, async (req, res, next) => {
 // 특정 글 수정 API
 findteamRouter.put("/findteam/:id", loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteam'] 
+     #swagger.summary = '게시글 수정하기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const post_id = req.params.id;
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
@@ -79,9 +85,11 @@ findteamRouter.put("/findteam/:id", loginRequired, async (req, res, next) => {
 // 특정 유저의 모든 글 접근
 findteamRouter.get("/findteamlist/:user_id", loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteam'] 
+     #swagger.summary = '유저 id에 해당하는 모든 글 목록 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const user_id = req.params.user_id;
     const posts = await findteamService.getUserPosts({user_id});
     res.status(200).send(posts);
@@ -93,9 +101,11 @@ findteamRouter.get("/findteamlist/:user_id", loginRequired, async (req, res, nex
 // findteam 게시판의 모든 글
 findteamRouter.get("/findteamlist", loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteam'] 
+     #swagger.summary = '모든 게시글 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const posts = await findteamService.getPosts();
     res.status(200).send(posts);
   } catch (error) {
@@ -106,9 +116,11 @@ findteamRouter.get("/findteamlist", loginRequired, async (req, res, next) => {
 // 특정 글 삭제 API
 findteamRouter.delete("/findteam/:id", loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['findteam'] 
+     #swagger.summary = '게시글 삭제하기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const post_id = req.params.id;
     const deletedPost = await findteamService.deletePost({post_id});
 

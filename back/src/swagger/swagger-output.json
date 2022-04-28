@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "http://localhost:4040"
+      "url": "http://localhost:4041"
     }
   ],
   "paths": {
@@ -238,8 +238,12 @@
         ]
       }
     },
-    "/freeboard/create": {
+    "/freeboard": {
       "post": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "자유게시판 게시글 생성",
         "description": "",
         "parameters": [
           {
@@ -290,6 +294,10 @@
     },
     "/freeboard/{id}": {
       "get": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 id로 게시글 정보 가져오기",
         "description": "",
         "parameters": [
           {
@@ -323,6 +331,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -373,6 +385,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "게시글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -408,6 +424,10 @@
     },
     "/freeboardlist/{user_id}": {
       "get": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "유저 id에 해당하는 모든 게시글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -443,6 +463,10 @@
     },
     "/freeboardlist": {
       "get": {
+        "tags": [
+          "freeboard"
+        ],
+        "summary": "모든 게시글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -468,8 +492,12 @@
         ]
       }
     },
-    "/freeboard/comment/create": {
+    "/freeboard/comment": {
       "post": {
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "자유게시판 게시글에 댓글 생성",
         "description": "",
         "parameters": [
           {
@@ -520,6 +548,10 @@
     },
     "/freeboard/comments/{id}": {
       "get": {
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "댓글 id에 해당하는 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -553,6 +585,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "댓글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -612,6 +648,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "댓글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -647,6 +687,10 @@
     },
     "/freeboard/usercommentlist/{user_id}": {
       "get": {
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "유저 id의 모든 작성 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -682,6 +726,10 @@
     },
     "/freeboard/boardcommentlist/{board_id}": {
       "get": {
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "게시글의 모든 댓글 목록 가져오기",
         "description": "",
         "parameters": [
           {
@@ -717,6 +765,10 @@
     },
     "/findteam": {
       "post": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "팀 찾기 게시글에 글 생성",
         "description": "",
         "parameters": [
           {
@@ -770,6 +822,10 @@
     },
     "/findteam/{id}": {
       "get": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 id에 해당하는 글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -803,6 +859,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -856,6 +916,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "게시글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -891,6 +955,10 @@
     },
     "/findteamlist/{user_id}": {
       "get": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "유저 id에 해당하는 모든 글 목록 가져오기",
         "description": "",
         "parameters": [
           {
@@ -926,6 +994,10 @@
     },
     "/findteamlist": {
       "get": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "모든 게시글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -953,6 +1025,10 @@
     },
     "/findteam/comment": {
       "post": {
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "팀 찾기 게시글에 댓글 생성",
         "description": "",
         "parameters": [
           {
@@ -1003,6 +1079,10 @@
     },
     "/findteam/comments/{id}": {
       "get": {
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "댓글 id에 해당하는 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1036,6 +1116,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "댓글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -1095,6 +1179,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "댓글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -1130,6 +1218,10 @@
     },
     "/findteam/usercommentlist/{user_id}": {
       "get": {
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "유저 id가 작성한 댓글 목록 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1165,6 +1257,10 @@
     },
     "/findteam/boardcommentlist/{board_id}": {
       "get": {
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "게시글의 모든 댓글 목록 가져오기",
         "description": "",
         "parameters": [
           {
