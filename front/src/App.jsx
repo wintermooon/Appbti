@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import jwtDecode from "jwt-decode";
-import * as Api from "./api";
+import { get } from "./api";
 import { loginReducer } from "./reducer";
 import "./App.css";
 
@@ -35,7 +35,7 @@ function App() {
       const userToken = sessionStorage.getItem("userToken");
       const jwtDecoded = jwtDecode(userToken);
       const userId = jwtDecoded.userId;
-      const res = await Api.get("users", userId);
+      const res = await get("users", userId);
       const currentUser = res.data;
       // dispatch 함수를 통해 로그인 성공 상태로 만듦.
       dispatch({

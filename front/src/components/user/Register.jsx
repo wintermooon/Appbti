@@ -13,7 +13,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-import * as Api from "../../api";
+import { post } from "../../api";
 
 const Register = function () {
   const theme = createTheme();
@@ -46,7 +46,7 @@ const Register = function () {
 
     try {
       // "user/register" 엔드포인트로 post요청함.
-      await Api.post("users", {
+      await post("users", {
         email,
         password,
         name,
