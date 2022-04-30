@@ -6,11 +6,13 @@ import { qtcommentService } from '../services/qtcommentService';
 const qtcommentRouter = Router();
 // qtcommentRouter.use(loginRequired);
 
-qtcommentRouter.post('/question/comment', loginRequired, async (req, res, next) => {
+qtcommentRouter.post('/questions/comments', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['qeustioncomment'] 
+     #swagger.summary = '질문게시판 게시글에 댓글 생성' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const { board_id, user_id, name, content } = req.body;
 
     const newComment = await qtcommentService.addComment({
@@ -31,11 +33,13 @@ qtcommentRouter.post('/question/comment', loginRequired, async (req, res, next) 
 });
 
 // 특정 댓글 조회 API
-qtcommentRouter.get('/question/comments/:id', loginRequired, async (req, res, next) => {
+qtcommentRouter.get('/questions/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['questioncomment'] 
+     #swagger.summary = '댓글 id에 해당하는 댓글 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const comment_id = req.params.id;
     const currentComment = await qtcommentService.getComment({ comment_id });
 
@@ -50,11 +54,13 @@ qtcommentRouter.get('/question/comments/:id', loginRequired, async (req, res, ne
 });
 
 // 특정 댓글 수정 API
-qtcommentRouter.put('/question/comments/:id', loginRequired, async (req, res, next) => {
+qtcommentRouter.put('/questions/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['questioncomment'] 
+     #swagger.summary = '댓글 수정하기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const comment_id = req.params.id;
     const board_id = req.body.board_id ?? null;
     const user_id = req.body.user_id ?? null;
@@ -76,11 +82,13 @@ qtcommentRouter.put('/question/comments/:id', loginRequired, async (req, res, ne
   }
 });
 
-qtcommentRouter.delete('/question/comments/:id', loginRequired, async (req, res, next) => {
+qtcommentRouter.delete('/questions/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['questioncomment'] 
+     #swagger.summary = '댓글 삭제하기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const comment_id = req.params.id;
     const deletedComment = await qtcommentService.deleteComment({
       comment_id,
@@ -94,11 +102,13 @@ qtcommentRouter.delete('/question/comments/:id', loginRequired, async (req, res,
   }
 });
 
-qtcommentRouter.get('/quedstion/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
+qtcommentRouter.get('/quedstions/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['questioncomment'] 
+     #swagger.summary = '유저 id의 모든 작성 댓글 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const user_id = req.params.user_id;
     const comments = await qtcommentService.getCommentsById({ user_id });
 
@@ -108,11 +118,13 @@ qtcommentRouter.get('/quedstion/usercommentlist/:user_id', loginRequired, async 
   }
 });
 
-qtcommentRouter.get('/question/boardcommentlist/:board_id', loginRequired, async (req, res, next) => {
+qtcommentRouter.get('/questions/boardcommentlist/:board_id', loginRequired, async (req, res, next) => {
   try {
-    /* #swagger.security = [{
-         "bearerAuth": []
-    }] */
+    /*
+     #swagger.tags = ['questioncomment'] 
+     #swagger.summary = '게시글의 모든 댓글 목록 가져오기' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
     const board_id = req.params.board_id;
     const comments = await qtcommentService.getCommentsByBoardId({ board_id });
 
