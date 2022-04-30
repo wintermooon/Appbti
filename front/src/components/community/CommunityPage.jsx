@@ -16,6 +16,7 @@ import * as Api from "../../api";
 import Pager from "./pager/Pager";
 
 import "../styles/CommunityPage.css";
+import TagTest from "./filter/TagTest";
 
 const CommunityPage = function () {
   const navigate = useNavigate();
@@ -141,7 +142,7 @@ const CommunityPage = function () {
                 ""
               )}
               <TagContainer>
-                <h2>태그 검색기능 추가중</h2>
+                <TagTest />
               </TagContainer>
               <TabDiv>
                 <TabContainer>
