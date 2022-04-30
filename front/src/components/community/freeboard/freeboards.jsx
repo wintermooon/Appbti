@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { Grid, Box, Button, Card, CardContent, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
 import { UserStateContext } from "../../../App";
 import * as Api from "../../../api";
-// import SideBar from "../Sidebar";
-import Post from "./PostView";
+import LinearProgress from "@mui/material/LinearProgress";
+import View from "./PostView";
 import Lists from "./Lists";
 import Form from "./Postform";
 
@@ -14,6 +14,7 @@ const Freeboards = () => {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [isAdding, setIsAdding] = useState(false);
   const [viewType, setViewType] = useState("list");
+  const [progress, setProgress] = React.useState(10);
 
   const fetchPostsInfo = async () => {
     try {
@@ -34,23 +35,37 @@ const Freeboards = () => {
     fetchPostsInfo();
   }, [userState, navigate]);
 
+  // * * Progressbar
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+    }, 800);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   // * * Skeleton Code 작성할 것
   if (!isFetchCompleted) {
-    return "Loading...";
+    return <LinearProgress value={progress} />;
   }
 
   return (
     <div id="RecruitTeammate">
-      {/* <SideBar /> */}
-      <span>{"전체, 모집중, 모집완료"}</span>
-      <span>{"검색기능"}</span>
-      <span>
-        {"최신순/댓글순/좋아요순"}
+      {!isAdding ? (
         <Button variant="contained" onClick={() => setViewType("form")}>
-          WRITE
+          작성
         </Button>
-      </span>
-      {viewType === "list" ? <Lists /> : viewType === "form" ? <Form /> : <Post />};
+      ) : (
+        <span />
+      )}
+      {viewType === "list" ? (
+        <Lists user={userState.user} setViewType={setViewType} />
+      ) : viewType === "form" ? (
+        <Form user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
+      ) : (
+        <View user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
+      )}
     </div>
   );
 };

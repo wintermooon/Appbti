@@ -238,7 +238,7 @@
         ]
       }
     },
-    "/freeboard": {
+    "/freeboards": {
       "post": {
         "tags": [
           "freeboard"
@@ -292,7 +292,7 @@
         }
       }
     },
-    "/freeboard/{id}": {
+    "/freeboards/{id}": {
       "get": {
         "tags": [
           "freeboard"
@@ -492,7 +492,7 @@
         ]
       }
     },
-    "/freeboard/comment": {
+    "/freeboards/comments": {
       "post": {
         "tags": [
           "freeboardcomment"
@@ -546,7 +546,7 @@
         }
       }
     },
-    "/freeboard/comments/{id}": {
+    "/freeboards/comments/{id}": {
       "get": {
         "tags": [
           "freeboardcomment"
@@ -685,7 +685,7 @@
         ]
       }
     },
-    "/freeboard/usercommentlist/{user_id}": {
+    "/freeboards/usercommentlist/{user_id}": {
       "get": {
         "tags": [
           "freeboardcomment"
@@ -724,7 +724,7 @@
         ]
       }
     },
-    "/freeboard/boardcommentlist/{board_id}": {
+    "/freeboards/boardcommentlist/{board_id}": {
       "get": {
         "tags": [
           "freeboardcomment"
@@ -763,7 +763,7 @@
         ]
       }
     },
-    "/findteam": {
+    "/findteams": {
       "post": {
         "tags": [
           "findteam"
@@ -820,7 +820,7 @@
         }
       }
     },
-    "/findteam/{id}": {
+    "/findteams/{id}": {
       "get": {
         "tags": [
           "findteam"
@@ -1023,7 +1023,7 @@
         ]
       }
     },
-    "/findteam/comment": {
+    "/findteams/comments": {
       "post": {
         "tags": [
           "findteamcomment"
@@ -1077,7 +1077,7 @@
         }
       }
     },
-    "/findteam/comments/{id}": {
+    "/findteams/comments/{id}": {
       "get": {
         "tags": [
           "findteamcomment"
@@ -1216,7 +1216,7 @@
         ]
       }
     },
-    "/findteam/usercommentlist/{user_id}": {
+    "/findteams/usercommentlist/{user_id}": {
       "get": {
         "tags": [
           "findteamcomment"
@@ -1255,7 +1255,7 @@
         ]
       }
     },
-    "/findteam/boardcommentlist/{board_id}": {
+    "/findteams/boardcommentlist/{board_id}": {
       "get": {
         "tags": [
           "findteamcomment"
@@ -1731,8 +1731,12 @@
         ]
       }
     },
-    "/question/create": {
+    "/questions": {
       "post": {
+        "tags": [
+          "question"
+        ],
+        "summary": "질문게시판 게시글 생성",
         "description": "",
         "parameters": [
           {
@@ -1781,8 +1785,12 @@
         }
       }
     },
-    "/question/{id}": {
+    "/questions/{id}": {
       "get": {
+        "tags": [
+          "question"
+        ],
+        "summary": "게시 id에 해당하는 글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1816,6 +1824,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "question"
+        ],
+        "summary": "게시글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -1864,43 +1876,14 @@
             }
           }
         }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
       }
     },
     "/questionlist/{user_id}": {
       "get": {
+        "tags": [
+          "question"
+        ],
+        "summary": "유저 id에 해당하는 모든 글 목록 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1936,6 +1919,10 @@
     },
     "/questionlist": {
       "get": {
+        "tags": [
+          "question"
+        ],
+        "summary": "모든 게시글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1961,8 +1948,51 @@
         ]
       }
     },
-    "/question/comment": {
+    "/questiosn/{id}": {
+      "delete": {
+        "tags": [
+          "question"
+        ],
+        "summary": "게시글 삭제하기",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/questions/comments": {
       "post": {
+        "tags": [
+          "qeustioncomment"
+        ],
+        "summary": "질문게시판 게시글에 댓글 생성",
         "description": "",
         "parameters": [
           {
@@ -2011,8 +2041,12 @@
         }
       }
     },
-    "/question/comments/{id}": {
+    "/questions/comments/{id}": {
       "get": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "댓글 id에 해당하는 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -2046,6 +2080,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "댓글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -2105,6 +2143,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "댓글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -2138,8 +2180,12 @@
         ]
       }
     },
-    "/quedstion/usercommentlist/{user_id}": {
+    "/quedstions/usercommentlist/{user_id}": {
       "get": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "유저 id의 모든 작성 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -2173,8 +2219,12 @@
         ]
       }
     },
-    "/question/boardcommentlist/{board_id}": {
+    "/questions/boardcommentlist/{board_id}": {
       "get": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "게시글의 모든 댓글 목록 가져오기",
         "description": "",
         "parameters": [
           {
