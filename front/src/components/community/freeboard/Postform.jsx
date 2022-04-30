@@ -17,7 +17,7 @@ function Postform({ user, setIsAdding, setViewType }) {
     try {
       if (window.confirm("게시글을 등록 하겠습니까?")) {
         console.log(user);
-        const res = await Api.post("freeboard", {
+        const res = await Api.post("freeboards", {
           user_id: user.id,
           name: user.name,
           ...tempPost,
@@ -45,7 +45,7 @@ function Postform({ user, setIsAdding, setViewType }) {
       <button margin="10" type="submit" onSubmit={handleSubmit}>
         등록
       </button>
-      <button type="button" onClick={() => setIsAdding(false)}>
+      <button type="button" onClick={() => setViewType("list")}>
         취소
       </button>
     </form>
