@@ -5,7 +5,7 @@ import { recruitcommentService } from '../services/recruitcommentService';
 
 const recruitcommentRouter = Router();
 
-recruitcommentRouter.post('/recruits/:id/comments', loginRequired, async (req, res, next) => {
+recruitcommentRouter.post('/recruitcomments', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruitcomments'] 
@@ -14,7 +14,7 @@ recruitcommentRouter.post('/recruits/:id/comments', loginRequired, async (req, r
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const userId = req.currentUserId;
-    const post_id = req.params.id;
+    const post_id = req.query.post_id;
     const { content } = req.body;
 
     const newComment = await recruitcommentService.addComment({
@@ -34,7 +34,7 @@ recruitcommentRouter.post('/recruits/:id/comments', loginRequired, async (req, r
 });
 
 // 특정 댓글 수정 API
-recruitcommentRouter.put('/recruits/:id/comments', loginRequired, async (req, res, next) => {
+recruitcommentRouter.put('/recruitcomments/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruitcomments'] 
@@ -63,7 +63,7 @@ recruitcommentRouter.put('/recruits/:id/comments', loginRequired, async (req, re
   }
 });
 
-recruitcommentRouter.delete('/recruits/:id/comments', loginRequired, async (req, res, next) => {
+recruitcommentRouter.delete('/recruitcomments/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruitcomments'] 
@@ -84,7 +84,7 @@ recruitcommentRouter.delete('/recruits/:id/comments', loginRequired, async (req,
   }
 });
 
-recruitcommentRouter.get('/recruits/:userId/commentlist', loginRequired, async (req, res, next) => {
+recruitcommentRouter.get('/recruitcomments/:userId', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruitcomments'] 
@@ -94,6 +94,23 @@ recruitcommentRouter.get('/recruits/:userId/commentlist', loginRequired, async (
     */
     const userId = req.params.userId;
     const comments = await recruitcommentService.getCommentsById({ userId });
+
+    res.status(200).send(comments);
+  } catch (error) {
+    next(error);
+  }
+});
+
+recruitcommentRouter.get('/recruitcomments', loginRequired, async (req, res, next) => {
+  try {
+    /*
+     #swagger.tags = ['recruitcomments'] 
+     #swagger.summary = '특정 게시판의 댓글 리스트' 
+     #swagger.description = '특정 게시판의 댓글 리스트를 반환한다.' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+    const post_id = req.query.post_id;
+    const comments = await recruitcommentService.getComments({ post_id });
 
     res.status(200).send(comments);
   } catch (error) {

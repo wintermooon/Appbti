@@ -1335,7 +1335,7 @@
                   "content": {
                     "example": "any"
                   },
-                  "hashtag": {
+                  "tag": {
                     "example": "any"
                   }
                 }
@@ -1343,6 +1343,56 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "게시글 목록",
+        "description": "전체 게시글 목록",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/recruits/{id}": {
@@ -1481,77 +1531,7 @@
         ]
       }
     },
-    "/recruitlist/{userId}": {
-      "get": {
-        "tags": [
-          "recruit"
-        ],
-        "summary": "특정 user의 게시글 확인하기",
-        "description": "특정 user의 게시글 확인하기",
-        "parameters": [
-          {
-            "name": "userId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/recruitlist": {
-      "get": {
-        "tags": [
-          "recruit"
-        ],
-        "summary": "게시글 목록",
-        "description": "전체 게시글 목록",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/recruits/{id}/comments": {
+    "/recruitcomments": {
       "post": {
         "tags": [
           "recruitcomments"
@@ -1560,9 +1540,8 @@
         "description": "팀원 모집 게시글에 댓글을 생성한다.",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "post_id",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1603,6 +1582,44 @@
           }
         }
       },
+      "get": {
+        "tags": [
+          "recruitcomments"
+        ],
+        "summary": "특정 게시판의 댓글 리스트",
+        "description": "특정 게시판의 댓글 리스트를 반환한다.",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/recruitcomments/{id}": {
       "put": {
         "tags": [
           "recruitcomments"
@@ -1692,7 +1709,7 @@
         ]
       }
     },
-    "/recruits/{userId}/commentlist": {
+    "/recruitcomments/{userId}": {
       "get": {
         "tags": [
           "recruitcomments"
