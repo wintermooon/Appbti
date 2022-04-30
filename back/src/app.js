@@ -10,10 +10,12 @@ import { recruitRouter } from './routers/recruitRouter';
 import { recruitcommentRouter } from './routers/recruitcommentRouter';
 import { questionRouter } from './routers/questionRouter';
 import { qtcommentRouter } from './routers/qtcommentRouter';
+import { appbtianswerRouter } from './routers/appbtianswerRouter'
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
 
 import { application } from 'express';
+import bodyParser from 'body-parser';
 
 const app = express();
 
@@ -41,6 +43,7 @@ app.use(recruitRouter);
 app.use(recruitcommentRouter);
 app.use(questionRouter);
 app.use(qtcommentRouter);
+app.use(appbtianswerRouter);
 
 //swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
