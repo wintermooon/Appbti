@@ -9,6 +9,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import Freeboards from "./freeboard/freeboards";
 
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
@@ -73,10 +74,11 @@ const CommunityPage = function () {
           </Item>
           <Grid item xs={9} id="RightPostList">
             <h2>게시판 리스트 영역</h2>
-            <Button id="createPost" type="submit" fullWidth variant="contained">
+            {/* <Button id="createPost" type="submit" fullWidth variant="contained">
               게시글 작성
-            </Button>
-            {isClicked
+            </Button> */}
+            <Freeboards />
+            {/* {isClicked
               ? posts.map((e) => {
                   return (
                     <div className="PostItem" key={e.id}>
@@ -96,7 +98,7 @@ const CommunityPage = function () {
                       </Item>
                     </div>
                   );
-                })}
+                })} */}
           </Grid>
         </Grid>
       </Box>

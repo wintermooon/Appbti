@@ -1,8 +1,10 @@
-import React, { useEffect, useContext, useState } from "react";
-import { Grid, Box, Container, Button, Card, CardContent, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Card, CardContent, Typography } from "@mui/material";
 import * as Api from "../../../api";
+import { useNavigate } from "react-router";
 
 const Lists = (setViewType) => {
+  const navigate = useNavigate();
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [lists, setLists] = useState([]);
 
@@ -23,7 +25,7 @@ const Lists = (setViewType) => {
   return (
     <div id="FreeboardLists">
       {lists.map((freeboard) => (
-        <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => setViewType("post")}>
+        <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => navigate(`freeboard/${freeboard._id}`)}>
           <CardContent>
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {freeboard.name}

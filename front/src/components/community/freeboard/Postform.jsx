@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import * as Api from "../../../api";
 import "../../styles/Postform.css";
-import Freeboards from "./Freeboards";
 
-function Postform({ userId, setIsAdding, setViewType }) {
+function Postform({ user, setIsAdding, setViewType }) {
   const [tempPost, setTempPost] = useState({
     title: "",
     content: "",
@@ -17,9 +16,10 @@ function Postform({ userId, setIsAdding, setViewType }) {
     e.preventDefault();
     try {
       if (window.confirm("게시글을 등록 하겠습니까?")) {
-        const res = await Api.post(`freeboard/create`, {
-          // user_id: userId,
-          // name: userId.name,
+        console.log(user);
+        const res = await Api.post("freeboard", {
+          user_id: user.id,
+          name: user.name,
           ...tempPost,
         });
         setTempPost((prev) => [...prev, res.data]);

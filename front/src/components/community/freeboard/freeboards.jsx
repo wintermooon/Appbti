@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { Grid, Box, Button, Card, CardContent, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
 import { UserStateContext } from "../../../App";
 import * as Api from "../../../api";
 // import SideBar from "../Sidebar";
-import Post from "./PostView";
+import View from "./PostView";
 import Lists from "./Lists";
 import Form from "./Postform";
 
@@ -45,12 +45,23 @@ const Freeboards = () => {
       <span>{"전체, 모집중, 모집완료"}</span>
       <span>{"검색기능"}</span>
       <span>
-        {"최신순/댓글순/좋아요순"}
-        <Button variant="contained" onClick={() => setViewType("form")}>
-          WRITE
-        </Button>
+        {"최신순, 댓글순, 좋아요순"}
+        {!isAdding ? (
+          <Button variant="contained" onClick={() => setViewType("form")}>
+            작성
+          </Button>
+        ) : (
+          <span />
+        )}
       </span>
-      {viewType === "list" ? <Lists /> : viewType === "form" ? <Form /> : <Post />};
+      {viewType === "list" ? (
+        <Lists setViewType={setViewType} />
+      ) : viewType === "form" ? (
+        <Form user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
+      ) : (
+        <View setViewType={setViewType} setIsAdding={setIsAdding} />
+      )}
+      ;
     </div>
   );
 };
