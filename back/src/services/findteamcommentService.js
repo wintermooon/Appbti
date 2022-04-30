@@ -1,15 +1,15 @@
-import { Comment } from '../db';
+import { FindTeamComment } from '../db';
 
-class commentService {
+class findteamcommentService {
   static async addComment({ board_id, user_id, name, content }) {
     const newComment = { board_id, user_id, name, content };
-    const createdNewComment = await Comment.createComment({ newComment });
+    const createdNewComment = await FindTeamComment.createComment({ newComment });
     createdNewComment.errorMessage = null;
     return createdNewComment;
   }
 
   static async getComment({ comment_id }) {
-    const comment = await Comment.findById({ comment_id });
+    const comment = await FindTeamComment.findById({ comment_id });
 
     if (!comment) {
       const errorMessage = '해당 댓글 내역이 없습니다. 다시 한 번 확인해 주세요.';
@@ -20,19 +20,19 @@ class commentService {
 
   // 유저가 생성한 모든 댓글
   static async getCommentsById({ user_id }) {
-    const comments = await Comment.findByUserId({ user_id });
+    const comments = await FindTeamComment.findByUserId({ user_id });
     return comments;
   }
 
   // 게시글의 모든 댓글
   static async getCommentsByBoardId({ board_id }) {
-    const comments = await Comment.findByBoardId({ board_id });
+    const comments = await FindTeamComment.findByBoardId({ board_id });
     return comments;
   }
 
   // 수정
   static async setComment({ comment_id, toUpdate }) {
-    let comment = await Comment.findById({ comment_id });
+    let comment = await FindTeamComment.findById({ comment_id });
 
     if (!comment) {
       const errorMessage = '댓글 내역이 없습니다. 다시 한 번 확인해 주세요.';
@@ -67,7 +67,7 @@ class commentService {
       created_at: toUpdate.created_at,
     };
 
-    comment = await Comment.update({ comment_id, newValues });
+    comment = await FindTeamComment.update({ comment_id, newValues });
 
     return comment;
   }
@@ -78,9 +78,9 @@ class commentService {
       const errorMessage = '해당 댓글이 없습니다.';
       return { errorMessage };
     }
-    const deletedComment = await Comment.delete({ comment_id });
+    const deletedComment = await FindTeamComment.delete({ comment_id });
     return deletedComment;
   }
 }
 
-export { commentService };
+export { findteamcommentService };

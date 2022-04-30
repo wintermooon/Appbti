@@ -3,15 +3,9 @@ import { Recruitcomment, User } from '../db';
 class recruitcommentService {
   static async addComment({ userId, post_id, content }) {
     const author = await User.findById({ userId });
-    const newComment = { author, post_id, content };
-    const createdNewComment = await Recruitcomment.createComment({ newComment });
+    const createdNewComment = await Recruitcomment.createComment({ author, post_id, content });
     createdNewComment.errorMessage = null;
     return createdNewComment;
-  }
-
-  static async getComment({ post_id }) {
-    const comments = await Recruitcomment.findById({ post_id });
-    return comments;
   }
 
   // 유저가 생성한 모든 댓글

@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DispatchContext } from "../../App";
 
-import * as Api from "../../api";
+// import * as Api from "../../api";
+import { post } from "../../api";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -40,7 +41,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // "user/login" 엔드포인트로 post요청함.
-      const res = await Api.post("users/login", {
+      const res = await post("users/login", {
         email,
         password,
       });

@@ -39,3 +39,15 @@ body {
 #LeftGrid {
   margin-top: 50px;
 }
+
+:root {
+  --primary: #1976d2;
+  --secondary: #ebebeb;
+  --background: #fff;
+  --textPrimary: #59595a;
+  --textSecondary: #a5a5a5;
+  --textError: #c92a2a;
+  --inputBackground: #f8f8f8;
+  --borderPrimary: #eae9e9;
+  --borderFocus: #59595a;
+}
