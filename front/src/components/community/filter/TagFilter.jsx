@@ -1,19 +1,11 @@
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
-import { AiFillCaretDown } from "react-icons/ai";
-import { BiSearch } from "react-icons/bi";
+import { AiFillCaretDown, AiFillCloseCircle } from "react-icons/ai";
 
 const TagFilter = function () {
-  const SeleteList = ["BTCUSD.PERP", "ETHUSD.PERP", "BCHUSD.PERP", "LTCUSD.PERP", "XRPUSD.PERP", "1000SHIBUSD.PERP"];
-
-  const [selectedValue, setSelectedValue] = useState("All Symbols");
+  const [selectedValue, setSelectedValue] = useState("");
   const [isDroped, setIsDroped] = useState(false);
-  const [inputValue, setInputValue] = useState("");
   const outsideRef = useRef(null);
-
-  const handleChange = (e) => {
-    setInputValue(e.target.value);
-  };
 
   const handleClick = (e) => {
     setSelectedValue(e.target.textContent);
@@ -39,34 +31,21 @@ const TagFilter = function () {
     <DropdownDiv ref={outsideRef}>
       <DropdownContainer>
         <SeleteBox onClick={() => setIsDroped(!isDroped)}>
-          <p className="selectedValue">{selectedValue}</p>
+          <SelectTag>{selectedValue}</SelectTag>
           <div>
             <i>
-              <AiFillCaretDown size="15" color="var(--textPrimary)" />
+              <AiFillCaretDown id="icon" size="15" color="var(--textPrimary)" />
             </i>
           </div>
         </SeleteBox>
         {isDroped && (
           <DropBox>
-            <InputBox>
-              <div>
-                <i>
-                  <BiSearch color="var(--borderPrimary)" />
-                </i>
-              </div>
-              <input type="text" value={inputValue} placeholder="Search Symbol" onChange={handleChange} />
-            </InputBox>
-            <div className="listItem" value="All Symbols" onClick={handleClick}>
-              All Symbols
-            </div>
-            {SeleteList.map((element) => {
-              if (element.toLowerCase().includes(inputValue.toLowerCase())) {
-                return (
-                  <div key={element} className="listItem" id={element} value={element} onClick={handleClick}>
-                    {element}
-                  </div>
-                );
-              }
+            {STACK_LIST.map((e) => {
+              return (
+                <StackFilterTag key={e.filterId} className="listItem" name={e.name} value={e.value} onClick={handleClick}>
+                  {e.name}
+                </StackFilterTag>
+              );
             })}
           </DropBox>
         )}
@@ -76,6 +55,39 @@ const TagFilter = function () {
 };
 
 export default TagFilter;
+
+const STACK_LIST = [
+  {
+    filterId: 1,
+    name: "Java",
+    value: 1,
+  },
+  {
+    filterId: 2,
+    name: "JavaScript",
+    value: 2,
+  },
+  {
+    filterId: 3,
+    name: "Python",
+    value: 3,
+  },
+  {
+    filterId: 4,
+    name: "C",
+    value: 4,
+  },
+  {
+    filterId: 5,
+    name: "C++",
+    value: 5,
+  },
+  {
+    filterId: 6,
+    name: "C#",
+    value: 6,
+  },
+];
 
 const DropdownDiv = styled.div`
   position: relative;
@@ -101,23 +113,28 @@ const SeleteBox = styled.div`
   align-items: center;
   justify-content: space-between;
   position: relative;
-
+  padding: 3px 10px;
   text-align: left;
   background-color: var(--inputBackground);
   border: 1px solid var(--borderPrimary);
   border-radius: 5px;
   cursor: pointer;
 
-  p {
-    padding: 0 20px;
-    color: var(--textPrimary);
-    font-size: 11px;
-  }
-
-  div {
-    padding: 0 20px;
+  #icon {
     z-index: 10;
   }
+`;
+
+const SelectTag = styled.div`
+  margin-right: 10px;
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #fff;
+  background-color: var(--primary);
+  border: none;
+  cursor: pointer;
 `;
 
 const DropBox = styled.div`
@@ -125,47 +142,24 @@ const DropBox = styled.div`
   width: 100%;
   height: auto;
   margin-top: 3px;
+  padding: 10px;
   border: 1px solid var(--borderPrimary);
   border-radius: 5px;
-
-  .listItem {
-    width: auto;
-    padding: 10px 20px;
-    font-size: 11px;
-    color: var(--textPrimary);
-    cursor: pointer;
-    text-align: left;
-    &:hover {
-      background-color: var(--secondary);
-    }
   }
 `;
 
-const InputBox = styled.div`
-  display: flex;
-  border-bottom: 1px solid var(--borderPrimary);
-  align-items: center;
-  padding: 0 0 0 10px;
-
-  div {
-    position: relative;
-    top: 2px;
-  }
-
-  input {
-    width: 85%;
-    height: 35px;
-    outline: none;
-    background-color: var(--inputBackground);
-    margin-left: 10px;
-    font-size: 11px;
-    font-weight: 400;
-    color: var(--textPrimary);
-
+const StackFilterTag = styled.button`
+  margin-right: 10px;
+  padding: 7px 14px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    background-color: var(--primary);
     border: none;
-    &::placeholder {
-      color: var(--textSecondary);
-      font-size: 11px;
-    }
   }
 `;
