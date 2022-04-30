@@ -20,7 +20,7 @@ function Comments(postId, user) {
 
   const loadComments = async () => {
     try {
-      const { data: loadedcomments } = await Api.get(`freeboard/comments/${postId}`);
+      const { data: loadedcomments } = await Api.get(`freeboards/comments/${postId}`);
       setComments(loadedcomments);
     } catch (error) {
       console.log(error);
