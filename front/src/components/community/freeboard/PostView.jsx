@@ -15,6 +15,7 @@ function PostView(setViewType, user) {
   useEffect(() => {
     async function loadPostView() {
       console.log("user:", user);
+      console.log("params:", params);
       const res = await Api.get(`freeboards/${params._id}`);
       setPostInfo(res.data);
       setIsFetchCompleted(true);
@@ -31,7 +32,7 @@ function PostView(setViewType, user) {
       if (window.confirm("게시글을 삭제하시겠습니까?")) {
         await Api.delete(`freeboards`, params.id);
         // * * 자유게시판 엔드포인트 완성되면 거기로 보내주기
-        // navigate("community");
+        navigate("community");
       }
     } catch (error) {
       console.log(error);
