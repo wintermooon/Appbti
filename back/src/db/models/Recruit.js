@@ -1,0 +1,46 @@
+import { RecruitModel } from '../schemas/recruit';
+import { UserModel } from '../schemas/user';
+
+class Recruit {
+  static async create({ newPost }) {
+    const createdNewPost = await RecruitModel.create(newPost);
+    return createdNewPost;
+  }
+
+  static async findById({ post_id }) {
+    const post = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name').populate('comments');
+    await UserModel.populate(post.comments, {
+      path: 'author',
+      select: 'id email name',
+    });
+    return post;
+  }
+
+  static async findAll() {
+    const posts = await RecruitModel.find({}).populate('author', 'id email name').sort({ updatedAt: -1 });
+    return posts;
+  }
+
+  static async findAllByUserId({ author }) {
+    const posts = await RecruitModel.find({ author }).populate('author', 'id email name').sort({
+      updatedAt: -1,
+    });
+    return posts;
+  }
+
+  static async update({ post_id, newValues }) {
+    const filter = { _id: post_id };
+    const update = { $set: newValues };
+    const option = { returnOriginal: false };
+
+    const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);
+    return updatedPost;
+  }
+
+  static async delete({ post_id }) {
+    await RecruitModel.deleteOne({ _id: post_id });
+    return '삭제가 완료되었습니다.';
+  }
+}
+
+export { Recruit };

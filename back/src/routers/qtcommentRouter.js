@@ -3,16 +3,14 @@ import { Router } from 'express';
 import { loginRequired } from '../middlewares/loginRequired';
 import { commentService } from '../services/commentService';
 
-const commentRouter = Router();
-// commentRouter.use(loginRequired);
+const qtcommentRouter = Router();
+// qtcommentRouter.use(loginRequired);
 
-commentRouter.post('/freeboard/comment', loginRequired, async (req, res, next) => {
+qtcommentRouter.post('/question/comment', loginRequired, async (req, res, next) => {
   try {
-    /*
-     #swagger.tags = ['freeboardcomment'] 
-     #swagger.summary = '자유게시판 게시글에 댓글 생성' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const { board_id, user_id, name, content } = req.body;
 
     const newComment = await commentService.addComment({
@@ -33,13 +31,11 @@ commentRouter.post('/freeboard/comment', loginRequired, async (req, res, next) =
 });
 
 // 특정 댓글 조회 API
-commentRouter.get('/freeboard/comments/:id', loginRequired, async (req, res, next) => {
+qtcommentRouter.get('/question/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /*
-     #swagger.tags = ['freeboardcomment'] 
-     #swagger.summary = '댓글 id에 해당하는 댓글 가져오기' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const comment_id = req.params.id;
     const currentComment = await commentService.getComment({ comment_id });
 
@@ -54,13 +50,11 @@ commentRouter.get('/freeboard/comments/:id', loginRequired, async (req, res, nex
 });
 
 // 특정 댓글 수정 API
-commentRouter.put('/freeboard/comments/:id', loginRequired, async (req, res, next) => {
+qtcommentRouter.put('/question/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /*
-     #swagger.tags = ['freeboardcomment'] 
-     #swagger.summary = '댓글 수정하기' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const comment_id = req.params.id;
     const board_id = req.body.board_id ?? null;
     const user_id = req.body.user_id ?? null;
@@ -82,13 +76,11 @@ commentRouter.put('/freeboard/comments/:id', loginRequired, async (req, res, nex
   }
 });
 
-commentRouter.delete('/freeboard/comments/:id', loginRequired, async (req, res, next) => {
+qtcommentRouter.delete('/question/comments/:id', loginRequired, async (req, res, next) => {
   try {
-    /*
-     #swagger.tags = ['freeboardcomment'] 
-     #swagger.summary = '댓글 삭제하기' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const comment_id = req.params.id;
     const deletedComment = await commentService.deleteComment({
       comment_id,
@@ -102,13 +94,11 @@ commentRouter.delete('/freeboard/comments/:id', loginRequired, async (req, res, 
   }
 });
 
-commentRouter.get('/freeboard/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
+qtcommentRouter.get('/quedstion/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
   try {
-    /*
-     #swagger.tags = ['freeboardcomment'] 
-     #swagger.summary = '유저 id의 모든 작성 댓글 가져오기' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const user_id = req.params.user_id;
     const comments = await commentService.getCommentsById({ user_id });
 
@@ -118,13 +108,11 @@ commentRouter.get('/freeboard/usercommentlist/:user_id', loginRequired, async (r
   }
 });
 
-commentRouter.get('/freeboard/boardcommentlist/:board_id', loginRequired, async (req, res, next) => {
+qtcommentRouter.get('/question/boardcommentlist/:board_id', loginRequired, async (req, res, next) => {
   try {
-    /*
-     #swagger.tags = ['freeboardcomment'] 
-     #swagger.summary = '게시글의 모든 댓글 목록 가져오기' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
+    /* #swagger.security = [{
+         "bearerAuth": []
+    }] */
     const board_id = req.params.board_id;
     const comments = await commentService.getCommentsByBoardId({ board_id });
 
@@ -133,4 +121,4 @@ commentRouter.get('/freeboard/boardcommentlist/:board_id', loginRequired, async 
     next(error);
   }
 });
-export { commentRouter };
+export { qtcommentRouter };
