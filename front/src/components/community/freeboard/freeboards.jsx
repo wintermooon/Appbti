@@ -35,20 +35,20 @@ const Freeboards = () => {
     fetchPostsInfo();
   }, [userState, navigate]);
 
-  // // * * Progressbar
-  // React.useEffect(() => {
-  //   const timer = setInterval(() => {
-  //     setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
-  //   }, 800);
-  //   return () => {
-  //     clearInterval(timer);
-  //   };
-  // }, []);
+  // * * Progressbar
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+    }, 800);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
-  // // * * Skeleton Code 작성할 것
-  // if (!isFetchCompleted) {
-  //   return <LinearProgress value={progress} />;
-  // }
+  // * * Skeleton Code 작성할 것
+  if (!isFetchCompleted) {
+    return <LinearProgress value={progress} />;
+  }
 
   return (
     <div id="RecruitTeammate">
@@ -60,7 +60,7 @@ const Freeboards = () => {
         <span />
       )}
       {viewType === "list" ? (
-        <Lists setViewType={setViewType} />
+        <Lists user={userState.user} setViewType={setViewType} />
       ) : viewType === "form" ? (
         <Form user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
       ) : (
