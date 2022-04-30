@@ -14,7 +14,8 @@ function PostView(setViewType, user) {
 
   useEffect(() => {
     async function loadPostView() {
-      const res = await Api.get(`freeboard/${params.id}`);
+      console.log("user:", user);
+      const res = await Api.get(`freeboards/${params._id}`);
       setPostInfo(res.data);
       setIsFetchCompleted(true);
     }
@@ -28,7 +29,7 @@ function PostView(setViewType, user) {
   const deleteNavigate = async () => {
     try {
       if (window.confirm("게시글을 삭제하시겠습니까?")) {
-        await Api.delete(`freeboard`, params.id);
+        await Api.delete(`freeboards`, params.id);
         // * * 자유게시판 엔드포인트 완성되면 거기로 보내주기
         // navigate("community");
       }
@@ -45,8 +46,8 @@ function PostView(setViewType, user) {
       <button id="list"> 목록</button>
       <button>수정</button>
       <button onClick={deleteNavigate}>삭제</button>
-      <Comments user={user} postId={params.id} />
-      <CommentForm user={user} postId={params.id} />
+      {/* <Comments user={user} postId={params.id} />
+      <CommentForm user={user} postId={params.id} /> */}
     </>
   );
 }
