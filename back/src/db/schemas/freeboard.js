@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import {Schema, model} from "mongoose";
 
 const FreeBoardSchema = new Schema(
   {
@@ -22,7 +22,7 @@ const FreeBoardSchema = new Schema(
     comment: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Comment',
+        ref: "FreeBoardComment",
       },
     ],
   },
@@ -31,6 +31,6 @@ const FreeBoardSchema = new Schema(
   }
 );
 
-const FreeBoardModel = model('FreeBoard', FreeBoardSchema);
+const FreeBoardModel = model("FreeBoard", FreeBoardSchema);
 
-export { FreeBoardModel };
+export {FreeBoardModel};
