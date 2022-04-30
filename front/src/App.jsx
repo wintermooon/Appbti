@@ -71,7 +71,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             {isLogin && <Route path="/community" element={<CommunityPage />} />}
-            <Route path="/freeboards/:id" element={<PostView />} />
+            <Route path="/community/freeboards/:id" element={<PostView />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

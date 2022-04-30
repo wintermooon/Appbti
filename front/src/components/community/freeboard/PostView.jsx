@@ -16,7 +16,8 @@ function PostView(setViewType, user) {
     async function loadPostView() {
       console.log("user:", user);
       console.log("params:", params);
-      const res = await Api.get(`freeboards/${params._id}`);
+      console.log("params_id:", params.id);
+      const res = await Api.get(`freeboards/${params.id}`);
       setPostInfo(res.data);
       setIsFetchCompleted(true);
     }
