@@ -13,7 +13,7 @@ import styledComponent from "styled-components";
 
 import { UserStateContext } from "../../App";
 import * as Api from "../../api";
-import Pager from "./pager/Pagerr";
+import Pager from "./pager/Pager";
 
 import "../styles/CommunityPage.css";
 
