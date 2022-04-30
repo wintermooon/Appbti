@@ -1,10 +1,10 @@
 import { Schema, model, Mongoose } from 'mongoose';
 
-const FTCommentSchema = new Schema(
+const FreeBoardCommentSchema = new Schema(
   {
     board_id: {
       type: Schema.Types.ObjectId,
-      ref: 'FindTeam',
+      ref: 'FreeBoard',
     },
     user_id: {
       type: String,
@@ -24,6 +24,6 @@ const FTCommentSchema = new Schema(
   }
 );
 
-const FTCommentModel = model('FTComment', FTCommentSchema);
+const FreeBoardCommentModel = model('FreeBoardComment', FreeBoardCommentSchema);
 
-export { FTCommentModel };
+export { FreeBoardCommentModel };

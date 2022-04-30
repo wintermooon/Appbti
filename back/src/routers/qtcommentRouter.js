@@ -1,7 +1,7 @@
 import is from '@sindresorhus/is';
 import { Router } from 'express';
 import { loginRequired } from '../middlewares/loginRequired';
-import { commentService } from '../services/commentService';
+import { qtcommentService } from '../services/qtcommentService';
 
 const qtcommentRouter = Router();
 // qtcommentRouter.use(loginRequired);
@@ -13,7 +13,7 @@ qtcommentRouter.post('/question/comment', loginRequired, async (req, res, next) 
     }] */
     const { board_id, user_id, name, content } = req.body;
 
-    const newComment = await commentService.addComment({
+    const newComment = await qtcommentService.addComment({
       board_id,
       user_id,
       name,
@@ -37,7 +37,7 @@ qtcommentRouter.get('/question/comments/:id', loginRequired, async (req, res, ne
          "bearerAuth": []
     }] */
     const comment_id = req.params.id;
-    const currentComment = await commentService.getComment({ comment_id });
+    const currentComment = await qtcommentService.getComment({ comment_id });
 
     if (currentComment.errorMessage) {
       throw new Error(currentComment.errorMessage);
@@ -64,7 +64,7 @@ qtcommentRouter.put('/question/comments/:id', loginRequired, async (req, res, ne
 
     const toUpdate = { board_id, user_id, name, content, created_at };
 
-    const updatedComment = await commentService.setComment({ comment_id, toUpdate });
+    const updatedComment = await qtcommentService.setComment({ comment_id, toUpdate });
 
     if (updatedComment.errorMessage) {
       throw new Error(updatedComment.errorMessage);
@@ -82,7 +82,7 @@ qtcommentRouter.delete('/question/comments/:id', loginRequired, async (req, res,
          "bearerAuth": []
     }] */
     const comment_id = req.params.id;
-    const deletedComment = await commentService.deleteComment({
+    const deletedComment = await qtcommentService.deleteComment({
       comment_id,
     });
     if (deletedComment.errorMessage) {
@@ -100,7 +100,7 @@ qtcommentRouter.get('/quedstion/usercommentlist/:user_id', loginRequired, async 
          "bearerAuth": []
     }] */
     const user_id = req.params.user_id;
-    const comments = await commentService.getCommentsById({ user_id });
+    const comments = await qtcommentService.getCommentsById({ user_id });
 
     res.status(200).send(comments);
   } catch (error) {
@@ -114,7 +114,7 @@ qtcommentRouter.get('/question/boardcommentlist/:board_id', loginRequired, async
          "bearerAuth": []
     }] */
     const board_id = req.params.board_id;
-    const comments = await commentService.getCommentsByBoardId({ board_id });
+    const comments = await qtcommentService.getCommentsByBoardId({ board_id });
 
     res.status(200).send(comments);
   } catch (error) {
