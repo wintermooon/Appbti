@@ -3,7 +3,7 @@ import { Card, CardContent, Typography } from "@mui/material";
 import * as Api from "../../../api";
 import { useNavigate } from "react-router";
 
-const Lists = (setViewType) => {
+const Lists = ({ setViewType }) => {
   const navigate = useNavigate();
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [lists, setLists] = useState([]);
@@ -15,7 +15,8 @@ const Lists = (setViewType) => {
       setIsFetchCompleted(true);
     }
     loadFreeboardList();
-  }, [setViewType]);
+    console.log("a");
+  }, []);
 
   // * * Skeleton Code 작성할 것
   if (!isFetchCompleted) {
