@@ -6,7 +6,7 @@ import { questionService } from '../services/questionService';
 const questionRouter = Router();
 // questionRouter.use(loginRequired);
 
-questionRouter.post('/question', loginRequired, async (req, res, next) => {
+questionRouter.post('/questions', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
@@ -32,7 +32,7 @@ questionRouter.post('/question', loginRequired, async (req, res, next) => {
   }
 });
 
-questionRouter.get('/question/:id', loginRequired, async (req, res, next) => {
+questionRouter.get('/questions/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
@@ -52,7 +52,7 @@ questionRouter.get('/question/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-questionRouter.put('/question/:id', loginRequired, async (req, res, next) => {
+questionRouter.put('/questions/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
@@ -106,7 +106,7 @@ questionRouter.get('/questionlist', loginRequired, async (req, res, next) => {
   }
 });
 
-questionRouter.delete('/question/:id', loginRequired, async (req, res, next) => {
+questionRouter.delete('/questiosn/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['question'] 
