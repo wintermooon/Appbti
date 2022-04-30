@@ -10,6 +10,7 @@ import Main from "./components/Main";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
+import EditorsPick from "./components/editorspick/EditorsPick";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -19,12 +20,6 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
-  const isLogin = !!userState.user;
-
-  // console.log(currentUser);
-
-  // 유저 경로 얻기
-  // const location = window.location.pathname;
 
   // 아래의 fetchCurrentUser 함수가 실행된 다음에 컴포넌트가 구현되도록 함.
   // 아래 코드를 보면 isFetchCompleted 가 true여야 컴포넌트가 구현됨.
@@ -69,7 +64,8 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            {isLogin && <Route path="/community" element={<CommunityPage />} />}
+            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/editorspick" element={<EditorsPick />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

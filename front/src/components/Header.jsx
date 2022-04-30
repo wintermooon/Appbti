@@ -46,8 +46,8 @@ const Header = function () {
         <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
           AppBTI Test
         </Link>
-        <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
-          Editor’s suggest
+        <Link variant="button" color="text.primary" onClick={() => navigate("/editorspick")} sx={{ my: 1, mx: 1.5 }}>
+          Editor’s Pick
         </Link>
         <Link variant="button" color="text.primary" onClick={() => navigate("/community")} sx={{ my: 1, mx: 1.5 }}>
           Community

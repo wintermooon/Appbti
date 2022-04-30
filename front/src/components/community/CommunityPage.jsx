@@ -141,9 +141,7 @@ const CommunityPage = function () {
               ) : (
                 ""
               )}
-              <TagContainer>
-                <TagTest />
-              </TagContainer>
+              <TagContainer>{categoryUrl === "recruitlist" || categoryUrl === "findteamlist" ? <TagTest /> : ""}</TagContainer>
               <TabDiv>
                 <TabContainer>
                   {orderTabMenu.map((e, index) => {
