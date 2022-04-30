@@ -1,12 +1,12 @@
-import is from "@sindresorhus/is";
-import {Router} from "express";
-import {loginRequired} from "../middlewares/loginRequired";
-import {freeboardService} from "../services/freeboardService";
+import is from '@sindresorhus/is';
+import { Router } from 'express';
+import { loginRequired } from '../middlewares/loginRequired';
+import { freeboardService } from '../services/freeboardService';
 
 const freeboardRouter = Router();
 // freeboardRouter.use(loginRequired);
 
-freeboardRouter.post('/freeboard', loginRequired, async (req, res, next) => {
+freeboardRouter.post('/freeboards', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboard'] 
@@ -32,7 +32,7 @@ freeboardRouter.post('/freeboard', loginRequired, async (req, res, next) => {
   }
 });
 
-freeboardRouter.get("/freeboard/:id", loginRequired, async (req, res, next) => {
+freeboardRouter.get('/freeboards/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboard'] 
@@ -40,7 +40,7 @@ freeboardRouter.get("/freeboard/:id", loginRequired, async (req, res, next) => {
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const post_id = req.params.id;
-    const currentPostInfo = await freeboardService.getPostInfo({post_id});
+    const currentPostInfo = await freeboardService.getPostInfo({ post_id });
 
     if (currentPostInfo.errorMessage) {
       throw new Error(currentPostInfo.errorMessage);
@@ -52,7 +52,7 @@ freeboardRouter.get("/freeboard/:id", loginRequired, async (req, res, next) => {
   }
 });
 
-freeboardRouter.put("/freeboard/:id", loginRequired, async (req, res, next) => {
+freeboardRouter.put('/freeboards/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboard'] 
@@ -63,9 +63,9 @@ freeboardRouter.put("/freeboard/:id", loginRequired, async (req, res, next) => {
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
 
-    const toUpdate = {title, content};
+    const toUpdate = { title, content };
 
-    const updatedPost = await freeboardService.setPost({post_id, toUpdate});
+    const updatedPost = await freeboardService.setPost({ post_id, toUpdate });
 
     if (updatedPost.errorMessage) {
       throw new Error(updatedPost.errorMessage);
@@ -77,7 +77,7 @@ freeboardRouter.put("/freeboard/:id", loginRequired, async (req, res, next) => {
   }
 });
 
-freeboardRouter.get("/freeboardlist/:user_id", loginRequired, async (req, res, next) => {
+freeboardRouter.get('/freeboardlist/:user_id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboard'] 
@@ -85,14 +85,14 @@ freeboardRouter.get("/freeboardlist/:user_id", loginRequired, async (req, res, n
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const user_id = req.params.user_id;
-    const posts = await freeboardService.getUserPosts({user_id});
+    const posts = await freeboardService.getUserPosts({ user_id });
     res.status(200).send(posts);
   } catch (error) {
     next(error);
   }
 });
 
-freeboardRouter.get("/freeboardlist", loginRequired, async (req, res, next) => {
+freeboardRouter.get('/freeboardlist', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboard'] 
@@ -106,7 +106,7 @@ freeboardRouter.get("/freeboardlist", loginRequired, async (req, res, next) => {
   }
 });
 
-freeboardRouter.delete("/freeboard/:id", loginRequired, async (req, res, next) => {
+freeboardRouter.delete('/freeboards/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboard'] 
@@ -114,7 +114,7 @@ freeboardRouter.delete("/freeboard/:id", loginRequired, async (req, res, next) =
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const post_id = req.params.id;
-    const deletedPost = await freeboardService.deletePost({post_id});
+    const deletedPost = await freeboardService.deletePost({ post_id });
 
     if (deletedPost.errorMessage) {
       throw new Error(deletedPost.errorMessage);
@@ -126,4 +126,4 @@ freeboardRouter.delete("/freeboard/:id", loginRequired, async (req, res, next) =
   }
 });
 
-export {freeboardRouter};
+export { freeboardRouter };

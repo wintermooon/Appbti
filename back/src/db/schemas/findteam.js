@@ -20,14 +20,24 @@ const FindTeamSchema = new Schema(
     },
     // 기술 스택
     stack: {
-        type: String,
-        required: true,
-      },
+      type: String,
+      required: true,
+    },
+    status: {
+      type: String,
+      required: false,
+      default: 'unrecruited',
+    },
+    hashtag: {
+      type: Array,
+      required: false,
+      default: [],
+    },
 
     comment: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'FTComment',
+        ref: 'FindTeamComment',
       },
     ],
   },
