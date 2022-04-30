@@ -25,7 +25,7 @@ const Lists = (setViewType) => {
   return (
     <div id="FreeboardLists">
       {lists.map((freeboard) => (
-        <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => navigate(`freeboard/${freeboard._id}`)}>
+        <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => navigate(`freeboards/${freeboard._id}`)}>
           <CardContent>
             <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
               {freeboard.name}
