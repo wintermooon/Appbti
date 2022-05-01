@@ -2,16 +2,13 @@ import { Schema, model, Mongoose } from 'mongoose';
 
 const FindTeamCommentSchema = new Schema(
   {
-    board_id: {
+    author: {
       type: Schema.Types.ObjectId,
-      ref: 'FindTeam',
-    },
-    user_id: {
-      type: String,
+      ref: 'User',
       required: true,
     },
-    name: {
-      type: String,
+    post_id: {
+      type: Schema.Types.ObjectId,
       required: true,
     },
     content: {
