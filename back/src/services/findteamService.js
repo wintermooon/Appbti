@@ -37,6 +37,8 @@ class findteamService {
       return { errorMessage };
     }
 
+  
+
     const like = await FindTeam.findlike({ post_id, userId });
     let status, result;
     // 이미 좋아요를 누른 상태라면?
@@ -54,8 +56,15 @@ class findteamService {
       $inc: { likesCount: result },
     };
 
+  
+
     const res = await FindTeam.updatearray({ post_id, newValues });
     return res;
+  }
+
+  static async getPostTag({ tag }) {
+    const post = await FindTeam.findTag({ tag });
+    return post
   }
 
 
