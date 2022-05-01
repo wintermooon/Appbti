@@ -238,11 +238,7 @@
         ]
       }
     },
-<<<<<<< HEAD
-    "/freeboard": {
-=======
     "/freeboards": {
->>>>>>> f1657b0444b072923138fbbb2cd8c3278e0f132a
       "post": {
         "tags": [
           "freeboard"
@@ -496,11 +492,7 @@
         ]
       }
     },
-<<<<<<< HEAD
-    "/freeboard/comment": {
-=======
     "/freeboards/comments": {
->>>>>>> f1657b0444b072923138fbbb2cd8c3278e0f132a
       "post": {
         "tags": [
           "freeboardcomment"
@@ -806,19 +798,13 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "user_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
                   "title": {
                     "example": "any"
                   },
                   "content": {
                     "example": "any"
                   },
-                  "stack": {
+                  "tag": {
                     "example": "any"
                   }
                 }
@@ -826,6 +812,56 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "모든 게시글 가져오기",
+        "description": "",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/findteams/{id}": {
@@ -914,7 +950,10 @@
                   "content": {
                     "example": "any"
                   },
-                  "stack": {
+                  "status": {
+                    "example": "any"
+                  },
+                  "hashtag": {
                     "example": "any"
                   }
                 }
@@ -961,137 +1000,13 @@
         ]
       }
     },
-    "/findteamlist/{user_id}": {
-      "get": {
+    "/findteams/{id}/likes": {
+      "put": {
         "tags": [
           "findteam"
         ],
-        "summary": "유저 id에 해당하는 모든 글 목록 가져오기",
-        "description": "",
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/findteamlist": {
-      "get": {
-        "tags": [
-          "findteam"
-        ],
-        "summary": "모든 게시글 가져오기",
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/findteams/comments": {
-      "post": {
-        "tags": [
-          "findteamcomment"
-        ],
-        "summary": "팀 찾기 게시글에 댓글 생성",
-        "description": "",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "Created"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "object",
-                "properties": {
-                  "board_id": {
-                    "example": "any"
-                  },
-                  "user_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
-                  "content": {
-                    "example": "any"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/findteams/comments/{id}": {
-      "get": {
-        "tags": [
-          "findteamcomment"
-        ],
-        "summary": "댓글 id에 해당하는 댓글 가져오기",
-        "description": "",
+        "summary": "좋아요",
+        "description": "좋아요!",
         "parameters": [
           {
             "name": "id",
@@ -1122,7 +1037,97 @@
             "bearerAuth": []
           }
         ]
+      }
+    },
+    "/findteamcomments": {
+      "post": {
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "팀 찾기 게시글에 댓글 생성",
+        "description": "",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "content": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
       },
+      "get": {
+        "tags": [
+          "findteamcomment"
+        ],
+        "summary": "게시글의 모든 댓글 목록 가져오기",
+        "description": "",
+        "parameters": [
+          {
+            "name": "post_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/findteamcomments/{id}": {
       "put": {
         "tags": [
           "findteamcomment"
@@ -1165,19 +1170,7 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "board_id": {
-                    "example": "any"
-                  },
-                  "user_id": {
-                    "example": "any"
-                  },
-                  "name": {
-                    "example": "any"
-                  },
                   "content": {
-                    "example": "any"
-                  },
-                  "created_at": {
                     "example": "any"
                   }
                 }
@@ -1224,7 +1217,7 @@
         ]
       }
     },
-    "/findteams/usercommentlist/{user_id}": {
+    "/findteamcomments/{userId}": {
       "get": {
         "tags": [
           "findteamcomment"
@@ -1233,46 +1226,7 @@
         "description": "",
         "parameters": [
           {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/findteams/boardcommentlist/{board_id}": {
-      "get": {
-        "tags": [
-          "findteamcomment"
-        ],
-        "summary": "게시글의 모든 댓글 목록 가져오기",
-        "description": "",
-        "parameters": [
-          {
-            "name": "board_id",
+            "name": "userId",
             "in": "path",
             "required": true,
             "schema": {
