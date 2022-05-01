@@ -1039,6 +1039,44 @@
         ]
       }
     },
+    "/findteamstag": {
+      "get": {
+        "tags": [
+          "findteam"
+        ],
+        "summary": "태그",
+        "description": "",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/findteamcomments": {
       "post": {
         "tags": [

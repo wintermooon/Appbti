@@ -16,6 +16,12 @@ class FindTeam {
     return post.likes;
   }
 
+  static async findTag({ tag }) {
+    const posts = await FindTeamModel.find().where('tag').in(tag)
+    return posts
+    // tag: { $elemMatch: { $eq: tag }
+  }
+
   static async findAll(newFilter, order) {
     const posts = await FindTeamModel.find(newFilter)
      .populate('author', 'id email name')
