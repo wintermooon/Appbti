@@ -48,6 +48,11 @@ class recruitService {
     return res;
   }
 
+  static async getPostTag({ tag }) {
+    const post = await Recruit.findTag({ tag });
+    return post
+  }
+
   static async setPost({ userId, post_id, toUpdate }) {
     let post = await Recruit.findById({ post_id });
 

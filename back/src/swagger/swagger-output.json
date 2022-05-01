@@ -1044,7 +1044,7 @@
         "tags": [
           "findteam"
         ],
-        "summary": "태그",
+        "summary": "태그 필터",
         "description": "",
         "parameters": [
           {
@@ -1543,6 +1543,44 @@
             "name": "id",
             "in": "path",
             "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/recruitstag": {
+      "get": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "태그 필터",
+        "description": "",
+        "parameters": [
+          {
+            "name": "tag",
+            "in": "query",
             "schema": {
               "type": "string"
             }

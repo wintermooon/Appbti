@@ -78,6 +78,24 @@ recruitRouter.put('/recruits/:id/likes', loginRequired, async (req, res, next) =
   }
 });
 
+recruitRouter.get('/recruitstag', loginRequired, async (req, res, next) => {
+  try {
+    /*
+     #swagger.tags = ['recruit'] 
+     #swagger.summary = '태그 필터' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+
+    const tag = req.query.tag.split(',');
+
+    const posts = await recruitService.getPostTag({ tag })
+    res.status(200).send(posts)
+
+  } catch (error) {
+    next(error);
+  }
+})
+
 recruitRouter.put('/recruits/:id', loginRequired, async (req, res, next) => {
   try {
     /*

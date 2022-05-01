@@ -17,6 +17,11 @@ class Recruit {
     return post.likes;
   }
 
+  static async findTag({ tag }) {
+    const posts = await RecruitModel.find().where('tag').in(tag)
+    return posts
+  }
+
   static async findAll(newFilter, order) {
     const posts = await RecruitModel.find(newFilter)
       .populate('author', 'id email name')
