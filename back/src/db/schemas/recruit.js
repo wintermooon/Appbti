@@ -6,7 +6,6 @@ const RecruitSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User',
       required: true,
-      index: true,
     },
     title: {
       type: String,
@@ -21,12 +20,21 @@ const RecruitSchema = new Schema(
       required: false,
       default: 'unrecruited',
     },
-    hashtag: {
+    tag: {
       type: Array,
       required: false,
       default: [],
     },
     comments: [{ type: Schema.Types.ObjectId, ref: 'Recruitcomment' }],
+    commentsCount: {
+      type: Number,
+      default: 0,
+    },
+    likes: [{ type: String }],
+    likesCount: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,

@@ -7,6 +7,10 @@ const RecruitcommentSchema = new Schema(
       ref: 'User',
       required: true,
     },
+    post_id: {
+      type: Schema.Types.ObjectId,
+      required: true,
+    },
     content: {
       type: String,
       required: true,

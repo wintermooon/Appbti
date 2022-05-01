@@ -8,29 +8,33 @@ class Recruit {
   }
 
   static async findById({ post_id }) {
-    const post = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name').populate('comments');
-    await UserModel.populate(post.comments, {
-      path: 'author',
-      select: 'id email name',
-    });
+    const post = await RecruitModel.findOne({ _id: post_id }).populate('author', 'id email name');
+
     return post;
   }
-
-  static async findAll() {
-    const posts = await RecruitModel.find({}).populate('author', 'id email name').sort({ updatedAt: -1 });
-    return posts;
+  static async findlike({ post_id, userId }) {
+    const post = await RecruitModel.findOne({ _id: post_id }, { likes: { $elemMatch: { $eq: userId } } });
+    return post.likes;
   }
 
-  static async findAllByUserId({ author }) {
-    const posts = await RecruitModel.find({ author }).populate('author', 'id email name').sort({
-      updatedAt: -1,
-    });
+  static async findAll(newFilter, order) {
+    const posts = await RecruitModel.find(newFilter)
+      .populate('author', 'id email name')
+      .sort({ [order]: -1 });
     return posts;
   }
 
   static async update({ post_id, newValues }) {
     const filter = { _id: post_id };
     const update = { $set: newValues };
+    const option = { returnOriginal: false };
+    const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);
+    return updatedPost;
+  }
+
+  static async updatearray({ post_id, newValues }) {
+    const filter = { _id: post_id };
+    const update = newValues;
     const option = { returnOriginal: false };
 
     const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);

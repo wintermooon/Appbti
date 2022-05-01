@@ -16,7 +16,7 @@ recruitRouter.post('/recruits', loginRequired, async (req, res, next) => {
 
     const userId = req.currentUserId;
 
-    const { title, content, hashtag } = req.body;
+    const { title, content, tag } = req.body;
 
     if (!title || !content) {
       throw new Error('제목과 내용을 입력해 주세요');
@@ -26,7 +26,7 @@ recruitRouter.post('/recruits', loginRequired, async (req, res, next) => {
       userId,
       title,
       content,
-      hashtag,
+      tag,
     });
 
     if (newPost.errorMessage) {
@@ -59,6 +59,25 @@ recruitRouter.get('/recruits/:id', loginRequired, async (req, res, next) => {
   }
 });
 
+recruitRouter.put('/recruits/:id/likes', loginRequired, async (req, res, next) => {
+  try {
+    /*
+     #swagger.tags = ['recruit'] 
+     #swagger.summary = '좋아요' 
+     #swagger.description = '좋아요!' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+
+    const userId = req.currentUserId;
+    const post_id = req.params.id;
+
+    const like = await recruitService.setPostlike({ userId, post_id });
+    res.status(200).send(like);
+  } catch (error) {
+    next(error);
+  }
+});
+
 recruitRouter.put('/recruits/:id', loginRequired, async (req, res, next) => {
   try {
     /*
@@ -73,9 +92,9 @@ recruitRouter.put('/recruits/:id', loginRequired, async (req, res, next) => {
     const title = req.body.title ?? null;
     const content = req.body.content ?? null;
     const status = req.body.status ?? null;
-    const hashtag = req.body.hashtag ?? null;
+    const tag = req.body.hashtag ?? null;
 
-    const toUpdate = { title, content, status, hashtag };
+    const toUpdate = { title, content, status, tag };
 
     const updatedPost = await recruitService.setPost({ userId, post_id, toUpdate });
 
@@ -89,23 +108,7 @@ recruitRouter.put('/recruits/:id', loginRequired, async (req, res, next) => {
   }
 });
 
-recruitRouter.get('/recruitlist/:userId', loginRequired, async (req, res, next) => {
-  try {
-    /*
-     #swagger.tags = ['recruit']
-     #swagger.summary = '특정 user의 게시글 확인하기'
-     #swagger.description = '특정 user의 게시글 확인하기'
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
-    const userId = req.params.userId;
-    const posts = await recruitService.getUserPosts({ userId });
-    res.status(200).send(posts);
-  } catch (error) {
-    next(error);
-  }
-});
-
-recruitRouter.get('/recruitlist', loginRequired, async (req, res, next) => {
+recruitRouter.get('/recruits', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['recruit']
@@ -113,7 +116,11 @@ recruitRouter.get('/recruitlist', loginRequired, async (req, res, next) => {
      #swagger.description = '전체 게시글 목록'
      #swagger.security = [{ "bearerAuth": [] }]
     */
-    const posts = await recruitService.getPosts();
+    const status = req.query.status ?? null;
+    const order = req.query.order ?? null;
+    const tag = req.query.tag ?? null;
+    const filter = { status, order, tag };
+    const posts = await recruitService.getPosts(filter);
     res.status(200).send(posts);
   } catch (error) {
     next(error);

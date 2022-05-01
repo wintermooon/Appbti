@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Pagination from "react-js-pagination";
-import "../styles/Pager.css";
+import "../../styles/Pager.css";
 
 const Pager = function () {
   const [page, setPage] = useState(1);

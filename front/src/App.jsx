@@ -10,6 +10,7 @@ import Main from "./components/Main";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
 import CommunityPage from "./components/community/CommunityPage";
+import PostView from "./components/community/freeboard/PostView";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -70,6 +71,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             {isLogin && <Route path="/community" element={<CommunityPage />} />}
+            <Route path="/community/freeboards/:id" element={<PostView />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>
