@@ -238,7 +238,11 @@
         ]
       }
     },
+<<<<<<< HEAD
     "/freeboard": {
+=======
+    "/freeboards": {
+>>>>>>> f1657b0444b072923138fbbb2cd8c3278e0f132a
       "post": {
         "tags": [
           "freeboard"
@@ -292,7 +296,7 @@
         }
       }
     },
-    "/freeboard/{id}": {
+    "/freeboards/{id}": {
       "get": {
         "tags": [
           "freeboard"
@@ -492,7 +496,11 @@
         ]
       }
     },
+<<<<<<< HEAD
     "/freeboard/comment": {
+=======
+    "/freeboards/comments": {
+>>>>>>> f1657b0444b072923138fbbb2cd8c3278e0f132a
       "post": {
         "tags": [
           "freeboardcomment"
@@ -546,7 +554,7 @@
         }
       }
     },
-    "/freeboard/comments/{id}": {
+    "/freeboards/comments/{id}": {
       "get": {
         "tags": [
           "freeboardcomment"
@@ -685,7 +693,7 @@
         ]
       }
     },
-    "/freeboard/usercommentlist/{user_id}": {
+    "/freeboards/usercommentlist/{user_id}": {
       "get": {
         "tags": [
           "freeboardcomment"
@@ -724,7 +732,7 @@
         ]
       }
     },
-    "/freeboard/boardcommentlist/{board_id}": {
+    "/freeboards/boardcommentlist/{board_id}": {
       "get": {
         "tags": [
           "freeboardcomment"
@@ -763,7 +771,7 @@
         ]
       }
     },
-    "/findteam": {
+    "/findteams": {
       "post": {
         "tags": [
           "findteam"
@@ -820,7 +828,7 @@
         }
       }
     },
-    "/findteam/{id}": {
+    "/findteams/{id}": {
       "get": {
         "tags": [
           "findteam"
@@ -1023,7 +1031,7 @@
         ]
       }
     },
-    "/findteam/comment": {
+    "/findteams/comments": {
       "post": {
         "tags": [
           "findteamcomment"
@@ -1077,7 +1085,7 @@
         }
       }
     },
-    "/findteam/comments/{id}": {
+    "/findteams/comments/{id}": {
       "get": {
         "tags": [
           "findteamcomment"
@@ -1216,7 +1224,7 @@
         ]
       }
     },
-    "/findteam/usercommentlist/{user_id}": {
+    "/findteams/usercommentlist/{user_id}": {
       "get": {
         "tags": [
           "findteamcomment"
@@ -1255,7 +1263,7 @@
         ]
       }
     },
-    "/findteam/boardcommentlist/{board_id}": {
+    "/findteams/boardcommentlist/{board_id}": {
       "get": {
         "tags": [
           "findteamcomment"
@@ -1335,7 +1343,7 @@
                   "content": {
                     "example": "any"
                   },
-                  "hashtag": {
+                  "tag": {
                     "example": "any"
                   }
                 }
@@ -1343,6 +1351,56 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "게시글 목록",
+        "description": "전체 게시글 목록",
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/recruits/{id}": {
@@ -1481,16 +1539,16 @@
         ]
       }
     },
-    "/recruitlist/{userId}": {
-      "get": {
+    "/recruits/{id}/likes": {
+      "put": {
         "tags": [
           "recruit"
         ],
-        "summary": "특정 user의 게시글 확인하기",
-        "description": "특정 user의 게시글 확인하기",
+        "summary": "좋아요",
+        "description": "좋아요!",
         "parameters": [
           {
-            "name": "userId",
+            "name": "id",
             "in": "path",
             "required": true,
             "schema": {
@@ -1520,38 +1578,7 @@
         ]
       }
     },
-    "/recruitlist": {
-      "get": {
-        "tags": [
-          "recruit"
-        ],
-        "summary": "게시글 목록",
-        "description": "전체 게시글 목록",
-        "parameters": [
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/recruits/{id}/comments": {
+    "/recruitcomments": {
       "post": {
         "tags": [
           "recruitcomments"
@@ -1560,9 +1587,8 @@
         "description": "팀원 모집 게시글에 댓글을 생성한다.",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "post_id",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1607,13 +1633,12 @@
         "tags": [
           "recruitcomments"
         ],
-        "summary": "특정 게시글내에 있는 댓글 리스트",
-        "description": "팀원 모집 게시글내에 있는 댓글 리스트를 반환한다.",
+        "summary": "특정 게시판의 댓글 리스트",
+        "description": "특정 게시판의 댓글 리스트를 반환한다.",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
-            "required": true,
+            "name": "post_id",
+            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1639,12 +1664,14 @@
             "bearerAuth": []
           }
         ]
-      },
+      }
+    },
+    "/recruitcomments/{id}": {
       "put": {
         "tags": [
           "recruitcomments"
         ],
-        "summary": "특정 게시글내에 있는 댓글 수정",
+        "summary": "특정 게시글내에 있는 댓글 수정(:id 는 댓글의 id 입니다!) ",
         "description": "팀원 모집 게시글내에 있는 댓글을 수정한다.",
         "parameters": [
           {
@@ -1729,7 +1756,7 @@
         ]
       }
     },
-    "/recruits/{userId}/commentlist": {
+    "/recruitcomments/{userId}": {
       "get": {
         "tags": [
           "recruitcomments"
@@ -1768,8 +1795,12 @@
         ]
       }
     },
-    "/question/create": {
+    "/questions": {
       "post": {
+        "tags": [
+          "question"
+        ],
+        "summary": "질문게시판 게시글 생성",
         "description": "",
         "parameters": [
           {
@@ -1818,8 +1849,12 @@
         }
       }
     },
-    "/question/{id}": {
+    "/questions/{id}": {
       "get": {
+        "tags": [
+          "question"
+        ],
+        "summary": "게시 id에 해당하는 글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1853,6 +1888,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "question"
+        ],
+        "summary": "게시글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -1901,43 +1940,14 @@
             }
           }
         }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
       }
     },
     "/questionlist/{user_id}": {
       "get": {
+        "tags": [
+          "question"
+        ],
+        "summary": "유저 id에 해당하는 모든 글 목록 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1973,6 +1983,10 @@
     },
     "/questionlist": {
       "get": {
+        "tags": [
+          "question"
+        ],
+        "summary": "모든 게시글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -1998,8 +2012,51 @@
         ]
       }
     },
-    "/question/comment": {
+    "/questiosn/{id}": {
+      "delete": {
+        "tags": [
+          "question"
+        ],
+        "summary": "게시글 삭제하기",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
+    "/questions/comments": {
       "post": {
+        "tags": [
+          "qeustioncomment"
+        ],
+        "summary": "질문게시판 게시글에 댓글 생성",
         "description": "",
         "parameters": [
           {
@@ -2048,8 +2105,12 @@
         }
       }
     },
-    "/question/comments/{id}": {
+    "/questions/comments/{id}": {
       "get": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "댓글 id에 해당하는 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -2083,6 +2144,10 @@
         ]
       },
       "put": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "댓글 수정하기",
         "description": "",
         "parameters": [
           {
@@ -2142,6 +2207,10 @@
         }
       },
       "delete": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "댓글 삭제하기",
         "description": "",
         "parameters": [
           {
@@ -2175,8 +2244,12 @@
         ]
       }
     },
-    "/quedstion/usercommentlist/{user_id}": {
+    "/quedstions/usercommentlist/{user_id}": {
       "get": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "유저 id의 모든 작성 댓글 가져오기",
         "description": "",
         "parameters": [
           {
@@ -2210,8 +2283,12 @@
         ]
       }
     },
-    "/question/boardcommentlist/{board_id}": {
+    "/questions/boardcommentlist/{board_id}": {
       "get": {
+        "tags": [
+          "questioncomment"
+        ],
+        "summary": "게시글의 모든 댓글 목록 가져오기",
         "description": "",
         "parameters": [
           {

@@ -18,7 +18,6 @@
 
 #createPost {
   width: 100px;
-  float: right;
-  top: -30px;
   z-index: 2;
+  margin-left: auto;
 }

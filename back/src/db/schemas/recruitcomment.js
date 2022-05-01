@@ -9,7 +9,6 @@ const RecruitcommentSchema = new Schema(
     },
     post_id: {
       type: Schema.Types.ObjectId,
-      ref: 'Recruit',
       required: true,
     },
     content: {

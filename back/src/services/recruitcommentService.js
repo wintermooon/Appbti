@@ -3,21 +3,21 @@ import { Recruitcomment, User } from '../db';
 class recruitcommentService {
   static async addComment({ userId, post_id, content }) {
     const author = await User.findById({ userId });
-    const newComment = { author, post_id, content };
-    const createdNewComment = await Recruitcomment.createComment({ newComment });
+    const createdNewComment = await Recruitcomment.createComment({ author, post_id, content });
     createdNewComment.errorMessage = null;
     return createdNewComment;
-  }
-
-  static async getComment({ post_id }) {
-    const comments = await Recruitcomment.findById({ post_id });
-    return comments;
   }
 
   // 유저가 생성한 모든 댓글
   static async getCommentsById({ userId }) {
     const author = await User.findById({ userId });
     const comments = await Recruitcomment.findByUserId({ author });
+    return comments;
+  }
+
+  // 게시판 댓글
+  static async getComments({ post_id }) {
+    const comments = await Recruitcomment.findByPostId({ post_id });
     return comments;
   }
 
@@ -52,7 +52,7 @@ class recruitcommentService {
       const errorMessage = '해당 댓글이 없습니다.';
       return { errorMessage };
     }
-    const deletedComment = await Recruitcomment.delete({ comment_id });
+    const deletedComment = await Recruitcomment.delete({ comment });
     return deletedComment;
   }
 }

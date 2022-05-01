@@ -1,21 +1,25 @@
 import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { Grid, Container, Button, Card, CardContent, Typography } from "@mui/material";
+import Button from "@mui/material/Button";
 import { UserStateContext } from "../../../App";
 import * as Api from "../../../api";
-import SideBar from "../Sidebar";
+import LinearProgress from "@mui/material/LinearProgress";
+import View from "./PostView";
+import Lists from "./Lists";
+import Form from "./Postform";
 
 const Freeboards = () => {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
-  const [freeboards, setFreeboards] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
+  const [viewType, setViewType] = useState("list");
+  const [progress, setProgress] = React.useState(10);
 
   const fetchPostsInfo = async () => {
     try {
-      const { data: tempAllPosts } = await Api.get("freeboardlist");
-      setFreeboards(tempAllPosts);
+      await Api.get("freeboardlist");
+      setViewType("list");
       setIsFetchCompleted(true);
     } catch (error) {
       console.log(error);
@@ -31,42 +35,38 @@ const Freeboards = () => {
     fetchPostsInfo();
   }, [userState, navigate]);
 
+  // * * Progressbar
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prevProgress) => (prevProgress >= 100 ? 10 : prevProgress + 10));
+    }, 800);
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
+
   // * * Skeleton Code 작성할 것
   if (!isFetchCompleted) {
-    return "Loading...";
+    return <LinearProgress value={progress} />;
   }
 
   return (
-    <Grid container spacing={3}>
-      <Grid item xs={4}>
-        <SideBar />
-      </Grid>
-      <Grid item xs={8} container direction="column" justifyContent="space-evenly" alignItems="stretch">
-        <Container>{"전체, 모집중, 모집완료"}</Container>
-        <Container>{"검색기능"}</Container>
-        <Container>
-          {"최신순/댓글순/좋아요순"}
-          <Button variant="contained" onClick={() => navigate(`/freeboard/create`)}>
-            WRITE
-          </Button>
-        </Container>
-        <Container>
-          {freeboards.map((freeboard) => (
-            <Card sx={{ minWidth: 275 }} key={freeboard._id} onClick={() => navigate(`/freeboards/${freeboard._id}`)}>
-              <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                  {freeboard.name}
-                </Typography>
-                <Typography gutterBottom variant="h5" component="div">
-                  {freeboard.title}
-                </Typography>
-                <Typography variant="body2">{freeboard.content}</Typography>
-              </CardContent>
-            </Card>
-          ))}
-        </Container>
-      </Grid>
-    </Grid>
+    <div id="RecruitTeammate">
+      {!isAdding ? (
+        <Button variant="contained" onClick={() => setViewType("form")}>
+          작성
+        </Button>
+      ) : (
+        <span />
+      )}
+      {viewType === "list" ? (
+        <Lists user={userState.user} setViewType={setViewType} />
+      ) : viewType === "form" ? (
+        <Form user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
+      ) : (
+        <View user={userState.user} setViewType={setViewType} setIsAdding={setIsAdding} />
+      )}
+    </div>
   );
 };
 
