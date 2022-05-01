@@ -12,6 +12,10 @@ class Recruit {
 
     return post;
   }
+  static async findlike({ post_id, userId }) {
+    const post = await RecruitModel.findOne({ _id: post_id }, { likes: { $elemMatch: { $eq: userId } } });
+    return post.likes;
+  }
 
   static async findAll(newFilter, order) {
     const posts = await RecruitModel.find(newFilter)
@@ -26,6 +30,21 @@ class Recruit {
     const option = { returnOriginal: false };
 
     const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);
+    return updatedPost;
+  }
+
+  static async updatelike({ userId, post, status, result }) {
+    const updatedPost = await RecruitModel.findOneAndUpdate(
+      { _id: post._id },
+      {
+        [status]: {
+          likes: userId,
+        },
+        $inc: { likesCount: result },
+      },
+      { returnOriginal: false }
+    );
+    console.log(updatedPost);
     return updatedPost;
   }
 

@@ -19,6 +19,29 @@ class recruitService {
 
     return post;
   }
+  static async setPostlike({ userId, post_id }) {
+    const post = await Recruit.findById({ post_id });
+
+    if (!post) {
+      const errorMessage = '해당 포스트가 없습니다. 다시 한 번 확인해 주세요.';
+      return { errorMessage };
+    }
+
+    const like = await Recruit.findlike({ post_id, userId });
+    let status, result;
+    // 이미 좋아요를 누른 상태라면?
+    if (like.length != 0) {
+      status = '$pull';
+      result = -1;
+    } else {
+      status = '$push';
+      result = 1;
+    }
+
+    const res = await Recruit.updatelike({ userId, post, status, result });
+
+    return res;
+  }
 
   static async setPost({ userId, post_id, toUpdate }) {
     let post = await Recruit.findById({ post_id });

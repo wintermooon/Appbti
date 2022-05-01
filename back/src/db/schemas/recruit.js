@@ -30,7 +30,8 @@ const RecruitSchema = new Schema(
       type: Number,
       default: 0,
     },
-    like: {
+    likes: [{ type: String }],
+    likesCount: {
       type: Number,
       default: 0,
     },

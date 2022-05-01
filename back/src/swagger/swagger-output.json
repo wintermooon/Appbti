@@ -1531,6 +1531,45 @@
         ]
       }
     },
+    "/recruits/{id}/likes": {
+      "put": {
+        "tags": [
+          "recruit"
+        ],
+        "summary": "좋아요",
+        "description": "좋아요!",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      }
+    },
     "/recruitcomments": {
       "post": {
         "tags": [

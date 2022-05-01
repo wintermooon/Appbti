@@ -59,6 +59,25 @@ recruitRouter.get('/recruits/:id', loginRequired, async (req, res, next) => {
   }
 });
 
+recruitRouter.put('/recruits/:id/likes', loginRequired, async (req, res, next) => {
+  try {
+    /*
+     #swagger.tags = ['recruit'] 
+     #swagger.summary = '좋아요' 
+     #swagger.description = '좋아요!' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+
+    const userId = req.currentUserId;
+    const post_id = req.params.id;
+
+    const like = await recruitService.setPostlike({ userId, post_id });
+    res.status(200).send(like);
+  } catch (error) {
+    next(error);
+  }
+});
+
 recruitRouter.put('/recruits/:id', loginRequired, async (req, res, next) => {
   try {
     /*
