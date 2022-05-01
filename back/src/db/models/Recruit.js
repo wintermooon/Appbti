@@ -28,23 +28,16 @@ class Recruit {
     const filter = { _id: post_id };
     const update = { $set: newValues };
     const option = { returnOriginal: false };
-
     const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);
     return updatedPost;
   }
 
-  static async updatelike({ userId, post, status, result }) {
-    const updatedPost = await RecruitModel.findOneAndUpdate(
-      { _id: post._id },
-      {
-        [status]: {
-          likes: userId,
-        },
-        $inc: { likesCount: result },
-      },
-      { returnOriginal: false }
-    );
-    console.log(updatedPost);
+  static async updatearray({ post_id, newValues }) {
+    const filter = { _id: post_id };
+    const update = newValues;
+    const option = { returnOriginal: false };
+
+    const updatedPost = await RecruitModel.findOneAndUpdate(filter, update, option);
     return updatedPost;
   }
 

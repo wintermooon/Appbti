@@ -37,9 +37,14 @@ class recruitService {
       status = '$push';
       result = 1;
     }
+    const newValues = {
+      [status]: {
+        likes: userId,
+      },
+      $inc: { likesCount: result },
+    };
 
-    const res = await Recruit.updatelike({ userId, post, status, result });
-
+    const res = await Recruit.updatearray({ post_id, newValues });
     return res;
   }
 
