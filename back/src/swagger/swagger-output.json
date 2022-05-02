@@ -238,6 +238,51 @@
         ]
       }
     },
+    "/appbtianswers": {
+      "post": {
+        "tags": [
+          "Appbti"
+        ],
+        "summary": "appbti 테스트 결과를 생성",
+        "description": "appbti 테스트 결과를 등록한다.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "answers": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/freeboards": {
       "post": {
         "tags": [
