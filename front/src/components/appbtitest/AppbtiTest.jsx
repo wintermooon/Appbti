@@ -1,12 +1,36 @@
 import React from "react";
-import Header from "./Header";
+import Button from "@mui/material/Button";
+import { useNavigate } from "react-router";
+import "../styles/AppbtiTest.css";
 
-const AppbtiTest() {
-    return 
-    <section>
-         <Header />
-        <span>"안녕"</span>
-    </section>;
+function AppbtiTest() {
+  const navigate = useNavigate();
+  return (
+    <main>
+      <article className="mainpage">
+        <p>앱을 만들어보고 싶은데...</p>
+        <p>어떤 앱을 만들어보면 좋을까?</p>
+      </article>
+      <article>
+        <button id="totest" type="button" onClick={() => navigate("/AppbtiTest/1")}>
+          TEST 해보러 가기
+        </button>
+      </article>
+      <div class="area">
+        <ul class="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </main>
+  );
 }
-
 export default AppbtiTest;
