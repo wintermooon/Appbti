@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
+import { UserStateContext } from "../../App";
 
 import Article1 from "./Article1";
 import Article2 from "./Article2";
 
 const EditorsPick = function () {
+  const navigate = useNavigate();
+  const userState = useContext(UserStateContext);
+
+  useEffect(() => {
+    // 만약 전역 상태의 user가 null이라면, 로그인 페이지로 이동함.
+    if (!userState.user) {
+      navigate("/login");
+      return;
+    }
+  }, [navigate, userState.user]);
+
   return (
     <ArticleContainer>
       <h1>Editor’s Pick</h1>
