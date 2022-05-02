@@ -43,7 +43,7 @@ const Header = function () {
         />
       </Typography>
       <nav className="Nav">
-        <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
+        <Link variant="button" color="text.primary" onClick={() => navigate("/AppbtiTest")} sx={{ my: 1, mx: 1.5 }}>
           AppBTI Test
         </Link>
         <Link variant="button" color="text.primary" href="#" sx={{ my: 1, mx: 1.5 }}>
