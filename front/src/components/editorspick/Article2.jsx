@@ -66,7 +66,7 @@ const radialBarData = {
   },
 };
 
-const graph1BarData = {
+const graph2BarData = {
   series: [
     {
       name: "RANK 1",
@@ -123,6 +123,78 @@ const graph1BarData = {
   },
 };
 
+const graph3BarData = {
+  series: [
+    {
+      name: "Count Rank",
+      data: [1, 4, 14, 12, 2, 19, 11, 17, 6, 5, 16, 7, 8, 15, 3, 9, 13, 10, 18, 25],
+    },
+    {
+      name: "Total Installs Rank",
+      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+    },
+    {
+      name: "Mean Installs Rank",
+      data: [7, 4, 1, 3, 12, 2, 6, 5, 13, 17, 10, 20, 19, 11, 30, 14, 21, 18, 8],
+    },
+  ],
+  options: {
+    chart: {
+      type: "bar",
+      height: 1000,
+    },
+    plotOptions: {
+      bar: {
+        horizontal: true,
+        dataLabels: {
+          position: "top",
+        },
+      },
+    },
+    dataLabels: {
+      enabled: true,
+      offsetX: -6,
+      style: {
+        fontSize: "12px",
+        colors: ["#fff"],
+      },
+    },
+    stroke: {
+      show: true,
+      width: 2,
+      colors: ["'#fff"],
+    },
+    tooltip: {
+      shared: true,
+      intersect: false,
+    },
+    xaxis: {
+      categories: [
+        "Game",
+        "Tools",
+        "Communication",
+        "Productivity",
+        "Entertainment",
+        "Video Players & Editors",
+        "Photography",
+        "Social",
+        "Music & Audio",
+        "Personalization",
+        "Shopping",
+        "Books & Reference",
+        "Lifestyle",
+        "Travel & Local",
+        "Education",
+        "Finance",
+        "Health & Fitness",
+        "Business",
+        "News & Magazines",
+        "Weather",
+      ],
+    },
+  },
+};
+
 const Article2 = function ({ openModalHandler }) {
   const [isOpen, setIsOpen] = useState(false); //isOpen 상태를 만들어준다.
   // const [articleName, setArticleName] = useState("");
@@ -136,7 +208,7 @@ const Article2 = function ({ openModalHandler }) {
       <ArticleBox>
         <Graph id="chart">
           <ReactApexChart options={radialBarData.options} series={radialBarData.series} type="radialBar" height="370" width="400" />
-          <p> - 전체 설치수가 낮고, 어플 개수는 높은 카데고리 상위 4개의 점유율 - </p>
+          <p> - 전체 설치수가 낮고, 앱 개수는 높은 카데고리 상위 4개의 점유율 - </p>
         </Graph>
         <Content>
           <ContentTitle>
@@ -151,6 +223,7 @@ const Article2 = function ({ openModalHandler }) {
             <p>자세히보기 👉</p>
           </Button>
         </Content>
+
         {isOpen ? (
           <ModalBackdrop onClick={handleClickModal}>
             <ModalView
@@ -158,21 +231,62 @@ const Article2 = function ({ openModalHandler }) {
                 event.stopPropagation();
               }}
             >
-              <div className="close-btn" onClick={handleClickModal}>
-                &times;
-              </div>
-              <ModalTitle>상위권 앱 점유율이 높아 진입장벽이 있을 것으로 예측되는 시장</ModalTitle>
-              <ModalBody>
-                AppBTI 에디터는 Google PlayStore에서
-                <br />
-                이미 메인으로 점유하고 있는 어플이 존재하는 레드오션 시장이지만,
-                <br />
-                도전해 볼 만한 틈새시장을 찾기 위해 관련 데이터를 분석해보았습니다.
-              </ModalBody>
-              <Graph1 id="chart">
-                <ReactApexChart options={graph1BarData.options} series={graph1BarData.series} type="bar" height="400" width="700" />
-                <p> - 전체 설치수가 낮고, 어플 개수는 높은 카데고리 상위 4개의 점유율 - </p>
-              </Graph1>
+              <ModalArticle>
+                <div className="close-btn" onClick={handleClickModal}>
+                  &times;
+                </div>
+                <ModalTitle>상위권 앱 점유율이 높아 진입장벽이 있을 것으로 예측되는 시장</ModalTitle>
+                <ModalBody>
+                  AppBTI 에디터는 Google PlayStore에서
+                  <br />
+                  이미 메인으로 점유하고 있는 어플이 존재하는 레드오션 시장이지만,
+                  <br />
+                  도전해 볼 만한 틈새시장을 찾기 위해 관련 데이터를 분석해보았습니다.
+                </ModalBody>
+                <Graph1 id="chart">
+                  <ReactApexChart options={radialBarData.options} series={radialBarData.series} type="radialBar" height="370" />
+                  <p> - 전체 설치수가 낮고, 앱 개수는 높은 카데고리 상위 4개의 점유율 - </p>
+                </Graph1>
+                <ModalBody>
+                  위의 그래프는 카테고리별 평균 설치수에 비해 전체 설치수가 많은 상위 3개 서비스의 점유율을 나타냅니다.
+                  <br />
+                  Entertainment, Music & Audio, Personalization, Books & Reference 카테고리는
+                  <br />
+                  메인으로 점유하고 있는 어플이 있음을 확인할 수 있습니다.
+                </ModalBody>
+                <Graph2 id="chart">
+                  <ReactApexChart options={graph2BarData.options} series={graph2BarData.series} type="bar" height="400" />
+                  <p> - 카테고리별 앱 개수는 많지만, 전체 설치수는 적은 카테고리 - </p>
+                </Graph2>
+                <ModalBody>
+                  위의 그래프는 카테고리별 앱 개수는 많으나, 전체 설치수가 적은 카테고리를 분석한 그래프입니다.
+                  <br />
+                  Lifestyle, Education, Finance, Business 카테고리는
+                  <br />
+                  유저의 수요에 비해 출시된 어플의 수는 많고, 다운로드 수는 상위 어플에 집중되어있음을 확인할 수 있습니다.
+                </ModalBody>
+                <Graph3 id="chart">
+                  <ReactApexChart options={graph3BarData.options} series={graph3BarData.series} type="bar" height="1500" />
+                  <p> - 카테고리 별 앱 수, 전체 설치 수, 평균 설치 수 별 순위 - </p>
+                </Graph3>
+                <ModalComment>
+                  <div>
+                    '평균 설치수에 비해 전체 설치수가 많은 상위 3개 카테고리' 및 '앱 개수는 많으나 전체 설치수가 적은 카테고리'인
+                    <br />
+                    Entertainment, Music & Audio, Personalization, Books & Reference, Lifestyle, Education, Finance, Business
+                    <br />
+                    카테고리는 진입장벽이 있을 것으로 예측됩니다.
+                    <br />
+                  </div>
+                  <div id="comment">
+                    하지만, 트렌드를 빠르게 포착하여 유저의 니즈를 찾고, 앱 점유율이 높은 서비스를 참고하여
+                    <br />
+                    시장의 틈새를 공략한다면, 도전해볼만 하다고 판단됩니다.
+                  </div>
+                </ModalComment>
+
+                <ModalFooter>Editor's Pick은 Google Playstore의 2021년 6월 데이터를 기준으로 분석한 결과입니다.</ModalFooter>
+              </ModalArticle>
             </ModalView>
           </ModalBackdrop>
         ) : null}
@@ -311,8 +425,11 @@ export const ModalView = styled.div`
   height: 600px;
   border-radius: 1rem;
   position: relative;
+`;
 
+const ModalArticle = styled.div`
   overflow: scroll;
+
   /* IE scroll 숨김 */
   -ms-overflow-style: none;
   ::-webkit-scrollbar {
@@ -333,19 +450,40 @@ export const ModalView = styled.div`
 `;
 
 const ModalTitle = styled.div`
-  margin: 200px 0 30px 0;
+  margin: 100px 0 80px 0;
   font-size: 23px;
   font-weight: bold;
   color: #000;
 `;
 
 const ModalBody = styled.div`
-  margin: 30px 0;
+  margin: 50px 0;
   font-size: 14px;
   color: #707070;
 `;
 
 const Graph1 = styled.div`
+  .apx-legend-position-left {
+    left: 100px !important;
+  }
+
+  .apexcharts-legend-marker {
+    width: 9px !important;
+    height: 9px !important;
+    margin: 0 10px !important;
+  }
+
+  .apexcharts-legend-series {
+    margin: 0 !important;
+  }
+
+  p {
+    font-size: 11px;
+    color: #707070;
+  }
+`;
+
+const Graph2 = styled.div`
   .apx-legend-position-right {
     top: 30px !important;
   }
@@ -356,4 +494,43 @@ const Graph1 = styled.div`
   .apexcharts-legend-series {
     margin: 0 !important;
   }
+
+  p {
+    font-size: 11px;
+    color: #707070;
+  }
+`;
+
+const Graph3 = styled.div`
+  .apexcharts-legend-marker {
+    margin: 0 10px !important;
+  }
+  p {
+    font-size: 11px;
+    color: #707070;
+  }
+`;
+
+const ModalComment = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  width: 800px;
+  height: 150px;
+  background-color: #f9f9f9;
+  font-size: 14px;
+  font-style: italic;
+
+  #comment {
+    text-decoration: underline;
+  }
+`;
+
+const ModalFooter = styled.div`
+  font-size: 11px;
+  color: #707070;
+  margin: 50px 0;
 `;
