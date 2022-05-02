@@ -91,19 +91,19 @@ const Content = styled.div`
   width: 400px;
   height: auto;
   margin: 0 30px;
-  border: 1px solid #e4e4e4;
-  color: #707070;
 `;
 
 const ContentTitle = styled.div`
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: bold;
+  color: #000;
 `;
 
 const ContentSummary = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-size: 14px;
+  color: #707070;
 `;
 
 const Button = styled.div`

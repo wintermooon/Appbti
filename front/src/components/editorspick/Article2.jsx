@@ -12,7 +12,7 @@ const radialBarData = {
     },
     plotOptions: {
       radialBar: {
-        offsetY: -20,
+        offsetY: 0,
         startAngle: 0,
         endAngle: 270,
         hollow: {
@@ -38,8 +38,8 @@ const radialBarData = {
       floating: true,
       fontSize: "13px",
       position: "left",
-      offsetX: 35,
-      offsetY: -10,
+      offsetX: -20,
+      offsetY: 10,
       labels: {
         useSeriesColors: true,
       },
@@ -66,6 +66,63 @@ const radialBarData = {
   },
 };
 
+const graph1BarData = {
+  series: [
+    {
+      name: "RANK 1",
+      data: [3.96, 10.45, 5.62, 16.62],
+    },
+    {
+      name: "RANK 2",
+      data: [3.6, 9.73, 2.13, 8.69],
+    },
+    {
+      name: "RANK 3",
+      data: [2.75, 4.71, 1.34, 4.93],
+    },
+    {
+      name: "RANK 4",
+      data: [0, 4.12, 0, 4.23],
+    },
+    {
+      name: "REMAIN",
+      data: [89.7, 70.99, 90.91, 65.53],
+    },
+  ],
+
+  options: {
+    chart: {
+      type: "bar",
+      height: 350,
+      stacked: true,
+      stackType: "100%",
+    },
+    responsive: [
+      {
+        breakpoint: 480,
+        options: {
+          legend: {
+            position: "bottom",
+            offsetX: -10,
+            offsetY: 0,
+          },
+        },
+      },
+    ],
+    xaxis: {
+      categories: ["Education", "Lifestyle", "Finance", "Business"],
+    },
+    fill: {
+      opacity: 1,
+    },
+    legend: {
+      position: "right",
+      offsetX: 0,
+      offsetY: 50,
+    },
+  },
+};
+
 const Article2 = function ({ openModalHandler }) {
   const [isOpen, setIsOpen] = useState(false); //isOpen 상태를 만들어준다.
   // const [articleName, setArticleName] = useState("");
@@ -78,12 +135,11 @@ const Article2 = function ({ openModalHandler }) {
     <ArticleContainer>
       <ArticleBox>
         <Graph id="chart">
-          <ReactApexChart options={radialBarData.options} series={radialBarData.series} type="radialBar" height="370" />
+          <ReactApexChart options={radialBarData.options} series={radialBarData.series} type="radialBar" height="370" width="400" />
+          <p> - 전체 설치수가 낮고, 어플 개수는 높은 카데고리 상위 4개의 점유율 - </p>
         </Graph>
         <Content>
           <ContentTitle>
-            Red Ocean,
-            <br />
             상위권 앱 점유율이 높아
             <br />
             진입장벽이 있을 것으로 예측되는 시장
@@ -105,16 +161,18 @@ const Article2 = function ({ openModalHandler }) {
               <div className="close-btn" onClick={handleClickModal}>
                 &times;
               </div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
-              <div className="content">HELLO MODAL!</div>
+              <ModalTitle>상위권 앱 점유율이 높아 진입장벽이 있을 것으로 예측되는 시장</ModalTitle>
+              <ModalBody>
+                AppBTI 에디터는 Google PlayStore에서
+                <br />
+                이미 메인으로 점유하고 있는 어플이 존재하는 레드오션 시장이지만,
+                <br />
+                도전해 볼 만한 틈새시장을 찾기 위해 관련 데이터를 분석해보았습니다.
+              </ModalBody>
+              <Graph1 id="chart">
+                <ReactApexChart options={graph1BarData.options} series={graph1BarData.series} type="bar" height="400" width="700" />
+                <p> - 전체 설치수가 낮고, 어플 개수는 높은 카데고리 상위 4개의 점유율 - </p>
+              </Graph1>
             </ModalView>
           </ModalBackdrop>
         ) : null}
@@ -145,6 +203,16 @@ const ArticleBox = styled.div`
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 7px 10px #e4e4e4;
+`;
+
+const Graph = styled.div`
+  width: 500px;
+  height: 300px;
+  margin: 0 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 
   .apexcharts-legend-marker {
     width: 9px !important;
@@ -155,30 +223,32 @@ const ArticleBox = styled.div`
   .apexcharts-legend-series {
     margin: 0 !important;
   }
-`;
 
-const Graph = styled.div`
-  width: 500px;
-  height: 300px;
-  margin: 0 30px;
+  p {
+    position: absolute;
+    top: 410px;
+    font-size: 11px;
+    color: #707070;
+  }
 `;
 
 const Content = styled.div`
   width: 400px;
   height: auto;
   margin: 0 30px;
-  color: #707070;
 `;
 
 const ContentTitle = styled.div`
   margin-bottom: 20px;
   font-size: 20px;
   font-weight: bold;
+  color: #000;
 `;
 
 const ContentSummary = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   font-size: 14px;
+  color: #707070;
 `;
 
 const Button = styled.div`
@@ -235,6 +305,7 @@ export const ModalView = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background-color: white;
   width: 1000px;
   height: 600px;
@@ -258,5 +329,31 @@ export const ModalView = styled.div`
 
   .content {
     font-size: 100px;
+  }
+`;
+
+const ModalTitle = styled.div`
+  margin: 200px 0 30px 0;
+  font-size: 23px;
+  font-weight: bold;
+  color: #000;
+`;
+
+const ModalBody = styled.div`
+  margin: 30px 0;
+  font-size: 14px;
+  color: #707070;
+`;
+
+const Graph1 = styled.div`
+  .apx-legend-position-right {
+    top: 30px !important;
+  }
+  .apexcharts-legend-marker {
+    margin: 0 10px !important;
+  }
+
+  .apexcharts-legend-series {
+    margin: 0 !important;
   }
 `;
