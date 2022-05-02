@@ -1,9 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-import TagFilter from "./community/filter/TagFilter";
-import TagTest from "./community/filter/TagTest";
-=======
->>>>>>> editors_pick_front
 
 const Main = function () {
   return (
