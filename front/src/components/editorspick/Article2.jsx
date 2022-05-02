@@ -400,7 +400,7 @@ export const ModalBackdrop = styled.div`
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
 `;
 
