@@ -470,6 +470,13 @@
         "description": "",
         "parameters": [
           {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -1044,7 +1051,7 @@
         "tags": [
           "findteam"
         ],
-        "summary": "태그",
+        "summary": "태그 필터",
         "description": "",
         "parameters": [
           {

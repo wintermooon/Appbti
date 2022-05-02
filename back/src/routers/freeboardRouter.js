@@ -1,5 +1,6 @@
 import is from '@sindresorhus/is';
 import { Router } from 'express';
+import { FreeBoard } from '../db';
 import { loginRequired } from '../middlewares/loginRequired';
 import { freeboardService } from '../services/freeboardService';
 
@@ -99,7 +100,12 @@ freeboardRouter.get('/freeboardlist', loginRequired, async (req, res, next) => {
      #swagger.summary = '모든 게시글 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
-    const posts = await freeboardService.getPosts();
+    const currentPage = req.query.page || 1;
+    const perPage = 6;
+
+    const posts = await freeboardService.getPosts({ currentPage, perPage });
+
+
     res.status(200).send(posts);
   } catch (error) {
     next(error);
