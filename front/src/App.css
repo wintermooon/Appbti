@@ -10,11 +10,13 @@
 }
 
 body {
+  height: 100vh;
   min-width: 510px !important;
   font-family: "Noto Sans KR" !important;
   font-weight: 400 !important;
   font-size: 1rem !important;
   letter-spacing: 0 !important;
+  background-color: #f9f9f9;
 }
 
 @font-face {
@@ -41,7 +43,7 @@ body {
 }
 
 :root {
-  --primary: #1976d2;
+  --primary: #304ffe;
   --secondary: #ebebeb;
   --background: #fff;
   --textPrimary: #59595a;

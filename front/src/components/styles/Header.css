@@ -1,5 +1,6 @@
 .Toolbar {
-  box-shadow: 0 7px 4px -4px #f1f3f5;
+  box-shadow: 0 7px 4px -4px #e4e4e4;
+  background-color: #fff !important;
 }
 
 .Logo {
