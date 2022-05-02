@@ -5,11 +5,11 @@ import { appbtiService } from '../services/appbtiService';
 
 const appbtiRouter = Router();
 
-appbtiRouter.post('/appbtianswers', loginRequired, async (req, res, next) => {
+appbtiRouter.post('/appbti', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['Appbti'] 
-     #swagger.summary = 'appbti 테스트 결과를 생성' 
+     #swagger.summary = 'appbti 결과 생성, 답변을 body로 받음' 
      #swagger.description = 'appbti 테스트 결과를 등록한다.' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
@@ -29,6 +29,27 @@ appbtiRouter.post('/appbtianswers', loginRequired, async (req, res, next) => {
     }
 
     res.status(201).json(newresult);
+  } catch (error) {
+    next(error);
+  }
+});
+
+appbtiRouter.get('/appbti', loginRequired, async (req, res, next) => {
+  try {
+    /*
+     #swagger.tags = ['Appbti'] 
+     #swagger.summary = 'appbti 결과 보여줌' 
+     #swagger.description = 'appbti 테스트 결과를 보내준다.' 
+     #swagger.security = [{ "bearerAuth": [] }]
+    */
+
+    const userId = req.currentUserId;
+    const appbtiresult = await appbtiService.getAppbtiResult({ userId });
+
+    if (appbtiresult.errorMessage) {
+      throw new Error(appbtiresult.errorMessage);
+    }
+    res.status(200).send(appbtiresult);
   } catch (error) {
     next(error);
   }

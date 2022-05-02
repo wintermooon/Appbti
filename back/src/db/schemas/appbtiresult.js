@@ -6,7 +6,10 @@ const AppbtiResultSchema = new Schema(
       type: String,
       required: true,
     },
-    answer: [{ type: String }],
+    answers: {
+      type: String,
+      required: true,
+    },
     result: [{ type: String }],
   },
   {
