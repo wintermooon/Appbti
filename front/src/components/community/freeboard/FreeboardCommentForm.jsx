@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import * as Api from "../../../api";
+import { post } from "../../../api";
 
 function CommentAddForm({ setComments, user, postId }) {
   const [tempComment, setTempComment] = useState({ content: "" });
@@ -12,7 +12,7 @@ function CommentAddForm({ setComments, user, postId }) {
     e.preventDefault();
     try {
       if (window.confirm(`댓글을 남기시겠습니까?`)) {
-        const { data: createdComment } = await Api.post(`freeboards/comments`, {
+        const { data: createdComment } = await post(`freeboards/comments`, {
           board_id: postId,
           user_id: user._id,
           name: user.name,
@@ -22,18 +22,18 @@ function CommentAddForm({ setComments, user, postId }) {
         handleCommentValue("content", "");
       }
     } catch (error) {
-      alert("댓글을 남기지 못했습니다.", error);
+      alert(`${error}로 인하여 댓글을 남기지 못했습니다.`);
     }
   };
 
   return (
-    <>
+    <section>
       <form onSubmit={handleSubmit}>
         {/* <h3>{user.name}</h3> */}
         <textarea id="FreeboardComment" placeholder="바르고 고운 댓글을 달아주세요 *^~^*" onChange={(e) => handleCommentValue("content", e.target.value)} value={tempComment.content} />
         <button type="submit">등록</button>
       </form>
-    </>
+    </section>
   );
 }
 

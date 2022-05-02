@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
-import * as Api from "../../../api";
+import { get } from "../../../api";
 import { useNavigate } from "react-router";
 
 const Lists = ({ setViewType }) => {
@@ -10,12 +10,11 @@ const Lists = ({ setViewType }) => {
 
   useEffect(() => {
     async function loadFreeboardList() {
-      const res = await Api.get(`freeboardlist`);
+      const res = await get(`freeboardlist`);
       setLists(res.data);
       setIsFetchCompleted(true);
     }
     loadFreeboardList();
-    console.log("a");
   }, []);
 
   // * * Skeleton Code 작성할 것

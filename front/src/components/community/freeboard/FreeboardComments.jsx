@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import CommentForm from "./FreeboardCommentForm";
-import * as Api from "../../../api";
+import { get } from "../../../api";
 
 function Comments(postId, user) {
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
@@ -20,7 +20,7 @@ function Comments(postId, user) {
 
   const loadComments = async () => {
     try {
-      const { data: loadedcomments } = await Api.get(`freeboards/comments/${postId}`);
+      const { data: loadedcomments } = await get(`freeboards/comments/${postId}`);
       setComments(loadedcomments);
     } catch (error) {
       console.log(error);

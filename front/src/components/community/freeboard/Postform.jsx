@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import * as Api from "../../../api";
+import { post } from "../../../api";
 import "../../styles/Postform.css";
 
 function Postform({ user, setIsAdding, setViewType }) {
@@ -16,8 +16,7 @@ function Postform({ user, setIsAdding, setViewType }) {
     e.preventDefault();
     try {
       if (window.confirm("게시글을 등록 하겠습니까?")) {
-        console.log(user);
-        const res = await Api.post("freeboards", {
+        const res = await post("freeboards", {
           user_id: user.id,
           name: user.name,
           ...tempPost,
@@ -26,19 +25,17 @@ function Postform({ user, setIsAdding, setViewType }) {
         setViewType("list");
       }
     } catch (error) {
-      alert("게시글 등록에 실패하였습니다.", error);
+      alert(`${error}로 인하여 게시글을 작성하지 못했습니다.`);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <span>
-        {" "}
         <input id="title" type="text" onChange={(e) => handlePostValue("title", e.target.value)} placeholder="제목을 입력해주세요." value={tempPost.title} />
       </span>
       <br />
       <span>
-        {" "}
         <textarea id="content" onChange={(e) => handlePostValue("content", e.target.value)} placeholder="내용을 입력해주세요." value={tempPost.content} />
       </span>
       <br />
