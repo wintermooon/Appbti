@@ -1,5 +1,5 @@
 import React from "react";
-import Freeboards from "./community/freeboard/freeboards";
+import Freeboards from "./community/freeboard/Freeboards";
 import PostView from "./community/freeboard/PostView";
 
 import TagFilter from "./community/filter/TagFilter";

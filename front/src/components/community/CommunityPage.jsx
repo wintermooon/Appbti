@@ -10,7 +10,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import Freeboards from "./freeboard/freeboards";
+import Freeboards from "./freeboard/Freeboards";
 import styledComponent from "styled-components";
 
 import { UserStateContext } from "../../App";
