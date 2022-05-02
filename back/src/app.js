@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import { userAuthRouter } from './routers/userRouter';
+import { appbtiRouter } from './routers/appbtiRouter';
 import { freeboardRouter } from './routers/freeboardRouter';
 import { freeboardcommentRouter } from './routers/freeboardcommentRouter';
 import { findteamRouter } from './routers/findteamRouter';
@@ -33,6 +34,7 @@ app.get('/', (req, res) => {
 
 // router, service 구현 (userAuthRouter는 맨 위에 있어야 함.)
 app.use(userAuthRouter);
+app.use(appbtiRouter);
 app.use(freeboardRouter);
 app.use(freeboardcommentRouter);
 app.use(findteamRouter);
