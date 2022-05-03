@@ -51,7 +51,7 @@ const Freeboards = () => {
   }
 
   return (
-    <div id="RecruitTeammate">
+    <div ClassName="freeboards">
       {!isAdding ? (
         <Button variant="contained" onClick={() => setViewType("form")}>
           작성
