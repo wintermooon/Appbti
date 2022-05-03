@@ -10,21 +10,21 @@ function Question() {
   //   setTestResult((prev) => ({ ...prev, [name]: value }));
   // };
 
-  const SaveAnswers1 = async (e) => {
+  const SaveAnswers9 = async (e) => {
     e.preventDefault();
     console.log(testResult);
     testResult.push(AnswerLists[0].value);
-    navigate(`/AppbtiTest/2`);
+    navigate(`/AppbtiTest/6`);
     console.log(testResult);
     setTestResult((prev) => [...prev]);
   };
 
-  const SaveAnswers2 = async (e) => {
+  const SaveAnswers10 = async (e) => {
     e.preventDefault();
     console.log(testResult);
     testResult.push(AnswerLists[1].value);
     console.log(testResult);
-    navigate(`/AppbtiTest/2`);
+    navigate(`/AppbtiTest/6`);
     setTestResult((prev) => [...prev]);
   };
 
@@ -37,10 +37,10 @@ function Question() {
         <br />
         <br />
         <br />
-        <button type="button" value="" onClick={SaveAnswers1}>
+        <button type="button" value="" onClick={SaveAnswers9}>
           Sugar처럼 즐길 수 있는 앱이면 좋겠어!
         </button>
-        <button type="button" value="" onClick={SaveAnswers2}>
+        <button type="button" value="" onClick={SaveAnswers10}>
           Salt처럼 꼭 필요한 앱이면 좋겠어!
         </button>
       </article>

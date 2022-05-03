@@ -1,10 +1,11 @@
 import React from "react";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router";
+import { useNavigate, useState } from "react-router";
 import "../styles/AppbtiTest.css";
 
 function AppbtiTest() {
   const navigate = useNavigate();
+
   return (
     <main>
       <article className="mainpage">
@@ -16,8 +17,8 @@ function AppbtiTest() {
           TEST 해보러 가기
         </button>
       </article>
-      <div class="area">
-        <ul class="circles">
+      <div className="area">
+        <ul className="circles">
           <li></li>
           <li></li>
           <li></li>
