@@ -1,14 +1,18 @@
 import React, { useState, useEffect, useReducer, createContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import * as Api from "./api";
+import jwtDecode from "jwt-decode";
+import { get } from "./api";
 import { loginReducer } from "./reducer";
 import "./App.css";
 
 import Header from "./components/Header";
+import Main from "./components/Main";
 import Login from "./components/user/Login";
 import Register from "./components/user/Register";
-import Home from "./components/Home";
+import CommunityPage from "./components/community/CommunityPage";
+import PostView from "./components/community/freeboard/PostView";
+import AppbtiTest from "./components/appbtitest/AppbtiTest";
+import EditorsPick from "./components/editorspick/EditorsPick";
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -18,8 +22,10 @@ function App() {
   const [userState, dispatch] = useReducer(loginReducer, {
     user: null,
   });
+  const isLogin = !!userState.user;
 
-  // const isLogin = !!userState.user;
+  // console.log(currentUser);
+
   // 유저 경로 얻기
   // const location = window.location.pathname;
 
@@ -30,9 +36,11 @@ function App() {
   const fetchCurrentUser = React.useCallback(async () => {
     try {
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
-      const res = await Api.get("user/current");
+      const userToken = sessionStorage.getItem("userToken");
+      const jwtDecoded = jwtDecode(userToken);
+      const userId = jwtDecoded.userId;
+      const res = await get("users", userId);
       const currentUser = res.data;
-
       // dispatch 함수를 통해 로그인 성공 상태로 만듦.
       dispatch({
         type: "LOGIN_SUCCESS",
@@ -53,7 +61,7 @@ function App() {
   }, [fetchCurrentUser]);
 
   if (!isFetchCompleted) {
-    return "loading...";
+    return <span>loading...</span>;
   }
 
   return (
@@ -62,9 +70,13 @@ function App() {
         <Router>
           <Header />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Main />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/AppbtiTest" element={<AppbtiTest />} />
+            <Route path="/community/freeboards/:id" element={<PostView />} />
+            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/editorspick" element={<EditorsPick />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>

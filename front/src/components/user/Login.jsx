@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { DispatchContext } from "../../App";
 
-import * as Api from "../../api";
+// import * as Api from "../../api";
+import { post } from "../../api";
 
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
@@ -40,7 +41,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // "user/login" 엔드포인트로 post요청함.
-      const res = await Api.post("user/login", {
+      const res = await post("users/login", {
         email,
         password,
       });
@@ -95,11 +96,7 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            {!isEmailValid && (
-              <span className="text-primary" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
-                Email is invalid.
-              </span>
-            )}
+            {!isEmailValid && <span className="text-primary">Email is invalid.</span>}
             <TextField
               margin="normal"
               required
@@ -112,22 +109,18 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {!isPasswordValid && (
-              <span className="text-primary" style={{ fontSize: "12px", margin: "5px 0 0 0" }}>
-                Password is too short (minimum is 8 characters)
-              </span>
-            )}
-            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} style={{ marginTop: "30px" }} disabled={!isFormValid}>
+            {!isPasswordValid && <span className="text-primary">Password is too short (minimum is 8 characters)</span>}
+            <Button id="loginSubminBtn" type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }} disabled={!isFormValid}>
               Log In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link onClick={() => navigate("/reset-password")} variant="body2" style={{ cursor: "pointer" }}>
+                <Link onClick={() => navigate("/reset-password")} variant="body2" className="LinkCursor">
                   Forgot password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link onClick={() => navigate("/register")} variant="body2" style={{ cursor: "pointer" }}>
+                <Link onClick={() => navigate("/register")} variant="body2" className="LinkCursor">
                   "Don't have an account?"
                 </Link>
               </Grid>

@@ -1,23 +1,23 @@
-import { CommentModel } from '../schemas/comment';
+import { QTcommentModel } from '../schemas/qtcomment';
 
-class Comment {
+class QTcomment {
   static async createComment({ newComment }) {
-    const createdNewComment = await CommentModel.create(newComment);
+    const createdNewComment = await QTcommentModel.create(newComment);
     return createdNewComment;
   }
 
   static async findById({ comment_id }) {
-    const comment = await CommentModel.findOne({ _id: comment_id });
+    const comment = await QTcommentModel.findOne({ _id: comment_id });
     return comment;
   }
 
   static async findByUserId({ user_id }) {
-    const comments = await CommentModel.find({ user_id });
+    const comments = await QTcommentModel.find({ user_id });
     return comments;
   }
 
   static async findByBoardId({ board_id }) {
-    const comments = await CommentModel.find({ board_id });
+    const comments = await QTcommentModel.find({ board_id });
     return comments;
   }
 
@@ -26,14 +26,14 @@ class Comment {
     const update = { $set: newValues };
     const option = { returnOriginal: false };
 
-    const comment = await CommentModel.findOneAndUpdate(filter, update, option);
+    const comment = await QTcommentModel.findOneAndUpdate(filter, update, option);
     return comment;
   }
 
   static async delete({ comment_id }) {
-    const deletedComment = await CommentModel.deleteOne({ _id: comment_id });
+    const deletedComment = await QTcommentModel.deleteOne({ _id: comment_id });
     return deletedComment;
   }
 }
 
-export { Comment };
+export { QTcomment };

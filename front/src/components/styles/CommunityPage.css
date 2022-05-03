@@ -1,0 +1,23 @@
+#Community {
+  padding: 0 100px;
+  margin: 80px 0;
+}
+
+#RightPostList {
+  padding-top: 0 !important;
+  padding-left: 100px;
+}
+
+#LeftMenu {
+  height: 255px !important;
+}
+
+.PostItem {
+  margin: 25px 0;
+}
+
+#createPost {
+  width: 100px;
+  z-index: 2;
+  margin-left: auto;
+}

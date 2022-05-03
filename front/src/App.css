@@ -10,15 +10,46 @@
 }
 
 body {
+  height: 100vh;
   min-width: 510px !important;
   font-family: "Noto Sans KR" !important;
   font-weight: 400 !important;
   font-size: 1rem !important;
   letter-spacing: 0 !important;
+  background-color: #f9f9f9;
 }
 
 @font-face {
   font-family: "Noto Sans KR";
   font-weight: 400;
   src: url("https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap");
+}
+
+.text-primary {
+  font-size: 12px;
+  margin: 5px 0 0 0;
+}
+
+#loginSubminBtn {
+  margin-top: 30px;
+}
+
+.LinkCursor {
+  cursor: pointer;
+}
+
+#LeftGrid {
+  margin-top: 50px;
+}
+
+:root {
+  --primary: #304ffe;
+  --secondary: #ebebeb;
+  --background: #fff;
+  --textPrimary: #59595a;
+  --textSecondary: #a5a5a5;
+  --textError: #c92a2a;
+  --inputBackground: #f8f8f8;
+  --borderPrimary: #eae9e9;
+  --borderFocus: #59595a;
 }
