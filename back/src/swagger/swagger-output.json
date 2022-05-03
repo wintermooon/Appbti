@@ -544,6 +544,13 @@
         "description": "",
         "parameters": [
           {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "authorization",
             "in": "header",
             "schema": {
@@ -566,7 +573,7 @@
         ]
       }
     },
-    "/freeboards/comments": {
+    "/freeboardcomments": {
       "post": {
         "tags": [
           "freeboardcomment"
@@ -618,9 +625,45 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": [
+          "freeboardcomment"
+        ],
+        "summary": "게시글의 모든 댓글 목록 가져오기",
+        "description": "",
+        "parameters": [
+          {
+            "name": "board_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
-    "/freeboards/comments/{id}": {
+    "/freeboardcomments/{id}": {
       "get": {
         "tags": [
           "freeboardcomment"
@@ -759,7 +802,7 @@
         ]
       }
     },
-    "/freeboards/usercommentlist/{user_id}": {
+    "/freeboardcomments/user_id": {
       "get": {
         "tags": [
           "freeboardcomment"
@@ -767,53 +810,6 @@
         "summary": "유저 id의 모든 작성 댓글 가져오기",
         "description": "",
         "parameters": [
-          {
-            "name": "user_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/freeboards/boardcommentlist/{board_id}": {
-      "get": {
-        "tags": [
-          "freeboardcomment"
-        ],
-        "summary": "게시글의 모든 댓글 목록 가져오기",
-        "description": "",
-        "parameters": [
-          {
-            "name": "board_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "authorization",
             "in": "header",
@@ -895,6 +891,13 @@
         "description": "",
         "parameters": [
           {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "status",
             "in": "query",
             "schema": {
@@ -909,7 +912,7 @@
             }
           },
           {
-            "name": "tag",
+            "name": "hashtag",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1086,44 +1089,6 @@
             "name": "id",
             "in": "path",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
-      }
-    },
-    "/findteamstag": {
-      "get": {
-        "tags": [
-          "findteam"
-        ],
-        "summary": "태그 필터",
-        "description": "",
-        "parameters": [
-          {
-            "name": "tag",
-            "in": "query",
             "schema": {
               "type": "string"
             }
@@ -1426,6 +1391,13 @@
         "description": "전체 게시글 목록",
         "parameters": [
           {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "status",
             "in": "query",
             "schema": {
@@ -1440,7 +1412,7 @@
             }
           },
           {
-            "name": "tag",
+            "name": "hashtag",
             "in": "query",
             "schema": {
               "type": "string"
@@ -2093,6 +2065,13 @@
         "summary": "모든 게시글 가져오기",
         "description": "",
         "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",

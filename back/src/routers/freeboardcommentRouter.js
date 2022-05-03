@@ -6,7 +6,7 @@ import { freeboardcommentService } from '../services/freeboardcommentService';
 const freeboardcommentRouter = Router();
 // commentRouter.use(loginRequired);
 
-freeboardcommentRouter.post('/freeboards/comments', loginRequired, async (req, res, next) => {
+freeboardcommentRouter.post('/freeboardcomments', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboardcomment'] 
@@ -33,7 +33,7 @@ freeboardcommentRouter.post('/freeboards/comments', loginRequired, async (req, r
 });
 
 // 특정 댓글 조회 API
-freeboardcommentRouter.get('/freeboards/comments/:id', loginRequired, async (req, res, next) => {
+freeboardcommentRouter.get('/freeboardcomments/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboardcomment'] 
@@ -54,7 +54,7 @@ freeboardcommentRouter.get('/freeboards/comments/:id', loginRequired, async (req
 });
 
 // 특정 댓글 수정 API
-freeboardcommentRouter.put('/freeboards/comments/:id', loginRequired, async (req, res, next) => {
+freeboardcommentRouter.put('/freeboardcomments/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboardcomment'] 
@@ -82,7 +82,7 @@ freeboardcommentRouter.put('/freeboards/comments/:id', loginRequired, async (req
   }
 });
 
-freeboardcommentRouter.delete('/freeboards/comments/:id', loginRequired, async (req, res, next) => {
+freeboardcommentRouter.delete('/freeboardcomments/:id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboardcomment'] 
@@ -102,7 +102,7 @@ freeboardcommentRouter.delete('/freeboards/comments/:id', loginRequired, async (
   }
 });
 
-freeboardcommentRouter.get('/freeboards/usercommentlist/:user_id', loginRequired, async (req, res, next) => {
+freeboardcommentRouter.get('/freeboardcomments/user_id', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboardcomment'] 
@@ -118,14 +118,14 @@ freeboardcommentRouter.get('/freeboards/usercommentlist/:user_id', loginRequired
   }
 });
 
-freeboardcommentRouter.get('/freeboards/boardcommentlist/:board_id', loginRequired, async (req, res, next) => {
+freeboardcommentRouter.get('/freeboardcomments', loginRequired, async (req, res, next) => {
   try {
     /*
      #swagger.tags = ['freeboardcomment'] 
      #swagger.summary = '게시글의 모든 댓글 목록 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
-    const board_id = req.params.board_id;
+    const board_id = req.query.board_id;
     const comments = await freeboardcommentService.getCommentsByBoardId({ board_id });
 
     res.status(200).send(comments);

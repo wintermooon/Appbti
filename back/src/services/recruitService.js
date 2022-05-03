@@ -90,7 +90,7 @@ class recruitService {
     return post;
   }
 
-  static async getPosts(filter) {
+  static async getPosts(filter, { currentPage, perPage }) {
     let newFilter = {};
     let order;
     if (filter.status) {
@@ -105,7 +105,7 @@ class recruitService {
       order = 'updatedAt';
     }
 
-    const posts = await Recruit.findAll(newFilter, order);
+    const posts = await Recruit.findAll(newFilter, order, { currentPage, perPage });
     return posts;
   }
 

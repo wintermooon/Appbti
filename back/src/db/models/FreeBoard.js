@@ -11,10 +11,17 @@ class FreeBoard {
     return post;
   }
 
-  static async findAll() {
-    const posts = await FreeBoardModel.find({}).sort({ updatedAt: -1 });
+  static async findAll({ currentPage, perPage }) {
+    const posts = await FreeBoardModel.find()
+    .sort({ createdAt: -1 })
+    .skip(perPage * (currentPage -1))
+    .limit(perPage);
     return posts;
   }
+  
+  // static async CountPosts() {
+  //   const total = await FreeBoard.count()
+  // }
 
   static async findAllByUserId({ user_id }) {
     const posts = await FreeBoardModel.find({ user_id: user_id }).sort({ updatedAt: -1 });

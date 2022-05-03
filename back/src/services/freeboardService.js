@@ -13,8 +13,8 @@ class freeboardService {
     return posts;
   }
 
-  static async getPosts() {
-    const posts = await FreeBoard.findAll();
+  static async getPosts({ currentPage, perPage }) {
+    const posts = await FreeBoard.findAll({ currentPage, perPage })
     return posts;
   }
 

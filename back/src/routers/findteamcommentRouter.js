@@ -88,7 +88,7 @@ findteamcommentRouter.get('/findteamcomments/:userId', loginRequired, async (req
      #swagger.security = [{ "bearerAuth": [] }]
     */
     const userId = req.params.userId;
-    const comments = await findteamcommentService.getCommentsById({ userId });
+    const comments = await findteamcommentService.getCommentsByUserId({ userId });
 
     res.status(200).send(comments);
   } catch (error) {

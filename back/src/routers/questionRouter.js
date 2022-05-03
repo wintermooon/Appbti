@@ -99,7 +99,11 @@ questionRouter.get('/questionlist', loginRequired, async (req, res, next) => {
      #swagger.summary = '모든 게시글 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
-    const posts = await questionService.getPosts();
+     const currentPage = req.query.page || 1;
+     const perPage = 6;
+ 
+     const posts = await questionService.getPosts({ currentPage, perPage });
+     
     res.status(200).send(posts);
   } catch (error) {
     next(error);

@@ -11,8 +11,11 @@ class Question {
     return post;
   }
 
-  static async findAll() {
-    const posts = await QuestionModel.find({}).sort({ updatedAt: -1 });
+  static async findAll({ currentPage, perPage }) {
+    const posts = await QuestionModel.find()
+    .sort({ createdAt: -1 })
+    .skip(perPage * (currentPage -1))
+    .limit(perPage);;
     return posts;
   }
 

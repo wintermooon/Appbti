@@ -13,8 +13,8 @@ class questionService {
     return posts;
   }
 
-  static async getPosts() {
-    const posts = await Question.findAll();
+  static async getPosts({ currentPage, perPage }) {
+    const posts = await Question.findAll({ currentPage, perPage })
     return posts;
   }
 

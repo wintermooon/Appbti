@@ -20,7 +20,8 @@ class FindTeamComment {
     return createdNewComment;
   }
 
-  static async findById({ comment_id }) {
+  // 함수명 변경
+  static async findByIdWithAuthor({ comment_id }) {
     const comment = await FindTeamCommentModel.findOne({ _id: comment_id });
 
     await UserModel.populate(comment, {
