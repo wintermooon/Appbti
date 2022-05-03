@@ -4,6 +4,11 @@ import swaggerUi from 'swagger-ui-express';
 import { userAuthRouter } from './routers/userRouter';
 import { freeboardRouter } from './routers/freeboardRouter';
 import { commentRouter } from './routers/commentRouter';
+import { findteamRouter } from './routers/findteamRouter';
+import { ftcommentRouter } from './routers/ftcommentRouter';
+import { questionRouter } from './routers/questionRouter';
+import { recruitRouter } from './routers/recruitRouter';
+import { recruitcommentRouter } from './routers/recruitcommentRouter';
 import { errorMiddleware } from './middlewares/errorMiddleware';
 import swaggerFile from './swagger/swagger-output.json';
 
@@ -29,15 +34,15 @@ app.get('/', (req, res) => {
 app.use(userAuthRouter);
 app.use(freeboardRouter);
 app.use(commentRouter);
+app.use(findteamRouter);
+app.use(ftcommentRouter);
+app.use(questionRouter);
+app.use(recruitRouter);
+app.use(recruitcommentRouter);
 
-console.log(swaggerFile)
+console.log(swaggerFile);
 //swagger
-app.use(
-  '/api-docs',
-  swaggerUi.serve,
-  swaggerUi.setup(swaggerFile, { explorer: true })
-
-);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerFile, { explorer: true }));
 
 // 순서 중요 (router 에서 next() 시 아래의 에러 핸들링  middleware로 전달됨)
 app.use(errorMiddleware);
