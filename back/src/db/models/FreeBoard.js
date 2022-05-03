@@ -15,7 +15,7 @@ class FreeBoard {
     const posts = await FreeBoardModel.find()
     .sort({ createdAt: -1 })
     .skip(perPage * (currentPage -1))
-    .limit(perPage);;
+    .limit(perPage);
     return posts;
   }
   

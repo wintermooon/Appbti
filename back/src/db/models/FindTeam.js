@@ -16,16 +16,19 @@ class FindTeam {
     return post.likes;
   }
 
-  static async findTag({ tag }) {
-    const posts = await FindTeamModel.find().where('tag').in(tag)
-    return posts
-    // tag: { $elemMatch: { $eq: tag }
-  }
+  // static async findTag({ tag }) {
+  //   const posts = await FindTeamModel.find().where('tag').in(tag)
+  //   return posts
+  //  
+  // }
 
-  static async findAll(newFilter, order) {
+  static async findAll(newFilter, order, { currentPage, perPage }) {
     const posts = await FindTeamModel.find(newFilter)
-     .populate('author', 'id email name')
-     .sort({ [order]: -1 });
+    .populate('author', 'id email name')
+    // .where('tag').in(tag)
+    .sort({ [order]: -1 })
+    .skip(perPage * (currentPage -1))
+    .limit(perPage);
     return posts;
   }
 

@@ -828,6 +828,13 @@
         "description": "",
         "parameters": [
           {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "status",
             "in": "query",
             "schema": {
@@ -842,7 +849,7 @@
             }
           },
           {
-            "name": "tag",
+            "name": "hashtag",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1359,6 +1366,13 @@
         "description": "전체 게시글 목록",
         "parameters": [
           {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "status",
             "in": "query",
             "schema": {
@@ -1373,7 +1387,7 @@
             }
           },
           {
-            "name": "tag",
+            "name": "hashtag",
             "in": "query",
             "schema": {
               "type": "string"
@@ -1988,6 +2002,13 @@
         "summary": "모든 게시글 가져오기",
         "description": "",
         "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
           {
             "name": "authorization",
             "in": "header",

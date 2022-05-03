@@ -10,22 +10,24 @@ class findteamService {
   }
 
 
-  static async getPosts(filter) {
+  static async getPosts(filter, { currentPage, perPage }) {
     let newFilter = {};
     let order;
+    // let tag = '';
+
     if (filter.status) {
       newFilter.status = filter.status;
     }
     if (filter.tag) {
-      newFilter.tag = filter.tag;
+      newFilter.tag = filter.tag.split(',');
     }
     if (filter.order) {
-      order = filter.order;
+      newFilter.order = filter.order;
     } else {
       order = 'updatedAt';
     }
 
-    const posts = await FindTeam.findAll(newFilter, order);
+    const posts = await FindTeam.findAll(newFilter, order, { currentPage, perPage });
     return posts;
   }
 
@@ -62,10 +64,10 @@ class findteamService {
     return res;
   }
 
-  static async getPostTag({ tag }) {
-    const post = await FindTeam.findTag({ tag });
-    return post
-  }
+  // static async getPostTag({ tag }) {
+  //   const post = await FindTeam.findTag({ tag });
+  //   return post
+  // }
 
 
   static async setPost({ userId, post_id, toUpdate }) {

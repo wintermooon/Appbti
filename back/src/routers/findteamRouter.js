@@ -132,11 +132,15 @@ findteamRouter.get('/findteams', loginRequired, async (req, res, next) => {
      #swagger.summary = '모든 게시글 가져오기' 
      #swagger.security = [{ "bearerAuth": [] }]
     */
+
+    const currentPage = req.query.page || 1;
+    const perPage = 6;
+
     const status = req.query.status ?? null;
     const order = req.query.order ?? null;
-    const tag = req.query.tag ?? null;
+    const tag = req.query.hashtag ?? null;
     const filter = { status, order, tag };
-    const posts = await findteamService.getPosts(filter);
+    const posts = await findteamService.getPosts(filter, { currentPage, perPage });
     res.status(200).send(posts);
   } catch (error) {
     next(error);
