@@ -18,11 +18,19 @@ import * as Api from "../../api";
 import Pager from "./pager/Pager";
 
 import "../styles/CommunityPage.css";
-import TagTest from "./filter/TagTest";
+import TagFilter from "./filter/TagFilter";
 
 const CommunityPage = function () {
   const navigate = useNavigate();
   const userState = useContext(UserStateContext);
+
+  // TagFilter에서 받아온 쿼리 url 저장
+  const [tagQuery, setTagQuery] = useState("");
+
+  const tagQueryFunction = (tagUrls) => {
+    setTagQuery(tagUrls);
+  };
+  // console.log("커뮤니티페이지에서 태그쿼리 변수에 저장", tagQuery);
 
   const Item = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(3),
@@ -143,7 +151,7 @@ const CommunityPage = function () {
               ) : (
                 ""
               )}
-              <TagContainer>{categoryUrl === "recruitlist" || categoryUrl === "findteamlist" ? <TagTest /> : ""}</TagContainer>
+              <TagContainer>{categoryUrl === "recruitlist" || categoryUrl === "findteamlist" ? <TagFilter /> : ""}</TagContainer>
               <TabDiv>
                 <TabContainer>
                   {orderTabMenu.map((e, index) => {

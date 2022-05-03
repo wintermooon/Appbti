@@ -12,9 +12,9 @@ const StatusFilterTab = () => {
     if (e === "전체") {
       setStatusUrl("all");
     } else if (e === "모집중") {
-      setStatusUrl("uncompleted");
+      setStatusUrl("recruited");
     } else {
-      setStatusUrl("completed");
+      setStatusUrl("unrecruited");
     }
   };
 
