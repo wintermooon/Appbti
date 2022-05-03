@@ -7,8 +7,9 @@ class FindTeam {
   }
 
   static async findById({ post_id }) {
-    const post = await FindTeamModel.findOne({ _id: post_id }).populate('author', 'id email name');
-    return post;
+    // 변수명 수정
+    const findTeamPost = await FindTeamModel.findOne({ _id: post_id }).populate('author', 'id email name');
+    return findTeamPost;
   }
 
   static async findlike({ post_id, userId }) {
@@ -19,17 +20,18 @@ class FindTeam {
   // static async findTag({ tag }) {
   //   const posts = await FindTeamModel.find().where('tag').in(tag)
   //   return posts
-  //  
+   
   // }
 
   static async findAll(newFilter, order, { currentPage, perPage }) {
-    const posts = await FindTeamModel.find(newFilter)
+    // 변수명 변경
+    const findTeamPosts = await FindTeamModel.find(newFilter) 
+    .where('tag').in(newFilter.tag)
     .populate('author', 'id email name')
-    // .where('tag').in(tag)
     .sort({ [order]: -1 })
     .skip(perPage * (currentPage -1))
     .limit(perPage);
-    return posts;
+    return findTeamPosts;
   }
 
 
@@ -52,7 +54,7 @@ class FindTeam {
 
   static async delete({ post_id }) {
     await FindTeamModel.deleteOne({ _id: post_id });
-    return '삭제가 완료되었습니다.';
+    return true;
   }
 }
 

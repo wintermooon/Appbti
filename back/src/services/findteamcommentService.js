@@ -10,7 +10,7 @@ class findteamcommentService {
 
 
   // 유저가 생성한 모든 댓글
-  static async getCommentsById({ userId }) {
+  static async getCommentsByUserId({ userId }) {
     const author = await User.findById({ userId });
     const comments = await FindTeamComment.findByUserId({ author });
     return comments;
@@ -24,7 +24,7 @@ class findteamcommentService {
 
   // 수정
   static async setComment({ userId, comment_id, toUpdate }) {
-    let comment = await FindTeamComment.findById({ comment_id });
+    let comment = await FindTeamComment.findByIdWithAuthor({ comment_id });
     const author = await User.findById({ userId });
     if (!comment) {
       const errorMessage = '댓글 내역이 없습니다. 다시 한 번 확인해 주세요.';

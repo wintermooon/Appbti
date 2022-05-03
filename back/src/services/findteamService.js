@@ -65,7 +65,7 @@ class findteamService {
   }
 
   // static async getPostTag({ tag }) {
-  //   const post = await FindTeam.findTag({ tag });
+    // const post = await FindTeam.findTag({ tag });
   //   return post
   // }
 

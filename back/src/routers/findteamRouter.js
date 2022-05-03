@@ -74,23 +74,23 @@ findteamRouter.put('/findteams/:id/likes', loginRequired, async (req, res, next)
   }
 });
 
-findteamRouter.get('/findteamstag', loginRequired, async (req, res, next) => {
-  try {
-    /*
-     #swagger.tags = ['findteam'] 
-     #swagger.summary = '태그 필터' 
-     #swagger.security = [{ "bearerAuth": [] }]
-    */
+// findteamRouter.get('/findteamstag', loginRequired, async (req, res, next) => {
+//   try {
+//     /*
+//      #swagger.tags = ['findteam'] 
+//      #swagger.summary = '태그 필터' 
+//      #swagger.security = [{ "bearerAuth": [] }]
+//     */
 
-    const tag = req.query.tag.split(',');
+//     const tag = req.query.tag.split(',');
 
-    const posts = await findteamService.getPostTag({ tag })
-    res.status(200).send(posts)
+//     const posts = await findteamService.getPostTag({ tag })
+//     res.status(200).send(posts)
 
-  } catch (error) {
-    next(error);
-  }
-})
+//   } catch (error) {
+//     next(error);
+//   }
+// })
 
 
 // 특정 글 수정 API
