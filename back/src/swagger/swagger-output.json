@@ -556,11 +556,11 @@
         "tags": [
           "freeboardcomment"
         ],
-        "summary": "유저 id의 모든 작성 댓글 가져오기",
+        "summary": "게시글의 모든 댓글 목록 가져오기",
         "description": "",
         "parameters": [
           {
-            "name": "user_id",
+            "name": "board_id",
             "in": "query",
             "schema": {
               "type": "string"
@@ -728,22 +728,14 @@
         ]
       }
     },
-    "/freeboards/boardcommentlist/{board_id}": {
+    "/freeboardcomments/user_id": {
       "get": {
         "tags": [
           "freeboardcomment"
         ],
-        "summary": "게시글의 모든 댓글 목록 가져오기",
+        "summary": "유저 id의 모든 작성 댓글 가져오기",
         "description": "",
         "parameters": [
-          {
-            "name": "board_id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
           {
             "name": "authorization",
             "in": "header",

@@ -12,7 +12,7 @@ class Question {
   }
 
   static async findAll({ currentPage, perPage }) {
-    const posts = await FreeBoardModel.find()
+    const posts = await QuestionModel.find()
     .sort({ createdAt: -1 })
     .skip(perPage * (currentPage -1))
     .limit(perPage);;
