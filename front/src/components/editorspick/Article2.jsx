@@ -127,15 +127,15 @@ const graph3BarData = {
   series: [
     {
       name: "Count Rank",
-      data: [1, 4, 14, 12, 2, 19, 11, 17, 6, 5, 16, 7, 8, 15, 3, 9, 13, 10, 18, 25],
+      data: [1, 4, 14, 12, 2, 19, 11, 17, 6, 5, 16, 7, 8, 15, 3, 9, 13, 10, 18, 25, 24, 20, 23, 21, 22, 29, 26, 27, 28, 30, 31, 32],
     },
     {
       name: "Total Installs Rank",
-      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+      data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32],
     },
     {
       name: "Mean Installs Rank",
-      data: [7, 4, 1, 3, 12, 2, 6, 5, 13, 17, 10, 20, 19, 11, 30, 14, 21, 18, 8],
+      data: [7, 4, 1, 3, 12, 2, 6, 5, 13, 17, 10, 20, 19, 11, 30, 22, 14, 21, 18, 8, 9, 15, 24, 28, 31, 16, 27, 23, 26, 29, 25, 32],
     },
   ],
   options: {
@@ -190,6 +190,18 @@ const graph3BarData = {
         "Business",
         "News & Magazines",
         "Weather",
+        "Auto & Vehicles",
+        "Maps & Navigation",
+        "Art & Design",
+        "Food & Drink",
+        "Medical",
+        "Comics",
+        "Dating",
+        "House & Home",
+        "Beauty",
+        "Parenting",
+        "Libraries & Demo",
+        "Events",
       ],
     },
   },
@@ -266,7 +278,7 @@ const Article2 = function ({ openModalHandler }) {
                   유저의 수요에 비해 출시된 어플의 수는 많고, 다운로드 수는 상위 어플에 집중되어있음을 확인할 수 있습니다.
                 </ModalBody>
                 <Graph3 id="chart">
-                  <ReactApexChart options={graph3BarData.options} series={graph3BarData.series} type="bar" height="1500" />
+                  <ReactApexChart options={graph3BarData.options} series={graph3BarData.series} type="bar" height="2000" />
                   <p> - 카테고리 별 앱 수, 전체 설치 수, 평균 설치 수 별 순위 - </p>
                 </Graph3>
                 <ModalComment>
