@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, Typography } from "@mui/material";
-import * as Api from "../../../api";
+import { get } from "../../../api";
 import { useNavigate } from "react-router";
 
-const Lists = (setViewType) => {
+const Lists = ({ setViewType }) => {
   const navigate = useNavigate();
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [lists, setLists] = useState([]);
 
   useEffect(() => {
     async function loadFreeboardList() {
-      const res = await Api.get(`freeboardlist`);
+      const res = await get(`freeboardlist`);
       setLists(res.data);
       setIsFetchCompleted(true);
     }
     loadFreeboardList();
-  }, [setViewType]);
+  }, []);
 
   // * * Skeleton Code 작성할 것
   if (!isFetchCompleted) {

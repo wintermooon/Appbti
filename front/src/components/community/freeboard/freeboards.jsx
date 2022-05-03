@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import Button from "@mui/material/Button";
 import { UserStateContext } from "../../../App";
-import * as Api from "../../../api";
+import { get } from "../../../api";
 import LinearProgress from "@mui/material/LinearProgress";
 import View from "./PostView";
 import Lists from "./Lists";
@@ -18,7 +18,7 @@ const Freeboards = () => {
 
   const fetchPostsInfo = async () => {
     try {
-      await Api.get("freeboardlist");
+      await get("freeboardlist");
       setViewType("list");
       setIsFetchCompleted(true);
     } catch (error) {

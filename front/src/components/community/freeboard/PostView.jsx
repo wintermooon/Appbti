@@ -1,11 +1,11 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { UserStateContext } from "../../../App";
-import * as Api from "../../../api";
+import { get, del } from "../../../api";
 import Comments from "./FreeboardComments";
 import CommentForm from "./FreeboardCommentForm";
 
-function PostView(setViewType, user) {
+function PostView({ setViewType, user }) {
   const [postInfo, setPostInfo] = useState(null);
   const [isFetchCompleted, setIsFetchCompleted] = useState(false);
   const [isEditable, setIsEditable] = useState(false);
@@ -14,9 +14,7 @@ function PostView(setViewType, user) {
 
   useEffect(() => {
     async function loadPostView() {
-      console.log("user:", user);
-      console.log("params:", params);
-      const res = await Api.get(`freeboards/${params._id}`);
+      const res = await get(`freeboards/${params.id}`);
       setPostInfo(res.data);
       setIsFetchCompleted(true);
     }
@@ -30,12 +28,12 @@ function PostView(setViewType, user) {
   const deleteNavigate = async () => {
     try {
       if (window.confirm("게시글을 삭제하시겠습니까?")) {
-        await Api.delete(`freeboards`, params.id);
+        await del("freeboards", params.id);
         // * * 자유게시판 엔드포인트 완성되면 거기로 보내주기
-        navigate("community");
+        navigate("/community");
       }
     } catch (error) {
-      console.log(error);
+      alert(`${error}로 인하여 게시글을 삭제하지 못했습니다.`);
     }
   };
 

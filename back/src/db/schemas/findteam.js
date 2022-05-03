@@ -2,12 +2,9 @@ import { Schema, model } from 'mongoose';
 
 const FindTeamSchema = new Schema(
   {
-    user_id: {
-      type: String,
-      required: true,
-    },
-    name: {
-      type: String,
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true,
     },
     title: {
@@ -18,17 +15,12 @@ const FindTeamSchema = new Schema(
       type: String,
       required: true,
     },
-    // 기술 스택
-    stack: {
-      type: String,
-      required: true,
-    },
     status: {
       type: String,
       required: false,
       default: 'unrecruited',
     },
-    hashtag: {
+    tag: {
       type: Array,
       required: false,
       default: [],
@@ -40,6 +32,15 @@ const FindTeamSchema = new Schema(
         ref: 'FindTeamComment',
       },
     ],
+    commentsCount: {
+      type: Number,
+      default: 0,
+    },
+    likes: [{ type: String }],
+    likesCount: {
+      type: Number,
+      default: 0,
+    },
   },
   {
     timestamps: true,

@@ -15,6 +15,12 @@ class recruitcommentService {
     return comments;
   }
 
+  // 게시판 댓글
+  static async getComments({ post_id }) {
+    const comments = await Recruitcomment.findByPostId({ post_id });
+    return comments;
+  }
+
   // 수정
   static async setComment({ userId, comment_id, toUpdate }) {
     let comment = await Recruitcomment.findById({ comment_id });
@@ -46,7 +52,7 @@ class recruitcommentService {
       const errorMessage = '해당 댓글이 없습니다.';
       return { errorMessage };
     }
-    const deletedComment = await Recruitcomment.delete({ comment_id });
+    const deletedComment = await Recruitcomment.delete({ comment });
     return deletedComment;
   }
 }

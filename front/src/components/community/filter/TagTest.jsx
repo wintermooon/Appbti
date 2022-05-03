@@ -39,12 +39,15 @@ const TagBox = styled.div`
   align-items: center;
   width: 100%;
   height: 30px;
-  padding: 12px 24px;
+  margin: 10px 0;
+  padding: 20px 10px;
+  background-color: var(--inputBackground);
+  border-radius: 5px;
 `;
 
 const StackFilterTag = styled.button`
   margin-right: 10px;
-  padding: 7px 14px;
+  padding: 5px 10px;
   border-radius: 30px;
   font-size: 11px;
   font-weight: 500;
@@ -91,8 +94,20 @@ const STACK_LIST = [
   },
   {
     filterId: 6,
-    name: "C#",
+    name: "Frond-end",
     value: 6,
+    isClicked: false,
+  },
+  {
+    filterId: 7,
+    name: "Back-end",
+    value: 7,
+    isClicked: false,
+  },
+  {
+    filterId: 8,
+    name: "Full-stack",
+    value: 8,
     isClicked: false,
   },
 ];
